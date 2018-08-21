@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Angestellter.h"
 
-
 Angestellter::Angestellter()
 {
 }
@@ -78,6 +77,16 @@ int Angestellter::getArbeitMinuten()
 	return arbeitMinuten;
 }
 
+int Angestellter::getArbeitStundenNoch()
+{
+	return arbeitStundenNoch;
+}
+
+int Angestellter::getArbeitMinutenNoch()
+{
+	return arbeitMinutenNoch;
+}
+
 int Angestellter::getAnzUrlaubstage()
 {
 	return anzUrlaubstage;
@@ -148,6 +157,18 @@ void Angestellter::setArbeitMinuten(int arbeitMinuten)
 	this->arbeitMinuten = arbeitMinuten;
 }
 
+//NEU
+void Angestellter::setArbeitStundenNoch(int arbeitStundenNochNeu)
+{
+	this->arbeitStundenNoch = arbeitStundenNochNeu;
+}
+
+//NEU
+void Angestellter::setArbeitMinutenNoch(int arbeitMinutenNochNeu)
+{
+	this->arbeitMinutenNoch = arbeitMinutenNochNeu;
+}
+
 void Angestellter::setAnzUrlaubstage(int anzUrlaubstage)
 {
 	this->anzUrlaubstage = anzUrlaubstage;
@@ -161,7 +182,7 @@ void Angestellter::setGenommenUrlaub(int genommenUrlaub)
 //NEU
 void Angestellter::fuegeZeitHinzu() 
 {
-	arbeitsTagAktuell->Add(DateTime::Today);
+	arbeitsTagAktuell->Add(DateTime::Now);
 }
 
 //NEU
@@ -172,9 +193,11 @@ void Angestellter::aendereTag(DateTime tag, List<DateTime>^ neueZeiten)
 }
 
 //NEU
-void Angestellter::arbeitsTagBeenden() 
+void Angestellter::arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu) 
 {
 	fuegeZeitHinzu();
 	arbeitsTage->Add(DateTime::Today, arbeitsTagAktuell);
 	arbeitsTagAktuell->Clear;
+	setArbeitStundenNoch(arbeitStundenNochNeu);
+	setArbeitMinutenNoch(arbeitMinutenNochNeu);
 }

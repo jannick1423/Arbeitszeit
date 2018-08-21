@@ -19,6 +19,8 @@ ref class Angestellter
 	bool istWeiblich;
 	int arbeitStunden;
 	int arbeitMinuten;
+	int arbeitStundenNoch;
+	int arbeitMinutenNoch;
 	int anzUrlaubstage;
 	int genommenUrlaub;
 	//NEU
@@ -43,6 +45,12 @@ public:
 	Adresse^ getAdresse();
 	int getArbeitStunden();
 	int getArbeitMinuten();
+
+	//NEU
+	int getArbeitStundenNoch();
+	//NEU
+	int getArbeitMinutenNoch();
+
 	int getAnzUrlaubstage();
 	int getGenommenUrlaub();
 	//NEU
@@ -61,6 +69,12 @@ public:
 	void setAdresse(Adresse^ adresse);
 	void setArbeitStunden(int arbeitStunden);
 	void setArbeitMinuten(int arbeitMinuten);
+
+	//NEU
+	void setArbeitStundenNoch(int arbeitStundenNochNeu);
+	//NEU
+	void setArbeitMinutenNoch(int arbeitMinutenNochNeu);
+	
 	void setAnzUrlaubstage(int anzUrlaubstage);
 	void setGenommenUrlaub(int genommenUrlaub);
 
@@ -72,7 +86,7 @@ public:
 	void aendereTag(DateTime tag, List<DateTime>^ neueZeiten);
 
 	//NEU
-	void arbeitsTagBeenden();
+	void arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu);
 
 	virtual String^ asString() = 0;
 

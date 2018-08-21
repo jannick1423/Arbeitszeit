@@ -2,7 +2,7 @@
 #include "Mitarbeiter.h"
 #include "Vorgesetzte.h"
 
-
+//Noch ein Kommentar
 Mitarbeiter::Mitarbeiter()
 {
 }

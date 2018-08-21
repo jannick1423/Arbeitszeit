@@ -1,23 +1,24 @@
 #pragma once
-#include "Angestellte.h"
-#include "Vorgesetzte.h"
+#include "Angestellter.h"
+#include "Vorgesetzter.h"
 #include <vector>
 
 using namespace System;
 
 ref class Mitarbeiter :
-	public Angestellte
+	public Angestellter
 {
-	Vorgesetzte^ v;
+	Vorgesetzter^ v;
 
 public:
 	Mitarbeiter();
+	Mitarbeiter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort);
 	Mitarbeiter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
-		int anzUrlaubstage, int genommenUrlaub, Vorgesetzte^ v);
+		int anzUrlaubstage, int genommenUrlaub, Vorgesetzter^ v);
 	~Mitarbeiter();
 
 	String^ asString() override;
-	Vorgesetzte^ getVorgesetzte();
-	void setVorgesetzte(Vorgesetzte^ v);
+	Vorgesetzter^ getVorgesetzte();
+	void setVorgesetzte(Vorgesetzter^ v);
 	bool istVorgesetzter() override;
 };

@@ -5,7 +5,7 @@ using namespace System;
 using namespace System::Collections;
 using namespace System::Collections::Generic;
 
-ref class Angestellte
+ref class Angestellter
 {
 	String^ vorname;
 	String^ nachname;
@@ -24,10 +24,10 @@ ref class Angestellte
 	List<List<DateTime>^>^ arbeitsTage;
 
 public:
-	Angestellte();
-	Angestellte(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
+	Angestellter();
+	Angestellter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
 		int anzUrlaubstage, int genommenUrlaub);
-	~Angestellte();
+	~Angestellter();
 
 	//Getter
 	String^ getVorname();
@@ -60,5 +60,5 @@ public:
 	//Methoden
 	virtual String^ asString() = 0;
 
-	virtual bool istVorgesetzer() = 0;
+	virtual bool istVorgesetzter() = 0;
 };

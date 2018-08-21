@@ -1,25 +1,25 @@
 #include "pch.h"
-#include "Vorgesetzte.h"
+#include "Vorgesetzter.h"
 
 using namespace std;
 
 
-Vorgesetzte::Vorgesetzte()
+Vorgesetzter::Vorgesetzter()
 {
 
 }
 
-Vorgesetzte::Vorgesetzte(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten, int anzUrlaubstage, int genommenUrlaub) : Angestellte (vorname, nachname, abteilungsnummer, personalnummer, passwort, telefon, email, adresse, istWeiblich, arbeitStunden, arbeitMinuten, anzUrlaubstage, genommenUrlaub)
+Vorgesetzter::Vorgesetzter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten, int anzUrlaubstage, int genommenUrlaub) : Angestellter (vorname, nachname, abteilungsnummer, personalnummer, passwort, telefon, email, adresse, istWeiblich, arbeitStunden, arbeitMinuten, anzUrlaubstage, genommenUrlaub)
 {
 
 }
 
 
-Vorgesetzte::~Vorgesetzte()
+Vorgesetzter::~Vorgesetzter()
 {
 }
 
-String^ Vorgesetzte::asString()
+String^ Vorgesetzter::asString()
 {
 	String^ maText;
 	maText = "Vorname: " + this->getVorname() + "\nNachname: " + this->getNachname() + "\nAbteilung: " + this->getAbteilungsnummer() + "\nPersonalnummer: " + this->getPersonalnummer() + "\nTelefon: " + this->getTelefon() + "\nEmail: " + this->getEmail() + "\nAdresse: " + this->getAdresse()->asString();
@@ -36,23 +36,23 @@ String^ Vorgesetzte::asString()
 	return maText;
 }
 
-List<Mitarbeiter^>^ Vorgesetzte::getMaListe()
+List<Mitarbeiter^>^ Vorgesetzter::getMaListe()
 {
 	return maListe;
 }
 
-void Vorgesetzte::addMA(Mitarbeiter^ ma)
+void Vorgesetzter::addMA(Mitarbeiter^ ma)
 {
 	maListe->Add(ma);
 }
 
-void Vorgesetzte::deleteMA(Mitarbeiter^ m)
+void Vorgesetzter::deleteMA(Mitarbeiter^ m)
 {
 	maListe->Remove(m);
 	//Anzeigefenster, dass MA nicht vorhanden
 }
 
-bool Vorgesetzte::istVorgesetzter()
+bool Vorgesetzter::istVorgesetzter()
 {
 	return true;
 }

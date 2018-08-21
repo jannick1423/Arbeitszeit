@@ -1,18 +1,18 @@
 #pragma once
 #include "Adresse.h"
-#include <string>
-using namespace std;
 
-class Angestellte
+using namespace System;
+
+ref class Angestellte
 {
-	string vorname;
-	string nachname;
-	string abteilungsnummer;
-	string personalnummer;
-	string passwort;
-	string telefon;
-	string email;
-	Adresse adresse;
+	String^ vorname;
+	String^ nachname;
+	String^ abteilungsnummer;
+	String^ personalnummer;
+	String^ passwort;
+	String^ telefon;
+	String^ email;
+	Adresse^ adresse;
 	bool istWeiblich;
 	int arbeitStunden;
 	int arbeitMinuten;
@@ -21,38 +21,38 @@ class Angestellte
 
 public:
 	Angestellte();
-	Angestellte(string vorname, string nachname, string abteilungsnummer, string personalnummer, string passwort, string telefon, string email, Adresse adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
+	Angestellte(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
 		int anzUrlaubstage, int genommenUrlaub);
 	~Angestellte();
 
 	//Getter
-	string getVorname();
-	string getNachname();
-	string getAbteilungsnummer();
-	string getPersonalnummer();
-	string getPasswort();
-	string getTelefon();
-	string getEmail();
-	Adresse getAdresse();
+	String^ getVorname();
+	String^ getNachname();
+	String^ getAbteilungsnummer();
+	String^ getPersonalnummer();
+	String^ getPasswort();
+	String^ getTelefon();
+	String^ getEmail();
+	Adresse^ getAdresse();
 	int getArbeitStunden();
 	int getArbeitMinuten();
 	int getAnzUrlaubstage();
 	int getGenommenUrlaub();
 
 	//Setter
-	void setVorname(string vorname);
-	void setNachname(string nachname);
-	void setAbteilungsnummer(string abteilungsnummer);
-	void setPersonalnummer(string personalnummer);
-	void setPasswort(string passwort);
-	void setTelefon(string telefon);
-	void setEmail(string email);
-	void setAdresse(Adresse adresse);
+	void setVorname(String^ vorname);
+	void setNachname(String^ nachname);
+	void setAbteilungsnummer(String^ abteilungsnummer);
+	void setPersonalnummer(String^ personalnummer);
+	void setPasswort(String^ passwort);
+	void setTelefon(String^ telefon);
+	void setEmail(String^ email);
+	void setAdresse(Adresse^ adresse);
 	void setArbeitStunden(int arbeitStunden);
 	void setArbeitMinuten(int arbeitMinuten);
 	void setAnzUrlaubstage(int anzUrlaubstage);
 	void setGenommenUrlaub(int genommenUrlaub);
 
 	//Methoden
-	virtual string asString() = 0;
+	virtual String^ asString() = 0;
 };

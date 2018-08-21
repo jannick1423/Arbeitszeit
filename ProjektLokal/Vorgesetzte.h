@@ -1,22 +1,26 @@
 #pragma once
 #include "Angestellte.h"
-#include "Mitarbeiter.h"
-#include <vector>
+//#include "Mitarbeiter.h"
 #include <iterator>
 
-class Vorgesetzte : 
+ref class Mitarbeiter;
+
+using namespace System;
+using namespace System::Collections::Generic;
+
+ref class Vorgesetzte : 
 	public Angestellte 
 {
-	vector<Mitarbeiter*> maListe{};
+ 	List<Mitarbeiter^>^ maListe;
 
 public:
 	Vorgesetzte();
-	Vorgesetzte(string vorname, string nachname, string abteilungsnummer, string personalnummer, string passwort, string telefon, string email, Adresse adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
+	Vorgesetzte(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
 		int anzUrlaubstage, int genommenUrlaub);
 	~Vorgesetzte();
 
-	string asString();
-	vector<Mitarbeiter*> getMaListe();
-	void addMA(Mitarbeiter* ma);
-	void deleteMA(Mitarbeiter* ma);
+	String^ asString() override;
+	List<Mitarbeiter^>^ getMaListe();
+	void addMA(Mitarbeiter^ ma);
+	void deleteMA(Mitarbeiter^ ma);
 };

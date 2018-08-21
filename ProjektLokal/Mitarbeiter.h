@@ -3,20 +3,20 @@
 #include "Vorgesetzte.h"
 #include <vector>
 
-using namespace std;
+using namespace System;
 
-class Mitarbeiter :
+ref class Mitarbeiter :
 	public Angestellte
 {
-	Vorgesetzte v;
+	Vorgesetzte^ v;
 
 public:
 	Mitarbeiter();
-	Mitarbeiter(string vorname, string nachname, string abteilungsnummer, string personalnummer, string passwort, string telefon, string email, Adresse adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
-		int anzUrlaubstage, int genommenUrlaub, Vorgesetzte v);
+	Mitarbeiter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten,
+		int anzUrlaubstage, int genommenUrlaub, Vorgesetzte^ v);
 	~Mitarbeiter();
 
-	string asString();
-	Vorgesetzte getVorgesetzte();
-	void setVorgesetzte(Vorgesetzte v);
+	String^ asString() override;
+	Vorgesetzte^ getVorgesetzte();
+	void setVorgesetzte(Vorgesetzte^ v);
 };

@@ -6,7 +6,7 @@ Angestellte::Angestellte()
 {
 }
 
-Angestellte::Angestellte(string vorname, string nachname, string abteilungsnummer, string personalnummer, string passwort, string telefon, string email, Adresse adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten, int anzUrlaubstage, int genommenUrlaub)
+Angestellte::Angestellte(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten, int anzUrlaubstage, int genommenUrlaub)
 {
 	this->vorname = vorname;
 	this->nachname = nachname;
@@ -28,42 +28,42 @@ Angestellte::~Angestellte()
 {
 }
 
-string Angestellte::getVorname()
+String^ Angestellte::getVorname()
 {
 	return vorname;
 }
 
-string Angestellte::getNachname()
+String^ Angestellte::getNachname()
 {
 	return nachname;
 }
 
-string Angestellte::getAbteilungsnummer()
+String^ Angestellte::getAbteilungsnummer()
 {
 	return abteilungsnummer;
 }
 
-string Angestellte::getPersonalnummer()
+String^ Angestellte::getPersonalnummer()
 {
 	return personalnummer;
 }
 
-string Angestellte::getPasswort()
+String^ Angestellte::getPasswort()
 {
 	return passwort;
 }
 
-string Angestellte::getTelefon()
+String^ Angestellte::getTelefon()
 {
 	return telefon;
 }
 
-string Angestellte::getEmail()
+String^ Angestellte::getEmail()
 {
 	return email;
 }
 
-Adresse Angestellte::getAdresse()
+Adresse^ Angestellte::getAdresse()
 {
 	return adresse;
 }
@@ -88,42 +88,42 @@ int Angestellte::getGenommenUrlaub()
 	return genommenUrlaub;
 }
 
-void Angestellte::setVorname(string vorname)
+void Angestellte::setVorname(String^ vorname)
 {
 	this->vorname = vorname;
 }
 
-void Angestellte::setNachname(string nachname)
+void Angestellte::setNachname(String^ nachname)
 {
 	this->nachname = nachname;
 }
 
-void Angestellte::setAbteilungsnummer(string abteilungsnummer)
+void Angestellte::setAbteilungsnummer(String^ abteilungsnummer)
 {
 	this->abteilungsnummer = abteilungsnummer;
 }
 
-void Angestellte::setPersonalnummer(string personalnummer)
+void Angestellte::setPersonalnummer(String^ personalnummer)
 {
 	this->personalnummer = personalnummer;
 }
 
-void Angestellte::setPasswort(string passwort)
+void Angestellte::setPasswort(String^ passwort)
 {
 	this->passwort = passwort;
 }
 
-void Angestellte::setTelefon(string telefon)
+void Angestellte::setTelefon(String^ telefon)
 {
 	this->telefon = telefon;
 }
 
-void Angestellte::setEmail(string email)
+void Angestellte::setEmail(String^ email)
 {
 	this->email = email;
 }
 
-void Angestellte::setAdresse(Adresse adresse)
+void Angestellte::setAdresse(Adresse^ adresse)
 {
 	this->adresse = adresse;
 }

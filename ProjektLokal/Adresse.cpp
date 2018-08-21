@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "Adresse.h"
 
+using namespace System;
 
 Adresse::Adresse()
 {
 }
 
-Adresse::Adresse(string strasse, string hausnummer, string plz, string ort)
+Adresse::Adresse(String^ strasse, String^ hausnummer, String^ plz, String^ ort)
 {
 	this->strasse = strasse;
 	this->hausnummer = hausnummer;
@@ -19,47 +20,47 @@ Adresse::~Adresse()
 {
 }
 
-void Adresse::setStrasse(string strasse)
+void Adresse::setStrasse(String^ strasse)
 {
 	this->strasse = strasse;
 }
 
-string Adresse::getStrasse()
+String^ Adresse::getStrasse()
 {
 	return strasse;
 }
 
-string Adresse::getHausnummer()
+String^ Adresse::getHausnummer()
 {
 	return hausnummer;
 }
 
-string Adresse::getPlz()
+String^ Adresse::getPlz()
 {
 	return plz;
 }
 
-string Adresse::getOrt()
+String^ Adresse::getOrt()
 {
 	return ort;
 }
 
-string Adresse::asString()
+String^ Adresse::asString()
 {
 	return strasse + hausnummer + ", " + plz + ort;
 }
 
-void Adresse::setHausnummer(string hausnummer)
+void Adresse::setHausnummer(String^ hausnummer)
 {
 	this->hausnummer = hausnummer;
 }
 
-void Adresse::setPlz(string plz)
+void Adresse::setPlz(String^ plz)
 {
 	this->plz = plz;
 }
 
-void Adresse::setOrt(string ort)
+void Adresse::setOrt(String^ ort)
 {
 	this->ort = ort;
 }

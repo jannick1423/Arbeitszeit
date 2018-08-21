@@ -1,4 +1,5 @@
 #pragma once
+#include "Mitarbeiter.h"
 
 namespace ProjektLokal {
 
@@ -18,7 +19,7 @@ namespace ProjektLokal {
 	public ref class loginFenster : public System::Windows::Forms::Form
 	{
 	private:
-		List<User^> user_list;
+		List<Mitarbeiter^> user_list;
 		///	private List<Person^>
 	public:
 		loginFenster(void)

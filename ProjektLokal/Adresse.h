@@ -1,32 +1,31 @@
 #pragma once
-#include <string>
 
-using namespace std;
+using namespace System;
 
-class Adresse
+ref class Adresse
 {
 private:
-	string strasse;
-	string hausnummer;
-	string plz;
-	string ort;
+	String^ strasse;
+	String^ hausnummer;
+	String^ plz;
+	String^ ort;
 
 public:
 	Adresse();
-	Adresse(string strasse, string hausnummer, string plz, string ort);
+	Adresse(String^ strasse, String^ hausnummer, String^ plz, String^ ort);
 	~Adresse();
 
 	//Setter
-	void setStrasse(string strasse);
-	void setHausnummer(string hausnummer);
-	void setPlz(string plz);
-	void setOrt(string ort);
+	void setStrasse(String^ strasse);
+	void setHausnummer(String^ hausnummer);
+	void setPlz(String^ plz);
+	void setOrt(String^ ort);
 
 	//Getter
-	string getStrasse();
-	string getHausnummer();
-	string getPlz();
-	string getOrt();
+	String^ getStrasse();
+	String^ getHausnummer();
+	String^ getPlz();
+	String^ getOrt();
 
-	string asString();
+	String^ asString();
 };

@@ -71,7 +71,6 @@ namespace ProjektLokal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(loginFenster::typeid));
 			this->logInButton = (gcnew System::Windows::Forms::Button());
 			this->BenutzernameLabel = (gcnew System::Windows::Forms::Label());
 			this->KennwortLabel = (gcnew System::Windows::Forms::Label());
@@ -88,22 +87,21 @@ namespace ProjektLokal {
 			this->logInButton->Font = (gcnew System::Drawing::Font(L"Arial", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->logInButton->ForeColor = System::Drawing::SystemColors::Control;
-			this->logInButton->Location = System::Drawing::Point(30, 152);
+			this->logInButton->Location = System::Drawing::Point(31, 152);
 			this->logInButton->Name = L"logInButton";
-			this->logInButton->Size = System::Drawing::Size(94, 45);
+			this->logInButton->Size = System::Drawing::Size(128, 45);
 			this->logInButton->TabIndex = 0;
 			this->logInButton->Text = L"Einloggen";
 			this->logInButton->UseVisualStyleBackColor = false;
-			//this->logInButton->Click += gcnew System::EventHandler(this, &loginFenster::logInButton_Click);
 			// 
 			// BenutzernameLabel
 			// 
 			this->BenutzernameLabel->AutoSize = true;
 			this->BenutzernameLabel->Font = (gcnew System::Drawing::Font(L"Arial", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->BenutzernameLabel->Location = System::Drawing::Point(12, 30);
+			this->BenutzernameLabel->Location = System::Drawing::Point(27, 33);
 			this->BenutzernameLabel->Name = L"BenutzernameLabel";
-			this->BenutzernameLabel->Size = System::Drawing::Size(110, 16);
+			this->BenutzernameLabel->Size = System::Drawing::Size(121, 19);
 			this->BenutzernameLabel->TabIndex = 2;
 			this->BenutzernameLabel->Text = L"Benutzername";
 			// 
@@ -114,39 +112,37 @@ namespace ProjektLokal {
 				static_cast<System::Byte>(0)));
 			this->KennwortLabel->Location = System::Drawing::Point(27, 81);
 			this->KennwortLabel->Name = L"KennwortLabel";
-			this->KennwortLabel->Size = System::Drawing::Size(76, 16);
+			this->KennwortLabel->Size = System::Drawing::Size(84, 19);
 			this->KennwortLabel->TabIndex = 3;
 			this->KennwortLabel->Text = L"Kennwort";
 			// 
 			// pictureBox2
 			// 
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(-3, 199);
+			this->pictureBox2->Location = System::Drawing::Point(-1, 243);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(252, 55);
+			this->pictureBox2->Size = System::Drawing::Size(517, 178);
 			this->pictureBox2->TabIndex = 5;
 			this->pictureBox2->TabStop = false;
 			// 
 			// benutzernameBox
 			// 
-			this->benutzernameBox->Location = System::Drawing::Point(128, 30);
+			this->benutzernameBox->Location = System::Drawing::Point(186, 30);
 			this->benutzernameBox->Name = L"benutzernameBox";
-			this->benutzernameBox->Size = System::Drawing::Size(100, 22);
+			this->benutzernameBox->Size = System::Drawing::Size(209, 25);
 			this->benutzernameBox->TabIndex = 6;
 			// 
 			// passwortBox
 			// 
-			this->passwortBox->Location = System::Drawing::Point(128, 78);
+			this->passwortBox->Location = System::Drawing::Point(186, 78);
 			this->passwortBox->Name = L"passwortBox";
-			this->passwortBox->Size = System::Drawing::Size(100, 22);
+			this->passwortBox->Size = System::Drawing::Size(209, 25);
 			this->passwortBox->TabIndex = 7;
-			//this->passwortBox->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &loginFenster::passwortBox_MaskInputRejected);
 			// 
 			// passwortvergessenButton
 			// 
-			this->passwortvergessenButton->Location = System::Drawing::Point(138, 152);
+			this->passwortvergessenButton->Location = System::Drawing::Point(186, 152);
 			this->passwortvergessenButton->Name = L"passwortvergessenButton";
-			this->passwortvergessenButton->Size = System::Drawing::Size(98, 45);
+			this->passwortvergessenButton->Size = System::Drawing::Size(112, 45);
 			this->passwortvergessenButton->TabIndex = 8;
 			this->passwortvergessenButton->Text = L"Passwort vergessen\?";
 			this->passwortvergessenButton->UseVisualStyleBackColor = true;
@@ -154,12 +150,12 @@ namespace ProjektLokal {
 			// loginFenster
 			// 
 			this->AllowDrop = true;
-			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
 			this->AutoValidate = System::Windows::Forms::AutoValidate::EnablePreventFocusChange;
-			this->BackColor = System::Drawing::SystemColors::Highlight;
-			this->ClientSize = System::Drawing::Size(250, 256);
+			this->BackColor = System::Drawing::SystemColors::Window;
+			this->ClientSize = System::Drawing::Size(516, 421);
 			this->Controls->Add(this->passwortvergessenButton);
 			this->Controls->Add(this->passwortBox);
 			this->Controls->Add(this->benutzernameBox);

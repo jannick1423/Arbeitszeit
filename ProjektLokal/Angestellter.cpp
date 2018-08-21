@@ -88,6 +88,16 @@ int Angestellter::getGenommenUrlaub()
 	return genommenUrlaub;
 }
 
+//NEU
+List<DateTime>^ Angestellter::getArbeitsTagAktuell() {
+	return arbeitsTagAktuell;
+}
+
+//NEU
+Hashtable^ Angestellter::getArbeitsTage() {
+	return arbeitsTage;
+}
+
 void Angestellter::setVorname(String^ vorname)
 {
 	this->vorname = vorname;
@@ -146,4 +156,25 @@ void Angestellter::setAnzUrlaubstage(int anzUrlaubstage)
 void Angestellter::setGenommenUrlaub(int genommenUrlaub)
 {
 	this->genommenUrlaub = genommenUrlaub;
+}
+
+//NEU
+void Angestellter::fuegeZeitHinzu() 
+{
+	arbeitsTagAktuell->Add(DateTime::Today);
+}
+
+//NEU
+void Angestellter::aendereTag(DateTime tag, List<DateTime>^ neueZeiten) 
+{
+	arbeitsTage->Remove(tag.Date);
+	arbeitsTage->Add(tag.Date, neueZeiten);
+}
+
+//NEU
+void Angestellter::arbeitsTagBeenden() 
+{
+	fuegeZeitHinzu();
+	arbeitsTage->Add(DateTime::Today, arbeitsTagAktuell);
+	arbeitsTagAktuell->Clear;
 }

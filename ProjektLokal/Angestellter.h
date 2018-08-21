@@ -21,8 +21,10 @@ ref class Angestellter
 	int arbeitMinuten;
 	int anzUrlaubstage;
 	int genommenUrlaub;
+	//NEU
 	List<DateTime>^ arbeitsTagAktuell;
-	Hashtable arbeitsTage;
+	//NEU
+	Hashtable^ arbeitsTage;
 
 public:
 	Angestellter();
@@ -43,6 +45,10 @@ public:
 	int getArbeitMinuten();
 	int getAnzUrlaubstage();
 	int getGenommenUrlaub();
+	//NEU
+	List<DateTime>^ getArbeitsTagAktuell();
+	//NEU
+	Hashtable^ getArbeitsTage();
 
 	//Setter
 	void setVorname(String^ vorname);
@@ -59,7 +65,17 @@ public:
 	void setGenommenUrlaub(int genommenUrlaub);
 
 	//Methoden
+	//NEU
+	void fuegeZeitHinzu();
+
+	//NEU
+	void aendereTag(DateTime tag, List<DateTime>^ neueZeiten);
+
+	//NEU
+	void arbeitsTagBeenden();
+
 	virtual String^ asString() = 0;
 
 	virtual bool istVorgesetzter() = 0;
+
 };

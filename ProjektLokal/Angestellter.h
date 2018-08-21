@@ -1,5 +1,6 @@
 #pragma once
 #include "Adresse.h"
+#include <vcclr.h>
 
 using namespace System;
 using namespace System::Collections;
@@ -21,7 +22,7 @@ ref class Angestellter
 	int anzUrlaubstage;
 	int genommenUrlaub;
 	List<DateTime>^ arbeitsTagAktuell;
-	List<List<DateTime>^>^ arbeitsTage;
+	Hashtable arbeitsTage;
 
 public:
 	Angestellter();

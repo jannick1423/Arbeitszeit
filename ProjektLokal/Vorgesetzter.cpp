@@ -14,6 +14,11 @@ Vorgesetzter::Vorgesetzter(String^ vorname, String^ nachname, String^ abteilungs
 
 }
 
+Vorgesetzter::Vorgesetzter(String ^ vorname, String ^ nachname, String ^ abteilungsnummer, String ^ personalnummer, String ^ passwort) :
+	Angestellter(vorname, nachname, abteilungsnummer, personalnummer, passwort, nullptr, nullptr, nullptr, false, 0, 0, 0, 0)
+{
+}
+
 
 Vorgesetzter::~Vorgesetzter()
 {

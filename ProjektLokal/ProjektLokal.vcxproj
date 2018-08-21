@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="Angestellte.cpp" />
+    <ClCompile Include="LogInFenster.cpp" />
     <ClCompile Include="Mitarbeiter.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Startseite.cpp" />
@@ -146,6 +147,9 @@
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
     <ClInclude Include="Angestellte.h" />
+    <ClInclude Include="LogInFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Mitarbeiter.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Startseite.h">

@@ -45,6 +45,9 @@
     <ClCompile Include="Vorgesetzte.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="LogInFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startseite.h">
@@ -72,6 +75,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Vorgesetzte.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="LogInFenster.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

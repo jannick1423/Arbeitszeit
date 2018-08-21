@@ -4,9 +4,11 @@
 
 using namespace std;
 
+//Hello I bims 1 Kommentar
 
 Vorgesetzte::Vorgesetzte()
 {
+	//Hallo Test Kommentar
 }
 
 Vorgesetzte::Vorgesetzte(string vorname, string nachname, string abteilungsnummer, string personalnummer, string passwort, string telefon, string email, Adresse adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten, int anzUrlaubstage, int genommenUrlaub) : Angestellte(vorname, nachname, abteilungsnummer, personalnummer, passwort, telefon, email, adresse, istWeiblich, arbeitStunden, arbeitMinuten, anzUrlaubstage, genommenUrlaub)

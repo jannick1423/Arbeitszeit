@@ -21,7 +21,7 @@ Mitarbeiter::~Mitarbeiter()
 string Mitarbeiter::asString()
 {
 	string maText;
-	maText = "Vorname: " + this->getVorname() + "\nNachname: " + this->getNachname + "\nAbteilung: " + this->getAbteilungsnummer() + "\nPersonalnummer: " + this->getPersonalnummer() + "\nTelefon: " + this->getTelefon() + "\nEmail: " + this->getEmail() + "\nAdresse: " + this->getAdresse().asString();
+	maText = "Vorname: " + this->getVorname() + "\nNachname: " + this->getNachname() + "\nAbteilung: " + this->getAbteilungsnummer() + "\nPersonalnummer: " + this->getPersonalnummer() + "\nTelefon: " + this->getTelefon() + "\nEmail: " + this->getEmail() + "\nAdresse: " + this->getAdresse().asString();
 	return maText;
 }
 

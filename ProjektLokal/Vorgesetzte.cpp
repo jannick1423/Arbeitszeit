@@ -22,7 +22,7 @@ Vorgesetzte::~Vorgesetzte()
 string Vorgesetzte::asString()
 {
 	string maText;
-	maText = "Vorname: " + this->getVorname() + "\nNachname: " + this->getNachname + "\nAbteilung: " + this->getAbteilungsnummer() + "\nPersonalnummer: " + this->getPersonalnummer() + "\nTelefon: " + this->getTelefon() + "\nEmail: " + this->getEmail() + "\nAdresse: " + this->getAdresse().asString();
+	maText = "Vorname: " + this->getVorname() + "\nNachname: " + this->getNachname() + "\nAbteilung: " + this->getAbteilungsnummer() + "\nPersonalnummer: " + this->getPersonalnummer() + "\nTelefon: " + this->getTelefon() + "\nEmail: " + this->getEmail() + "\nAdresse: " + this->getAdresse().asString();
 	if (maListe.empty()) {
 		maText = maText + "\nDieser Vorgesetzte hat bisher noch keine Mitarbeiter.";
 	}

@@ -4,7 +4,6 @@
 
 using namespace std;
 
-//Hello I bims 1 Kommentar
 
 Vorgesetzte::Vorgesetzte()
 {

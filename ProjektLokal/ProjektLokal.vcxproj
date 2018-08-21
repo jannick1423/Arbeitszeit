@@ -136,19 +136,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
-    <ClCompile Include="Angestellte.cpp" />
+    <ClCompile Include="Angestellter.cpp" />
     <ClCompile Include="LogInFenster.cpp" />
     <ClCompile Include="Mitarbeiter.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Startseite.cpp" />
+    <ClCompile Include="Unternehmen.cpp" />
     <ClCompile Include="Urlaubsfenster.cpp" />
     <ClCompile Include="Urlaubsantrag.cpp" />
-    <ClCompile Include="Vorgesetzte.cpp" />
+    <ClCompile Include="Vorgesetzter.cpp" />
     <ClCompile Include="VorgesetztenSeite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
-    <ClInclude Include="Angestellte.h" />
+    <ClInclude Include="Angestellter.h" />
     <ClInclude Include="LogInFenster.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -157,11 +158,12 @@
     <ClInclude Include="Startseite.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Unternehmen.h" />
     <ClInclude Include="Urlaubsfenster.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Urlaubsantrag.h" />
-    <ClInclude Include="Vorgesetzte.h" />
+    <ClInclude Include="Vorgesetzter.h" />
     <ClInclude Include="VorgesetztenSeite.h">
       <FileType>CppForm</FileType>
     </ClInclude>

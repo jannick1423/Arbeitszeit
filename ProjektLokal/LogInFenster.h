@@ -1,5 +1,8 @@
 #pragma once
 #include "Mitarbeiter.h"
+#include "Unternehmen.h"
+#include "Startseite.h"
+#include "VorgesetztenSeite.h"
 
 namespace ProjektLokal {
 
@@ -19,14 +22,21 @@ namespace ProjektLokal {
 	public ref class loginFenster : public System::Windows::Forms::Form
 	{
 	private:
-		List<Mitarbeiter^> user_list;
-		///	private List<Person^>
+		Unternehmen ^ unternehmen;
+	private: System::Windows::Forms::TextBox^  txt_Kennwort;
+
+			 Startseite^ startseite;
+			 VorgesetztenSeite^ vorgesetztenseite;
+		
 	public:
 		loginFenster(void)
 		{
 
 
 			InitializeComponent();
+			unternehmen = gcnew Unternehmen();
+			startseite = gcnew Startseite();
+			vorgesetztenseite = gcnew VorgesetztenSeite();
 			//
 			//TODO: Konstruktorcode hier hinzufügen.
 			//
@@ -48,9 +58,13 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Label^  BenutzernameLabel;
 	private: System::Windows::Forms::Label^  KennwortLabel;
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
-	private: System::Windows::Forms::MaskedTextBox^  benutzernameBox;
-	private: System::Windows::Forms::MaskedTextBox^  passwortBox;
+
+
 	private: System::Windows::Forms::Button^  passwortvergessenButton;
+
+
+	private: System::Windows::Forms::TextBox^  txt_Benutzername;
+
 
 
 
@@ -76,9 +90,9 @@ namespace ProjektLokal {
 			this->BenutzernameLabel = (gcnew System::Windows::Forms::Label());
 			this->KennwortLabel = (gcnew System::Windows::Forms::Label());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->benutzernameBox = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->passwortBox = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->passwortvergessenButton = (gcnew System::Windows::Forms::Button());
+			this->txt_Benutzername = (gcnew System::Windows::Forms::TextBox());
+			this->txt_Kennwort = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -94,6 +108,7 @@ namespace ProjektLokal {
 			this->logInButton->TabIndex = 0;
 			this->logInButton->Text = L"Einloggen";
 			this->logInButton->UseVisualStyleBackColor = false;
+			this->logInButton->Click += gcnew System::EventHandler(this, &loginFenster::logInButton_Click);
 			// 
 			// BenutzernameLabel
 			// 
@@ -102,9 +117,9 @@ namespace ProjektLokal {
 				static_cast<System::Byte>(0)));
 			this->BenutzernameLabel->Location = System::Drawing::Point(27, 33);
 			this->BenutzernameLabel->Name = L"BenutzernameLabel";
-			this->BenutzernameLabel->Size = System::Drawing::Size(121, 19);
+			this->BenutzernameLabel->Size = System::Drawing::Size(127, 16);
 			this->BenutzernameLabel->TabIndex = 2;
-			this->BenutzernameLabel->Text = L"Benutzername";
+			this->BenutzernameLabel->Text = L"Personalnummer";
 			// 
 			// KennwortLabel
 			// 
@@ -113,7 +128,7 @@ namespace ProjektLokal {
 				static_cast<System::Byte>(0)));
 			this->KennwortLabel->Location = System::Drawing::Point(27, 81);
 			this->KennwortLabel->Name = L"KennwortLabel";
-			this->KennwortLabel->Size = System::Drawing::Size(84, 19);
+			this->KennwortLabel->Size = System::Drawing::Size(76, 16);
 			this->KennwortLabel->TabIndex = 3;
 			this->KennwortLabel->Text = L"Kennwort";
 			// 
@@ -125,20 +140,6 @@ namespace ProjektLokal {
 			this->pictureBox2->TabIndex = 5;
 			this->pictureBox2->TabStop = false;
 			// 
-			// benutzernameBox
-			// 
-			this->benutzernameBox->Location = System::Drawing::Point(186, 30);
-			this->benutzernameBox->Name = L"benutzernameBox";
-			this->benutzernameBox->Size = System::Drawing::Size(209, 25);
-			this->benutzernameBox->TabIndex = 6;
-			// 
-			// passwortBox
-			// 
-			this->passwortBox->Location = System::Drawing::Point(186, 78);
-			this->passwortBox->Name = L"passwortBox";
-			this->passwortBox->Size = System::Drawing::Size(209, 25);
-			this->passwortBox->TabIndex = 7;
-			// 
 			// passwortvergessenButton
 			// 
 			this->passwortvergessenButton->Location = System::Drawing::Point(186, 152);
@@ -148,18 +149,33 @@ namespace ProjektLokal {
 			this->passwortvergessenButton->Text = L"Passwort vergessen\?";
 			this->passwortvergessenButton->UseVisualStyleBackColor = true;
 			// 
+			// txt_Benutzername
+			// 
+			this->txt_Benutzername->Location = System::Drawing::Point(198, 33);
+			this->txt_Benutzername->Name = L"txt_Benutzername";
+			this->txt_Benutzername->Size = System::Drawing::Size(178, 22);
+			this->txt_Benutzername->TabIndex = 10;
+			// 
+			// txt_Kennwort
+			// 
+			this->txt_Kennwort->Location = System::Drawing::Point(198, 81);
+			this->txt_Kennwort->Name = L"txt_Kennwort";
+			this->txt_Kennwort->PasswordChar = '*';
+			this->txt_Kennwort->Size = System::Drawing::Size(178, 22);
+			this->txt_Kennwort->TabIndex = 11;
+			// 
 			// loginFenster
 			// 
 			this->AllowDrop = true;
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 18);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
 			this->AutoValidate = System::Windows::Forms::AutoValidate::EnablePreventFocusChange;
 			this->BackColor = System::Drawing::SystemColors::Window;
 			this->ClientSize = System::Drawing::Size(516, 421);
+			this->Controls->Add(this->txt_Kennwort);
+			this->Controls->Add(this->txt_Benutzername);
 			this->Controls->Add(this->passwortvergessenButton);
-			this->Controls->Add(this->passwortBox);
-			this->Controls->Add(this->benutzernameBox);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->KennwortLabel);
 			this->Controls->Add(this->BenutzernameLabel);
@@ -179,69 +195,63 @@ namespace ProjektLokal {
 
 
 	public:
-		String ^ getName() {
-			return this->benutzernameBox->Text;
+		String ^ getBenutzername() {
+			return this->txt_Benutzername->Text;
 		}
 
-		String^ getPasswort() {
-			return this->passwortBox->Text;
+		String^ getKennwort() {
+			return this->txt_Kennwort->Text;
 		}
 
 		void clear() {
-			this->benutzernameBox->Text = "";
-			this->passwortBox->Text = "";
+			this->txt_Benutzername->Text = "";
+			this->txt_Kennwort->Text = "";
 		}
-	private: System::Void benutzernameBox_MaskInputRejected(System::Object^  sender, System::Windows::Forms::MaskInputRejectedEventArgs^  e) {
+	
 
-		if (this->benutzernameBox->Text->Length == 0) {
+	private: System::Void logInButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ personalnummer = getBenutzername();
+		String^ passwort = getKennwort();
 
-			this->DialogResult = System::Windows::Forms::DialogResult::None;
+		bool gefunden = false;
+		for (int i = 0; i < unternehmen->getAngestellte()->Count && !gefunden; i++) {
+			Angestellter^ angestellter = unternehmen->getAngestellte()[i];
 
+			if (angestellter->getPersonalnummer()->Equals(personalnummer)) {
+				gefunden = true;
+
+				if (angestellter->getPasswort()->Equals(passwort)) {
+					if (!angestellter->istVorgesetzter()) {
+						System::Windows::Forms::DialogResult result = startseite->ShowDialog(this);
+					}
+					else {
+						System::Windows::Forms::DialogResult result = vorgesetztenseite->ShowDialog(this);
+					}
+					this->Close();
+				}
+				else {
+					MessageBox::Show("Passwort falsch!", "Fehler!",
+						MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+				}
+
+			}
+			
+			
+			
 		}
-
-		else if (this->passwortBox->Text->Length == 0) {
-
-			this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		if (!gefunden) {
+			MessageBox::Show("Benutzer nicht vorhanden!", "Fehler!",
+				MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
+		
 
-		else {
-
-			this->DialogResult = System::Windows::Forms::DialogResult::OK;
-
-		}
-		this->Close();
+		
+		
 	}
+			 
 
-	private: System::Void passwortBox_MaskInputRejected(System::Object^  sender, System::Windows::Forms::MaskInputRejectedEventArgs^  e) {
-	}
-
-			 //private: System::Void logInButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 //private: System::Void logInButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 //System::Windows::Forms::DialogResult result = this->ShowDialog(this);
-
-			 //if (result == System::Windows::Forms::DialogResult::OK) {
-
-
-
-
-			 //	MessageBox::Show("LogIn.", "Einloggen...", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			 //}
-			 //else {
-			 //	MessageBox::Show("Error", "falscher Benutzername", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			 //}
-
-
-			 //}
-
-	private: System::Void passwortvergessenButton_Click(System::Object^  sender, System::EventArgs^  e) {
-
-		MessageBox::Show("Passwort vergessen", "Bitte melden Sie sich bei Ihremn Arbeitgeber!", MessageBoxButtons::OK, MessageBoxIcon::Error);
-
-	}
-
-
-	};
+};
 }
 
 

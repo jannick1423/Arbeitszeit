@@ -51,3 +51,8 @@ void Vorgesetzte::deleteMA(Mitarbeiter^ m)
 	maListe->Remove(m);
 	//Anzeigefenster, dass MA nicht vorhanden
 }
+
+bool Vorgesetzte::istVorgesetzter()
+{
+	return true;
+}

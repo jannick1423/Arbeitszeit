@@ -19,4 +19,5 @@ public:
 	String^ asString() override;
 	Vorgesetzte^ getVorgesetzte();
 	void setVorgesetzte(Vorgesetzte^ v);
+	bool istVorgesetzter() override;
 };

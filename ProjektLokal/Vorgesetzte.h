@@ -23,4 +23,5 @@ public:
 	List<Mitarbeiter^>^ getMaListe();
 	void addMA(Mitarbeiter^ ma);
 	void deleteMA(Mitarbeiter^ ma);
+	bool istVorgesetzter() override;
 };

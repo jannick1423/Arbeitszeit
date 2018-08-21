@@ -35,3 +35,8 @@ void Mitarbeiter::setVorgesetzte(Vorgesetzte^ v)
 	this->v = v;
 	v->addMA(this);
 }
+
+bool Mitarbeiter::istVorgesetzter()
+{
+	return false;
+}

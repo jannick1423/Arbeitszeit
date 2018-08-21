@@ -18,6 +18,7 @@ ref class Angestellte
 	int arbeitMinuten;
 	int anzUrlaubstage;
 	int genommenUrlaub;
+	
 
 public:
 	Angestellte();
@@ -55,4 +56,6 @@ public:
 
 	//Methoden
 	virtual String^ asString() = 0;
+
+	virtual bool istVorgesetzer() = 0;
 };

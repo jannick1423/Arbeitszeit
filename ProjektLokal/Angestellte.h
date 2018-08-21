@@ -2,6 +2,8 @@
 #include "Adresse.h"
 
 using namespace System;
+using namespace System::Collections;
+using namespace System::Collections::Generic;
 
 ref class Angestellte
 {
@@ -18,7 +20,8 @@ ref class Angestellte
 	int arbeitMinuten;
 	int anzUrlaubstage;
 	int genommenUrlaub;
-	
+	List<DateTime>^ arbeitsTagAktuell;
+	List<List<DateTime>^>^ arbeitsTage;
 
 public:
 	Angestellte();

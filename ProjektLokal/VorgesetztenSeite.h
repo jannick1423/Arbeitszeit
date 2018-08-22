@@ -154,7 +154,7 @@ namespace ProjektLokal {
 			this->kommenBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->kommenBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kommenBtn.Image")));
 			this->kommenBtn->Location = System::Drawing::Point(69, 335);
-			this->kommenBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->kommenBtn->Margin = System::Windows::Forms::Padding(4);
 			this->kommenBtn->Name = L"kommenBtn";
 			this->kommenBtn->Size = System::Drawing::Size(267, 160);
 			this->kommenBtn->TabIndex = 0;
@@ -167,7 +167,7 @@ namespace ProjektLokal {
 			this->gehenBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->gehenBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"gehenBtn.Image")));
 			this->gehenBtn->Location = System::Drawing::Point(776, 335);
-			this->gehenBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->gehenBtn->Margin = System::Windows::Forms::Padding(4);
 			this->gehenBtn->Name = L"gehenBtn";
 			this->gehenBtn->Size = System::Drawing::Size(267, 160);
 			this->gehenBtn->TabIndex = 1;
@@ -329,7 +329,7 @@ namespace ProjektLokal {
 			this->statistikBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->statistikBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"statistikBtn.Image")));
 			this->statistikBtn->Location = System::Drawing::Point(27, 658);
-			this->statistikBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->statistikBtn->Margin = System::Windows::Forms::Padding(4);
 			this->statistikBtn->Name = L"statistikBtn";
 			this->statistikBtn->Size = System::Drawing::Size(313, 94);
 			this->statistikBtn->TabIndex = 12;
@@ -345,7 +345,7 @@ namespace ProjektLokal {
 			this->urlaubBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->urlaubBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"urlaubBtn.Image")));
 			this->urlaubBtn->Location = System::Drawing::Point(767, 658);
-			this->urlaubBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->urlaubBtn->Margin = System::Windows::Forms::Padding(4);
 			this->urlaubBtn->Name = L"urlaubBtn";
 			this->urlaubBtn->Size = System::Drawing::Size(313, 94);
 			this->urlaubBtn->TabIndex = 13;
@@ -361,7 +361,7 @@ namespace ProjektLokal {
 			this->kalenderBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->kalenderBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kalenderBtn.Image")));
 			this->kalenderBtn->Location = System::Drawing::Point(397, 658);
-			this->kalenderBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->kalenderBtn->Margin = System::Windows::Forms::Padding(4);
 			this->kalenderBtn->Name = L"kalenderBtn";
 			this->kalenderBtn->Size = System::Drawing::Size(313, 94);
 			this->kalenderBtn->TabIndex = 14;
@@ -420,7 +420,7 @@ namespace ProjektLokal {
 			this->pauseCbox->Appearance = System::Windows::Forms::Appearance::Button;
 			this->pauseCbox->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pauseCbox.Image")));
 			this->pauseCbox->Location = System::Drawing::Point(391, 366);
-			this->pauseCbox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pauseCbox->Margin = System::Windows::Forms::Padding(4);
 			this->pauseCbox->Name = L"pauseCbox";
 			this->pauseCbox->Size = System::Drawing::Size(320, 98);
 			this->pauseCbox->TabIndex = 18;
@@ -441,7 +441,7 @@ namespace ProjektLokal {
 			this->addBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->addBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addBtn.Image")));
 			this->addBtn->Location = System::Drawing::Point(27, 774);
-			this->addBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->addBtn->Margin = System::Windows::Forms::Padding(4);
 			this->addBtn->Name = L"addBtn";
 			this->addBtn->Size = System::Drawing::Size(313, 94);
 			this->addBtn->TabIndex = 19;
@@ -457,12 +457,13 @@ namespace ProjektLokal {
 			this->editBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->editBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editBtn.Image")));
 			this->editBtn->Location = System::Drawing::Point(397, 774);
-			this->editBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->editBtn->Margin = System::Windows::Forms::Padding(4);
 			this->editBtn->Name = L"editBtn";
 			this->editBtn->Size = System::Drawing::Size(313, 94);
 			this->editBtn->TabIndex = 20;
 			this->editBtn->UseVisualStyleBackColor = false;
 			this->editBtn->UseWaitCursor = true;
+			this->editBtn->Click += gcnew System::EventHandler(this, &VorgesetztenSeite::editBtn_Click);
 			// 
 			// personalBtn
 			// 
@@ -472,7 +473,7 @@ namespace ProjektLokal {
 			this->personalBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->personalBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"personalBtn.Image")));
 			this->personalBtn->Location = System::Drawing::Point(767, 774);
-			this->personalBtn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->personalBtn->Margin = System::Windows::Forms::Padding(4);
 			this->personalBtn->Name = L"personalBtn";
 			this->personalBtn->Size = System::Drawing::Size(313, 94);
 			this->personalBtn->TabIndex = 21;
@@ -507,7 +508,7 @@ namespace ProjektLokal {
 			this->Controls->Add(this->halloLbl);
 			this->Controls->Add(this->gehenBtn);
 			this->Controls->Add(this->kommenBtn);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"VorgesetztenSeite";
 			this->Text = L"Zeiterfassung VorgesetztenSeite";
 			this->UseWaitCursor = true;
@@ -744,6 +745,11 @@ namespace ProjektLokal {
 	private: System::Void addBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		System::Windows::Forms::DialogResult result = registrierungsfenster->ShowDialog(this);
 
+	}
+	//NEU: BEI KLCIK AUF BUTTON WIRD REGISTREIRUNGSFENSTER WELCHES SPÄTER BEFÜLLT SEIN SOLL GEÖFFNET 
+	//TODO	
+	private: System::Void editBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		System::Windows::Forms::DialogResult result = registrierungsfenster->ShowDialog(this);
 	}
 };
 }

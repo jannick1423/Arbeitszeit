@@ -131,6 +131,7 @@ namespace ProjektLokal {
 			this->passwortvergessenButton->TabIndex = 8;
 			this->passwortvergessenButton->Text = L"Passwort vergessen\?";
 			this->passwortvergessenButton->UseVisualStyleBackColor = true;
+			this->passwortvergessenButton->Click += gcnew System::EventHandler(this, &loginFenster::passwortvergessenButton_Click);
 			// 
 			// txt_Benutzername
 			// 
@@ -234,6 +235,11 @@ namespace ProjektLokal {
 		
 	} 
 
+//Beim Klick auf den Button öffnet sich Fenster
+private: System::Void passwortvergessenButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	MessageBox::Show("Bitte melden Sie sich bei Ihrem Arbeitgeber für ein neues Passwort!", "Passwort vergessen?!",
+		MessageBoxButtons::OK, MessageBoxIcon::Information);
+}
 };
 }
 

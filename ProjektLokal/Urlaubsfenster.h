@@ -223,8 +223,15 @@ public:
 
 	property Int32 p_Tage {
 		Int32 get() {
-			String^ tageS = this->tageTxt->Text;
-			return Convert::ToInt32(tageS);
+			Int32 tageKonvertiert;
+			if (!tageTxt->Text->Empty) {
+				String^ tageS = this->tageTxt->Text;
+				tageKonvertiert = Convert::ToInt32(tageS);
+			}
+			else {
+				tageKonvertiert = 0;
+			}
+			return tageKonvertiert;
 		}
 	}
 

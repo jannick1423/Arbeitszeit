@@ -471,6 +471,7 @@ namespace ProjektLokal {
 			this->logOutBtn->TabIndex = 22;
 			this->logOutBtn->UseVisualStyleBackColor = true;
 			this->logOutBtn->UseWaitCursor = true;
+			this->logOutBtn->Click += gcnew System::EventHandler(this, &VorgesetztenSeite::logOutBtn_Click);
 			// 
 			// VorgesetztenSeite
 			// 
@@ -620,14 +621,22 @@ namespace ProjektLokal {
 
 	//Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
 	private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-		//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
-		if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
-			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-			timerArbeitszeit->Stop();
-			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
-			gegangen = true;
-			vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+		//Gehen nur moeglich, wenn der Mitarbeiter nicht gerade in der Pause ist.
+		if (!pauseCbox->Checked) {
+			//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
+			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
+				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+				timerArbeitszeit->Stop();
+				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
+				gegangen = true;
+				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+			}
 		}
+		else {
+			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Gehen fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
 	}
 
 	//Beim Drücken der Pause-Taste wird die Arbeitszeit-Uhr entweder gestartet oder gestoppt
@@ -691,10 +700,9 @@ namespace ProjektLokal {
 		}
 	}
 
-	//Beim Klick auf den Logout Button wird erst einen Sicherheitsabfrage durchgeführt.
-	//Bei Bestätigung wird das Fenster geschlossen und das Programm neu gestartet.
+	//Beim Klick auf den LogOutButton wird das Fenster geschlossen
 	private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-		
+		this->Close();
 	}
 
 	//Beim Laden der Vorgesetztenseite werden einige Werte gesetzt
@@ -730,13 +738,21 @@ namespace ProjektLokal {
 	}
 
 	private: System::Void VorgesetztenSeite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-		if (!gegangen) {
-			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
-				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
-				e->Cancel = true;
-			}
-			else {
-				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+		if (pauseCbox->Checked) {
+			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Schliessen fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+			e->Cancel = true;
+		}
+		else {
+			if (!gegangen) {
+				if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
+					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
+					e->Cancel = true;
+				}
+				else {
+					timerArbeitszeit->Stop();
+					vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+				}
 			}
 		}
 	}

@@ -567,14 +567,22 @@ private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs
 
 //Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
 private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
-	if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo, 
-		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-		timerArbeitszeit->Stop();
-		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
-		gegangen = true;
-		mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+	//Gehen nur moeglich, wenn der Mitarbeiter nicht gerade in der Pause ist.
+	if (!pauseCbox->Checked) {
+		//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
+		if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
+			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+			timerArbeitszeit->Stop();
+			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
+			gegangen = true;
+			mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+		}
 	}
+	else {
+		MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Gehen fehlgeschlagen",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
+	
 }
 
 //Beim Drücken der Pause-Taste wird die Arbeitszeit-Uhr entweder gestartet oder gestoppt
@@ -638,9 +646,9 @@ private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs
 	}
 }
 
-//Beim Klick auf den Logout Button wird erst einen Sicherheitsabfrage durchgeführt.
-//Bei Bestätigung wird das Fenster geschlossen und das Programm neu gestartet.
+ //Beim Klick auf den LogOutButton wird das Fenster geschlossen
 private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->Close();
 }
 
 
@@ -678,13 +686,21 @@ private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs
 
 //Falls der Arbeitszeit-Timer noch läuft, wird beim Schließen des Fensters zunächst eine Sicherheitsabfrage ausgeführt, ob das Programm wirklich beendet werden soll.
 private: System::Void Startseite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-	if (!gegangen) {
-		if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
-			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
-			e->Cancel = true;
-		}
-		else {
-			mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+	if (pauseCbox->Checked) {
+		MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Schliessen fehlgeschlagen",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+		e->Cancel = true;
+	}
+	else {
+		if (!gegangen) {
+			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
+				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
+				e->Cancel = true;
+			}
+			else {
+				timerArbeitszeit->Stop();
+				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+			}
 		}
 	}
 }

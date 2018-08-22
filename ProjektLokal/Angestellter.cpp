@@ -20,6 +20,10 @@ Angestellter::Angestellter(String^ vorname, String^ nachname, String^ abteilungs
 	this->arbeitMinuten = arbeitMinuten;
 	this->anzUrlaubstage = anzUrlaubstage;
 	this->genommenUrlaub = genommenUrlaub;
+	this->arbeitStundenNoch = arbeitStunden;
+	this->arbeitMinutenNoch = arbeitMinuten;
+	this->arbeitsTagAktuell = gcnew List<DateTime>;
+	this->arbeitsTage = gcnew Hashtable;
 }
 
 

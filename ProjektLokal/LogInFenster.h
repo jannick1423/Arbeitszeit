@@ -1,5 +1,6 @@
 #pragma once
 #include "Mitarbeiter.h"
+#include "Vorgesetzter.h"
 #include "Unternehmen.h"
 #include "Startseite.h"
 #include "VorgesetztenSeite.h"
@@ -31,15 +32,10 @@ namespace ProjektLokal {
 	public:
 		loginFenster(void)
 		{
-
-
 			InitializeComponent();
 			unternehmen = gcnew Unternehmen();
 			startseite = gcnew Startseite();
 			vorgesetztenseite = gcnew VorgesetztenSeite();
-			//
-			//TODO: Konstruktorcode hier hinzufügen.
-			//
 		}
 
 	protected:
@@ -54,24 +50,11 @@ namespace ProjektLokal {
 			}
 		}
 	private: System::Windows::Forms::Button^  logInButton;
-
 	private: System::Windows::Forms::Label^  BenutzernameLabel;
 	private: System::Windows::Forms::Label^  KennwortLabel;
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
-
-
 	private: System::Windows::Forms::Button^  passwortvergessenButton;
-
-
 	private: System::Windows::Forms::TextBox^  txt_Benutzername;
-
-
-
-
-
-	protected:
-
-	protected:
 
 	private:
 		/// <summary>
@@ -222,9 +205,15 @@ namespace ProjektLokal {
 
 				if (angestellter->getPasswort()->Equals(passwort)) {
 					if (!angestellter->istVorgesetzter()) {
+						//ÄNDERUNG ÜBERGABE MITARBEITER:
+						startseite->setMitarbeiter(angestellter);
+
 						System::Windows::Forms::DialogResult result = startseite->ShowDialog(this);
 					}
 					else {
+						//ÄNDERUNG ÜBERGABE VORGESETZTER:
+						vorgesetztenseite->setVorgesetzter(angestellter);
+
 						System::Windows::Forms::DialogResult result = vorgesetztenseite->ShowDialog(this);
 					}
 					this->Close();
@@ -236,20 +225,14 @@ namespace ProjektLokal {
 				}
 
 			}
-			
-			
-			
+				
 		}
 		if (!gefunden) {
 			MessageBox::Show("Benutzer nicht vorhanden!", "Fehler!",
 				MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 		
-
-		
-		
-	}
-			 
+	} 
 
 };
 }

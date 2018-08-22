@@ -1,6 +1,8 @@
 #pragma once
 #include <ctime>
 #include "Urlaubsfenster.h"
+#include "Statistikfenster.h"
+#include "Kalenderfenster.h"
 #include "Urlaubsantrag.h"
 #include "Mitarbeiter.h"
 #include "Unternehmen.h"
@@ -22,7 +24,7 @@ namespace ProjektLokal {
 
 	private:
 
-		Mitarbeiter^ mitarbeiter;
+		Mitarbeiter^ vorgesetzter;
 
 		static int arbeitsStunden;
 		static int arbeitsMinuten;
@@ -45,9 +47,12 @@ namespace ProjektLokal {
 		String^ pauseStundeS;
 		String^ pauseMinuteS;
 		String^ pauseSekundeS;
-
 		String^ urlaubString;
+
+		//Unterfenster:
 		Urlaubfenster^ urlaubsfenster;
+		Statistikfenster^ statistikfenster;
+		Kalenderfenster^ kalenderfenster;
 
 	System::Windows::Forms::Timer^  timerUhr;
 	System::Windows::Forms::Label^  datumLbl;
@@ -73,6 +78,8 @@ namespace ProjektLokal {
 			
 			//Unterfenster initialisieren:
 			urlaubsfenster = gcnew Urlaubfenster;
+			kalenderfenster = gcnew Kalenderfenster;
+			statistikfenster = gcnew Statistikfenster;
 
 		}
 
@@ -259,7 +266,7 @@ namespace ProjektLokal {
 			this->resturlaubSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->resturlaubSchriftLbl->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->resturlaubSchriftLbl->Location = System::Drawing::Point(632, 634);
+			this->resturlaubSchriftLbl->Location = System::Drawing::Point(628, 634);
 			this->resturlaubSchriftLbl->Name = L"resturlaubSchriftLbl";
 			this->resturlaubSchriftLbl->Size = System::Drawing::Size(116, 25);
 			this->resturlaubSchriftLbl->TabIndex = 9;
@@ -307,6 +314,7 @@ namespace ProjektLokal {
 			this->statistikBtn->TabIndex = 12;
 			this->statistikBtn->UseVisualStyleBackColor = false;
 			this->statistikBtn->UseWaitCursor = true;
+			this->statistikBtn->Click += gcnew System::EventHandler(this, &Startseite::statistikBtn_Click);
 			// 
 			// urlaubBtn
 			// 
@@ -315,7 +323,7 @@ namespace ProjektLokal {
 			this->urlaubBtn->FlatAppearance->BorderColor = System::Drawing::Color::White;
 			this->urlaubBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->urlaubBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"urlaubBtn.Image")));
-			this->urlaubBtn->Location = System::Drawing::Point(577, 535);
+			this->urlaubBtn->Location = System::Drawing::Point(570, 535);
 			this->urlaubBtn->Name = L"urlaubBtn";
 			this->urlaubBtn->Size = System::Drawing::Size(235, 76);
 			this->urlaubBtn->TabIndex = 13;
@@ -330,12 +338,13 @@ namespace ProjektLokal {
 			this->kalenderBtn->FlatAppearance->BorderColor = System::Drawing::Color::White;
 			this->kalenderBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->kalenderBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kalenderBtn.Image")));
-			this->kalenderBtn->Location = System::Drawing::Point(288, 535);
+			this->kalenderBtn->Location = System::Drawing::Point(293, 535);
 			this->kalenderBtn->Name = L"kalenderBtn";
 			this->kalenderBtn->Size = System::Drawing::Size(235, 76);
 			this->kalenderBtn->TabIndex = 14;
 			this->kalenderBtn->UseVisualStyleBackColor = false;
 			this->kalenderBtn->UseWaitCursor = true;
+			this->kalenderBtn->Click += gcnew System::EventHandler(this, &Startseite::kalenderBtn_Click);
 			// 
 			// nochWochenstundenLbl
 			// 
@@ -357,7 +366,7 @@ namespace ProjektLokal {
 			this->pauseLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->pauseLbl->Location = System::Drawing::Point(278, 659);
+			this->pauseLbl->Location = System::Drawing::Point(269, 659);
 			this->pauseLbl->Name = L"pauseLbl";
 			this->pauseLbl->Size = System::Drawing::Size(270, 50);
 			this->pauseLbl->TabIndex = 16;
@@ -371,7 +380,7 @@ namespace ProjektLokal {
 			this->resturlaubLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->resturlaubLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->resturlaubLbl->Location = System::Drawing::Point(566, 659);
+			this->resturlaubLbl->Location = System::Drawing::Point(554, 659);
 			this->resturlaubLbl->Name = L"resturlaubLbl";
 			this->resturlaubLbl->Size = System::Drawing::Size(258, 50);
 			this->resturlaubLbl->TabIndex = 17;
@@ -530,7 +539,7 @@ private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs
 	if (!gegangen) {
 		timerArbeitszeit->Start();
 		this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-		mitarbeiter->fuegeZeitHinzu();
+		vorgesetzter->fuegeZeitHinzu();
 	}
 	else {
 		MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
@@ -546,7 +555,7 @@ private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^
 		timerArbeitszeit->Stop();
 		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 		gegangen = true;
-		mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+		vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 	}
 }
 
@@ -558,7 +567,7 @@ private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::
 		timerPause->Start();
 		this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
-		mitarbeiter->fuegeZeitHinzu();
+		vorgesetzter->fuegeZeitHinzu();
 	}
 	else {
 		timerArbeitszeit->Start();
@@ -568,7 +577,17 @@ private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::
 	}
 }
 
-//Klick auf Urlaub-Button öffnen Urlaub-Fenster
+//Klick auf Kalender-Button öffnet Kalender-Fenster
+private: System::Void kalenderBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	System::Windows::Forms::DialogResult result = kalenderfenster->ShowDialog(this);
+}
+
+//Klick auf Statistik-Button öffnet Statistik-Fenster
+private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
+}
+
+//Klick auf Urlaub-Button öffnet Urlaub-Fenster
 private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 	System::Windows::Forms::DialogResult result = urlaubsfenster->ShowDialog(this);
 	
@@ -602,16 +621,14 @@ private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs
 
 private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
 
-	//Mitarbeiter erstellen -> NOCH ÄNDERN!
-	mitarbeiter = gcnew Mitarbeiter("Test", "Mitarbeiter", "12", "123456", "Passwort", "05121 123456", "email@email.de", nullptr, false, 38, 0, 28, 0, nullptr);
-
 	//Werte auslesen und im Fenster darstellen.
-	arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
-	arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
-	nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
+	arbeitsStunden = vorgesetzter->getArbeitStundenNoch();
+	arbeitsMinuten = vorgesetzter->getArbeitMinutenNoch();
+	nameLbl->Text = vorgesetzter->getVorname() + " " + vorgesetzter->getNachname();
 
-	restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
+	restUrlaub = vorgesetzter->getAnzUrlaubstage() - vorgesetzter->getGenommenUrlaub();
 
+	//Startwerte Timer setzen:
 	uhrSekunde = 0;
 	uhrMinute = 0;
 	uhrStunde = 0;
@@ -640,7 +657,10 @@ private: System::Void Startseite_FormClosing(System::Object^ sender, System::Win
 	}
 }
 
-private: System::Void halloLbl_Click(System::Object^  sender, System::EventArgs^  e) {
+//NEU: ÜBERGABE DES MITARBEITERS
+public: void setMitarbeiter(Angestellter^ mitarbeiterUebergabe) {
+	this->vorgesetzter = (Mitarbeiter^) mitarbeiterUebergabe;
 }
+
 };
 }

@@ -74,9 +74,6 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Button^  editBtn;
 	private: System::Windows::Forms::Button^  personalBtn;
 
-
-
-
 			 System::Windows::Forms::Label^  uhrzeitLbl;
 
 	public:
@@ -657,18 +654,19 @@ namespace ProjektLokal {
 		}
 	}
 
-			 //Klick auf Kalender-Button öffnet Kalender-Fenster
+	//Klick auf Kalender-Button öffnet Kalender-Fenster
 	private: System::Void kalenderBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		System::Windows::Forms::DialogResult result = kalenderfenster->ShowDialog(this);
 	}
 
-			 //Klick auf Statistik-Button öffnet Statistik-Fenster
+	//Klick auf Statistik-Button öffnet Statistik-Fenster
 	private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
 	}
 
-			 //Klick auf Urlaub-Button öffnet Urlaub-Fenster
+	//Klick auf Urlaub-Button öffnet Urlaub-Fenster
 	private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		urlaubsfenster->setAngestellter(vorgesetzter);
 		System::Windows::Forms::DialogResult result = urlaubsfenster->ShowDialog(this);
 
 		//Der Urlaubsantrag als String

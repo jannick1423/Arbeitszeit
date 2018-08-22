@@ -25,7 +25,7 @@ namespace ProjektLokal {
 
 	private:
 
-		Mitarbeiter^ vorgesetzter;
+		Mitarbeiter^ mitarbeiter;
 
 		static int arbeitsStunden;
 		static int arbeitsMinuten;
@@ -542,7 +542,7 @@ private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs
 	if (!gegangen) {
 		timerArbeitszeit->Start();
 		this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-		vorgesetzter->fuegeZeitHinzu();
+		mitarbeiter->fuegeZeitHinzu();
 	}
 	else {
 		MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
@@ -558,7 +558,7 @@ private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^
 		timerArbeitszeit->Stop();
 		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 		gegangen = true;
-		vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+		mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 	}
 }
 
@@ -570,7 +570,7 @@ private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::
 		timerPause->Start();
 		this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
-		vorgesetzter->fuegeZeitHinzu();
+		mitarbeiter->fuegeZeitHinzu();
 	}
 	else {
 		timerArbeitszeit->Start();
@@ -592,6 +592,7 @@ private: System::Void statistikBtn_Click(System::Object^  sender, System::EventA
 
 //Klick auf Urlaub-Button öffnet Urlaub-Fenster
 private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	urlaubsfenster->setAngestellter(mitarbeiter);
 	System::Windows::Forms::DialogResult result = urlaubsfenster->ShowDialog(this);
 	
 	//Der Urlaubsantrag als String
@@ -627,11 +628,11 @@ private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs
 	
 
 	//Werte auslesen und im Fenster darstellen.
-	arbeitsStunden = vorgesetzter->getArbeitStundenNoch();
-	arbeitsMinuten = vorgesetzter->getArbeitMinutenNoch();
-	nameLbl->Text = vorgesetzter->getVorname() + " " + vorgesetzter->getNachname();
+	arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
+	arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
+	nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
 
-	restUrlaub = vorgesetzter->getAnzUrlaubstage() - vorgesetzter->getGenommenUrlaub();
+	restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
 
 	//Startwerte Timer setzen:
 	uhrSekunde = 0;
@@ -664,7 +665,7 @@ private: System::Void Startseite_FormClosing(System::Object^ sender, System::Win
 
 //NEU: ÜBERGABE DES MITARBEITERS
 public: void setMitarbeiter(Angestellter^ mitarbeiterUebergabe) {
-	this->vorgesetzter = (Mitarbeiter^) mitarbeiterUebergabe;
+	this->mitarbeiter = (Mitarbeiter^) mitarbeiterUebergabe;
 }
 
 };

@@ -24,6 +24,9 @@ ref class Angestellter
 	int anzUrlaubstage;
 	int genommenUrlaub;
 	//NEU
+	int ueberStunden;
+	int ueberMinuten;
+	//NEU
 	List<DateTime>^ arbeitsTagAktuell;
 	//NEU
 	Hashtable^ arbeitsTage;
@@ -50,6 +53,10 @@ public:
 	int getArbeitStundenNoch();
 	//NEU
 	int getArbeitMinutenNoch();
+	//NEU
+	int getUeberStunden();
+	//NEU
+	int getUeberMinuten();
 
 	int getAnzUrlaubstage();
 	int getGenommenUrlaub();

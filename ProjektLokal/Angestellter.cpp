@@ -77,14 +77,28 @@ int Angestellter::getArbeitMinuten()
 	return arbeitMinuten;
 }
 
+//NEU
 int Angestellter::getArbeitStundenNoch()
 {
 	return arbeitStundenNoch;
 }
 
+//NEU
 int Angestellter::getArbeitMinutenNoch()
 {
 	return arbeitMinutenNoch;
+}
+
+//NEU
+int Angestellter::getUeberStunden()
+{
+	return ueberStunden;
+}
+
+//NEU
+int Angestellter::getUeberMinuten()
+{
+	return ueberMinuten;
 }
 
 int Angestellter::getAnzUrlaubstage()
@@ -197,7 +211,7 @@ void Angestellter::arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinuten
 {
 	fuegeZeitHinzu();
 	arbeitsTage->Add(DateTime::Today, arbeitsTagAktuell);
-	arbeitsTagAktuell->Clear;
+	arbeitsTagAktuell->Clear();
 	setArbeitStundenNoch(arbeitStundenNochNeu);
 	setArbeitMinutenNoch(arbeitMinutenNochNeu);
 }

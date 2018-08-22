@@ -2,6 +2,8 @@
 #include <ctime>
 #include "Urlaubsfenster.h"
 #include "Urlaubsantrag.h"
+#include "Mitarbeiter.h"
+#include "Unternehmen.h"
 
 namespace ProjektLokal {
 
@@ -19,11 +21,14 @@ namespace ProjektLokal {
 	{
 
 	private:
+
+		Mitarbeiter^ mitarbeiter;
+
 		static int arbeitsStunden;
 		static int arbeitsMinuten;
-		static int sekunde;
-		static int minute;
-		static int stunde;
+		static int uhrSekunde;
+		static int uhrMinute;
+		static int uhrStunde;
 		static int pauseStunde;
 		static int pauseMinute;
 		static int pauseSekunde;
@@ -48,9 +53,7 @@ namespace ProjektLokal {
 	System::Windows::Forms::Label^  datumLbl;
 	private: System::Windows::Forms::Label^  arbeitszeitSchriftLbl;
 	private: System::Windows::Forms::Label^  resturlaubSchriftLbl;
-
 	private: System::Windows::Forms::Label^  PausenSchriftLbl;
-
 	private: System::Windows::Forms::Label^  nochWochenstundenSchriftLbl;
 	private: System::Windows::Forms::Button^  statistikBtn;
 	private: System::Windows::Forms::Button^  urlaubBtn;
@@ -58,14 +61,10 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Label^  nochWochenstundenLbl;
 	private: System::Windows::Forms::Label^  pauseLbl;
 	private: System::Windows::Forms::Label^  resturlaubLbl;
-
-
 	private: System::Windows::Forms::CheckBox^  pauseCbox;
 	private: System::Windows::Forms::Timer^  timerPause;
 
-
-
-			 System::Windows::Forms::Label^  uhrzeitLbl;
+	System::Windows::Forms::Label^  uhrzeitLbl;
 
 	public:
 		Startseite(void)
@@ -89,17 +88,11 @@ namespace ProjektLokal {
 			}
 		}
 	private: System::Windows::Forms::Button^  kommenBtn;
-	protected:
 	private: System::Windows::Forms::Button^  gehenBtn;
 	private: System::Windows::Forms::Label^  halloLbl;
-
-
 	private: System::Windows::Forms::Label^  nameLbl;
 	private: System::Windows::Forms::Timer^  timerArbeitszeit;
 	private: System::Windows::Forms::Label^  arbeitszeitLbl;
-
-
-
 	private: System::ComponentModel::IContainer^  components;
 
 	private:
@@ -144,7 +137,7 @@ namespace ProjektLokal {
 			// 
 			this->kommenBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->kommenBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kommenBtn.Image")));
-			this->kommenBtn->Location = System::Drawing::Point(18, 309);
+			this->kommenBtn->Location = System::Drawing::Point(47, 272);
 			this->kommenBtn->Name = L"kommenBtn";
 			this->kommenBtn->Size = System::Drawing::Size(200, 130);
 			this->kommenBtn->TabIndex = 0;
@@ -156,7 +149,7 @@ namespace ProjektLokal {
 			// 
 			this->gehenBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->gehenBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"gehenBtn.Image")));
-			this->gehenBtn->Location = System::Drawing::Point(607, 309);
+			this->gehenBtn->Location = System::Drawing::Point(577, 272);
 			this->gehenBtn->Name = L"gehenBtn";
 			this->gehenBtn->Size = System::Drawing::Size(200, 130);
 			this->gehenBtn->TabIndex = 1;
@@ -171,7 +164,7 @@ namespace ProjektLokal {
 			this->halloLbl->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->halloLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->halloLbl->Location = System::Drawing::Point(383, 28);
+			this->halloLbl->Location = System::Drawing::Point(375, 20);
 			this->halloLbl->Name = L"halloLbl";
 			this->halloLbl->Size = System::Drawing::Size(81, 31);
 			this->halloLbl->TabIndex = 3;
@@ -182,12 +175,11 @@ namespace ProjektLokal {
 			// nameLbl
 			// 
 			this->nameLbl->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->nameLbl->AutoSize = true;
 			this->nameLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->nameLbl->Location = System::Drawing::Point(197, 75);
+			this->nameLbl->Location = System::Drawing::Point(1, 67);
 			this->nameLbl->Name = L"nameLbl";
-			this->nameLbl->Size = System::Drawing::Size(456, 46);
+			this->nameLbl->Size = System::Drawing::Size(823, 46);
 			this->nameLbl->TabIndex = 4;
 			this->nameLbl->Text = L"Beispiel-Name eines MA";
 			this->nameLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -205,7 +197,7 @@ namespace ProjektLokal {
 			this->arbeitszeitLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
-			this->arbeitszeitLbl->Location = System::Drawing::Point(306, 484);
+			this->arbeitszeitLbl->Location = System::Drawing::Point(300, 446);
 			this->arbeitszeitLbl->Name = L"arbeitszeitLbl";
 			this->arbeitszeitLbl->Size = System::Drawing::Size(212, 55);
 			this->arbeitszeitLbl->TabIndex = 5;
@@ -224,9 +216,9 @@ namespace ProjektLokal {
 			this->uhrzeitLbl->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->uhrzeitLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 56));
 			this->uhrzeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->uhrzeitLbl->Location = System::Drawing::Point(162, 193);
+			this->uhrzeitLbl->Location = System::Drawing::Point(0, 176);
 			this->uhrzeitLbl->Name = L"uhrzeitLbl";
-			this->uhrzeitLbl->Size = System::Drawing::Size(500, 93);
+			this->uhrzeitLbl->Size = System::Drawing::Size(827, 93);
 			this->uhrzeitLbl->TabIndex = 6;
 			this->uhrzeitLbl->Text = L"00:00:00";
 			this->uhrzeitLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -238,9 +230,9 @@ namespace ProjektLokal {
 			this->datumLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->datumLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->datumLbl->Location = System::Drawing::Point(18, 145);
+			this->datumLbl->Location = System::Drawing::Point(-1, 126);
 			this->datumLbl->Name = L"datumLbl";
-			this->datumLbl->Size = System::Drawing::Size(789, 50);
+			this->datumLbl->Size = System::Drawing::Size(825, 50);
 			this->datumLbl->TabIndex = 7;
 			this->datumLbl->Text = L"1. Januar 1900";
 			this->datumLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -253,7 +245,7 @@ namespace ProjektLokal {
 			this->arbeitszeitSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->arbeitszeitSchriftLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->arbeitszeitSchriftLbl->Location = System::Drawing::Point(304, 442);
+			this->arbeitszeitSchriftLbl->Location = System::Drawing::Point(297, 405);
 			this->arbeitszeitSchriftLbl->Name = L"arbeitszeitSchriftLbl";
 			this->arbeitszeitSchriftLbl->Size = System::Drawing::Size(215, 31);
 			this->arbeitszeitSchriftLbl->TabIndex = 8;
@@ -267,7 +259,7 @@ namespace ProjektLokal {
 			this->resturlaubSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->resturlaubSchriftLbl->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->resturlaubSchriftLbl->Location = System::Drawing::Point(644, 687);
+			this->resturlaubSchriftLbl->Location = System::Drawing::Point(632, 634);
 			this->resturlaubSchriftLbl->Name = L"resturlaubSchriftLbl";
 			this->resturlaubSchriftLbl->Size = System::Drawing::Size(116, 25);
 			this->resturlaubSchriftLbl->TabIndex = 9;
@@ -281,7 +273,7 @@ namespace ProjektLokal {
 			this->PausenSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->PausenSchriftLbl->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->PausenSchriftLbl->Location = System::Drawing::Point(344, 687);
+			this->PausenSchriftLbl->Location = System::Drawing::Point(340, 634);
 			this->PausenSchriftLbl->Name = L"PausenSchriftLbl";
 			this->PausenSchriftLbl->Size = System::Drawing::Size(133, 25);
 			this->PausenSchriftLbl->TabIndex = 10;
@@ -295,7 +287,7 @@ namespace ProjektLokal {
 			this->nochWochenstundenSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->nochWochenstundenSchriftLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->nochWochenstundenSchriftLbl->Location = System::Drawing::Point(0, 687);
+			this->nochWochenstundenSchriftLbl->Location = System::Drawing::Point(13, 634);
 			this->nochWochenstundenSchriftLbl->Name = L"nochWochenstundenSchriftLbl";
 			this->nochWochenstundenSchriftLbl->Size = System::Drawing::Size(237, 25);
 			this->nochWochenstundenSchriftLbl->TabIndex = 11;
@@ -309,7 +301,7 @@ namespace ProjektLokal {
 			this->statistikBtn->FlatAppearance->BorderColor = System::Drawing::Color::White;
 			this->statistikBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->statistikBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"statistikBtn.Image")));
-			this->statistikBtn->Location = System::Drawing::Point(5, 589);
+			this->statistikBtn->Location = System::Drawing::Point(15, 535);
 			this->statistikBtn->Name = L"statistikBtn";
 			this->statistikBtn->Size = System::Drawing::Size(235, 76);
 			this->statistikBtn->TabIndex = 12;
@@ -323,7 +315,7 @@ namespace ProjektLokal {
 			this->urlaubBtn->FlatAppearance->BorderColor = System::Drawing::Color::White;
 			this->urlaubBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->urlaubBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"urlaubBtn.Image")));
-			this->urlaubBtn->Location = System::Drawing::Point(588, 589);
+			this->urlaubBtn->Location = System::Drawing::Point(577, 535);
 			this->urlaubBtn->Name = L"urlaubBtn";
 			this->urlaubBtn->Size = System::Drawing::Size(235, 76);
 			this->urlaubBtn->TabIndex = 13;
@@ -338,7 +330,7 @@ namespace ProjektLokal {
 			this->kalenderBtn->FlatAppearance->BorderColor = System::Drawing::Color::White;
 			this->kalenderBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->kalenderBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kalenderBtn.Image")));
-			this->kalenderBtn->Location = System::Drawing::Point(295, 589);
+			this->kalenderBtn->Location = System::Drawing::Point(288, 535);
 			this->kalenderBtn->Name = L"kalenderBtn";
 			this->kalenderBtn->Size = System::Drawing::Size(235, 76);
 			this->kalenderBtn->TabIndex = 14;
@@ -351,7 +343,7 @@ namespace ProjektLokal {
 			this->nochWochenstundenLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->nochWochenstundenLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->nochWochenstundenLbl->Location = System::Drawing::Point(-22, 712);
+			this->nochWochenstundenLbl->Location = System::Drawing::Point(2, 659);
 			this->nochWochenstundenLbl->Name = L"nochWochenstundenLbl";
 			this->nochWochenstundenLbl->Size = System::Drawing::Size(270, 50);
 			this->nochWochenstundenLbl->TabIndex = 15;
@@ -365,7 +357,7 @@ namespace ProjektLokal {
 			this->pauseLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->pauseLbl->Location = System::Drawing::Point(273, 712);
+			this->pauseLbl->Location = System::Drawing::Point(278, 659);
 			this->pauseLbl->Name = L"pauseLbl";
 			this->pauseLbl->Size = System::Drawing::Size(270, 50);
 			this->pauseLbl->TabIndex = 16;
@@ -379,9 +371,9 @@ namespace ProjektLokal {
 			this->resturlaubLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->resturlaubLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->resturlaubLbl->Location = System::Drawing::Point(569, 712);
+			this->resturlaubLbl->Location = System::Drawing::Point(566, 659);
 			this->resturlaubLbl->Name = L"resturlaubLbl";
-			this->resturlaubLbl->Size = System::Drawing::Size(270, 50);
+			this->resturlaubLbl->Size = System::Drawing::Size(258, 50);
 			this->resturlaubLbl->TabIndex = 17;
 			this->resturlaubLbl->Text = L"0 Tage";
 			this->resturlaubLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -392,7 +384,7 @@ namespace ProjektLokal {
 			this->pauseCbox->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->pauseCbox->Appearance = System::Windows::Forms::Appearance::Button;
 			this->pauseCbox->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pauseCbox.Image")));
-			this->pauseCbox->Location = System::Drawing::Point(295, 334);
+			this->pauseCbox->Location = System::Drawing::Point(288, 297);
 			this->pauseCbox->Name = L"pauseCbox";
 			this->pauseCbox->Size = System::Drawing::Size(240, 80);
 			this->pauseCbox->TabIndex = 18;
@@ -411,7 +403,7 @@ namespace ProjektLokal {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
 			this->BackColor = System::Drawing::SystemColors::Highlight;
-			this->ClientSize = System::Drawing::Size(884, 682);
+			this->ClientSize = System::Drawing::Size(822, 711);
 			this->Controls->Add(this->pauseCbox);
 			this->Controls->Add(this->resturlaubLbl);
 			this->Controls->Add(this->pauseLbl);
@@ -475,15 +467,15 @@ private: System::Void timerPause_Tick(System::Object^  sender, System::EventArgs
 //Timer für die Arbeitszeit und rückwärts laufend für die restliche Wochenarbeitszeit
 private: System::Void timerArbeitszeit_Tick(System::Object^  sender, System::EventArgs^  e) {
 	
-	sekunde++;
+	uhrSekunde++;
 	
-	if (sekunde == 60) {
-		sekunde = 0;
-		minute++;
+	if (uhrSekunde == 60) {
+		uhrSekunde = 0;
+		uhrMinute++;
 		arbeitsMinuten--;
-		if (minute == 60) {
-			minute = 0;
-			stunde++;
+		if (uhrMinute == 60) {
+			uhrMinute = 0;
+			uhrStunde++;
 		}
 		if (arbeitsMinuten == -1) {
 			arbeitsStunden--;
@@ -491,25 +483,25 @@ private: System::Void timerArbeitszeit_Tick(System::Object^  sender, System::Eve
 		}
 	}
 	
-	if (sekunde < 10) {
-		sekundeS = "0" + Convert::ToString(sekunde);
+	if (uhrSekunde < 10) {
+		sekundeS = "0" + Convert::ToString(uhrSekunde);
 	}
 	else {
-		sekundeS = Convert::ToString(sekunde);
+		sekundeS = Convert::ToString(uhrSekunde);
 	}
 
-	if (minute < 10) {
-		minuteS = "0" + Convert::ToString(minute);
+	if (uhrMinute < 10) {
+		minuteS = "0" + Convert::ToString(uhrMinute);
 	}
 	else {
-		minuteS = Convert::ToString(minute);
+		minuteS = Convert::ToString(uhrMinute);
 	}
 
-	if (stunde < 10) {
-		stundeS = "0" + Convert::ToString(stunde);
+	if (uhrStunde < 10) {
+		stundeS = "0" + Convert::ToString(uhrStunde);
 	}
 	else {
-		stundeS = Convert::ToString(stunde);
+		stundeS = Convert::ToString(uhrStunde);
 	}
 
 	arbeitsStundenS = Convert::ToString(arbeitsStunden);
@@ -538,6 +530,7 @@ private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs
 	if (!gegangen) {
 		timerArbeitszeit->Start();
 		this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+		mitarbeiter->fuegeZeitHinzu();
 	}
 	else {
 		MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
@@ -553,6 +546,7 @@ private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^
 		timerArbeitszeit->Stop();
 		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 		gegangen = true;
+		mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 	}
 }
 
@@ -564,6 +558,7 @@ private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::
 		timerPause->Start();
 		this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
+		mitarbeiter->fuegeZeitHinzu();
 	}
 	else {
 		timerArbeitszeit->Start();
@@ -607,15 +602,19 @@ private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs
 
 private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
 
-	//Startwerte werden gesetzt
-	arbeitsStunden = 40;
-	arbeitsMinuten = 0;
+	//Mitarbeiter erstellen -> NOCH ÄNDERN!
+	mitarbeiter = gcnew Mitarbeiter("Test", "Mitarbeiter", "12", "123456", "Passwort", "05121 123456", "email@email.de", nullptr, false, 38, 0, 28, 0, nullptr);
 
-	restUrlaub = 25;
+	//Werte auslesen und im Fenster darstellen.
+	arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
+	arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
+	nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
 
-	sekunde = 0;
-	minute = 0;
-	stunde = 0;
+	restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
+
+	uhrSekunde = 0;
+	uhrMinute = 0;
+	uhrStunde = 0;
 
 	gegangen = false;
 
@@ -641,5 +640,7 @@ private: System::Void Startseite_FormClosing(System::Object^ sender, System::Win
 	}
 }
 
+private: System::Void halloLbl_Click(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 }

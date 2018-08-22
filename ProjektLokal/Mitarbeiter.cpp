@@ -15,6 +15,9 @@ Mitarbeiter::Mitarbeiter(String ^ vorname, String ^ nachname, String ^ abteilung
 Mitarbeiter::Mitarbeiter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort, String^ telefon, String^ email, Adresse^ adresse, bool istWeiblich, int arbeitStunden, int arbeitMinuten, int anzUrlaubstage, int genommenUrlaub, Vorgesetzter^ v) : Angestellter(vorname, nachname, abteilungsnummer, personalnummer, passwort, telefon, email, adresse, istWeiblich, arbeitStunden, arbeitMinuten, anzUrlaubstage, genommenUrlaub)
 {
 	this->v = v;
+	//Setzt die noch zu arbeitende Zeit auf die Startwerte
+	this->setArbeitStundenNoch(arbeitStunden);
+	this->setArbeitMinutenNoch(arbeitMinuten);
 }
 
 

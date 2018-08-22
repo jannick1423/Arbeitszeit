@@ -13,6 +13,7 @@ ref class Unternehmen
 
 private:
 	List<Angestellter^>^ list_angestellte;
+	List<Vorgesetzter^>^ list_vorgesetzte;
 
 	
 public:
@@ -23,6 +24,9 @@ public:
 	void loescheAngestellten(Angestellter^ angestellter);
 	void fuegeAngstelltenhinzu(Angestellter^ angestellter);
 
+	List<Vorgesetzter^>^ getVorgesetzte();
+	void loescheVorgesetzten(Vorgesetzter^ vorgesetzter);
+	void fuegeVorgesetztenhinzu(Vorgesetzter^ vorgesetzter);
 
 };
 

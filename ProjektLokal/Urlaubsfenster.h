@@ -1,4 +1,6 @@
 #pragma once
+#include "Mitarbeiter.h"
+#include "Vorgesetzter.h"
 
 namespace ProjektLokal {
 
@@ -19,6 +21,8 @@ namespace ProjektLokal {
 
 		static int vergleichDaten;
 		static int vergleichMitHeute;
+		Angestellter^ angestellter;
+		Int32 restUrlaub;
 
 	public:
 		Urlaubfenster(void)
@@ -39,29 +43,14 @@ namespace ProjektLokal {
 			}
 		}
 	private: System::Windows::Forms::DateTimePicker^  urlaubBeginnDTP;
-	protected:
-
-	protected:
-
-	protected:
 	private: System::Windows::Forms::Label^  urlaubsabtragLbl;
 	private: System::Windows::Forms::Button^  einreichenBtn;
-
-
-
 	private: System::Windows::Forms::Label^  urlaubBeginnLbl;
 	private: System::Windows::Forms::DateTimePicker^  urlaubEndeDTP;
-
-
-
-
-
 	private: System::Windows::Forms::Button^  abbrechenBtn;
-
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  tageTxt;
-
 
 	private:
 		/// <summary>
@@ -209,22 +198,25 @@ namespace ProjektLokal {
 public:
 
 	//Properties für das Auslesen der eingegebenen Daten
-	property DateTime p_Anfang {
+	property DateTime p_Anfang 
+	{
 		DateTime get() {
 			return this->urlaubBeginnDTP->Value.Date;
 		}
 	}
 
-	property DateTime p_Ende {
+	property DateTime p_Ende 
+	{
 		DateTime get() {
 			return this->urlaubEndeDTP->Value.Date;
 		}
 	}
 
-	property Int32 p_Tage {
+	property Int32 p_Tage 
+	{
 		Int32 get() {
 			Int32 tageKonvertiert;
-			if (!tageTxt->Text->Empty) {
+			if (tageTxt->Text->Length > 0) {
 				String^ tageS = this->tageTxt->Text;
 				tageKonvertiert = Convert::ToInt32(tageS);
 			}
@@ -236,7 +228,8 @@ public:
 	}
 
 	//Eingaben werden zurückgesetzt
-	void clear() {
+	void clear() 
+	{
 		this->urlaubBeginnDTP->Value = DateTime::Today;
 		this->urlaubEndeDTP->Value = DateTime::Today;
 		this->tageTxt->Text = "";
@@ -244,8 +237,8 @@ public:
 
 //Beim Klick auf "Einreichen" wird das Fenster geschlossen und OK gesendet, falls: Die Tage eingetragen wurden und die Zahl positiv ist,
 //der Beginn nicht nach dem Ende liegt und der Beginn nicht in der Vergangenheit liegt.
-private: System::Void Einreichen_Click(System::Object^  sender, System::EventArgs^  e) {
-	
+private: System::Void Einreichen_Click(System::Object^  sender, System::EventArgs^  e) 
+{
 	//Vergleich der Daten wird in Integern gespeichert
 	vergleichDaten = DateTime::Compare(p_Anfang, p_Ende);
 	vergleichMitHeute = DateTime::Compare(DateTime::Today.Date, p_Anfang);
@@ -270,17 +263,32 @@ private: System::Void Einreichen_Click(System::Object^  sender, System::EventArg
 		MessageBox::Show("Ihr Urlaubsbeginn darf nicht in der Vergangenheit liegen!\nBitte korrigieren Sie die Eingaben!", "Absenden nicht möglich!",
 			MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
+	else if (p_Tage > restUrlaub) {
+		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		MessageBox::Show("Ihre gewuenschten Urlaubstage ueberschreiten Ihren Resturlaub!\nBitte korrigieren Sie die Eingaben!", "Absenden nicht möglich!",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 	else {
 		this->DialogResult = System::Windows::Forms::DialogResult::OK;
 		this->Close(); //Fenster wird nur geschlossen, wenn alle Angaben gemacht wurden und OK sind.
 	}
 }
 
-private: System::Void abbrechenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void abbrechenBtn_Click(System::Object^  sender, System::EventArgs^  e) 
+{
 	this->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 }
 
-private: System::Void Urlaubfenster_Load(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void Urlaubfenster_Load(System::Object^  sender, System::EventArgs^  e) 
+{
 }
+
+//NEU: Angestellter wird gesetzt:
+public: void setAngestellter(Angestellter^ angestellterUebergabe) 
+{
+	Angestellter^ angestellter = angestellterUebergabe;
+	restUrlaub = angestellter->getAnzUrlaubstage() - angestellter->getGenommenUrlaub();
+}
+
 };
 }

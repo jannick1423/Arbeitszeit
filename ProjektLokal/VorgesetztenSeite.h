@@ -24,7 +24,7 @@ namespace ProjektLokal {
 
 	private:
 
-		Vorgesetzter^ vorgesetzter;
+		Vorgesetzter^ mitarbeiter;
 
 		static int arbeitsStunden;
 		static int arbeitsMinuten;
@@ -593,7 +593,7 @@ namespace ProjektLokal {
 		if (!gegangen) {
 			timerArbeitszeit->Start();
 			this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			vorgesetzter->fuegeZeitHinzu();
+			mitarbeiter->fuegeZeitHinzu();
 		}
 		else {
 			MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
@@ -609,7 +609,7 @@ namespace ProjektLokal {
 			timerArbeitszeit->Stop();
 			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 			gegangen = true;
-			vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+			mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 		}
 	}
 
@@ -621,7 +621,7 @@ namespace ProjektLokal {
 			timerPause->Start();
 			this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
-			vorgesetzter->fuegeZeitHinzu();
+			mitarbeiter->fuegeZeitHinzu();
 		}
 		else {
 			timerArbeitszeit->Start();
@@ -676,11 +676,11 @@ namespace ProjektLokal {
 	private: System::Void VorgesetztenSeite_Load(System::Object^  sender, System::EventArgs^  e) {
 
 		//Werte auslesen und im Fenster darstellen.
-		arbeitsStunden = vorgesetzter->getArbeitStundenNoch();
-		arbeitsMinuten = vorgesetzter->getArbeitMinutenNoch();
-		nameLbl->Text = vorgesetzter->getVorname() + " " + vorgesetzter->getNachname();
+		arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
+		arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
+		nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
 
-		restUrlaub = vorgesetzter->getAnzUrlaubstage() - vorgesetzter->getGenommenUrlaub();
+		restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
 
 		//Startwerte Timer setzen:
 		uhrSekunde = 0;
@@ -713,7 +713,7 @@ namespace ProjektLokal {
 
 	//NEU: ÜBERGABE DES VORGESETZTEN
 	public: void setVorgesetzter(Angestellter^ mitarbeiterUebergabe) {
-		this->vorgesetzter = (Vorgesetzter^) mitarbeiterUebergabe;
+		this->mitarbeiter = (Vorgesetzter^) mitarbeiterUebergabe;
 	}
 
 	};

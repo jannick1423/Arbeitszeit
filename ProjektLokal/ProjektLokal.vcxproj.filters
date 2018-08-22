@@ -133,6 +133,9 @@
     <Image Include="Images\urlaubIcon2.jpg">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
+    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\LogOutIcon2.jpg">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Startseite.resx">
@@ -145,6 +148,9 @@
       <Filter>Ressourcendateien</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="LogInFenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrierungsFenster.resx">
       <Filter>Ressourcendateien</Filter>
     </EmbeddedResource>
   </ItemGroup>

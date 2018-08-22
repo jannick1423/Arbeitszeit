@@ -70,6 +70,7 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Label^  resturlaubLbl;
 	private: System::Windows::Forms::CheckBox^  pauseCbox;
 	private: System::Windows::Forms::Timer^  timerPause;
+	private: System::Windows::Forms::Button^  logOutBtn;
 
 	System::Windows::Forms::Label^  uhrzeitLbl;
 
@@ -141,6 +142,7 @@ namespace ProjektLokal {
 			this->resturlaubLbl = (gcnew System::Windows::Forms::Label());
 			this->pauseCbox = (gcnew System::Windows::Forms::CheckBox());
 			this->timerPause = (gcnew System::Windows::Forms::Timer(this->components));
+			this->logOutBtn = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// kommenBtn
@@ -409,6 +411,17 @@ namespace ProjektLokal {
 			this->timerPause->Interval = 1000;
 			this->timerPause->Tick += gcnew System::EventHandler(this, &Startseite::timerPause_Tick);
 			// 
+			// logOutBtn
+			// 
+			this->logOutBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"logOutBtn.Image")));
+			this->logOutBtn->Location = System::Drawing::Point(23, 19);
+			this->logOutBtn->Name = L"logOutBtn";
+			this->logOutBtn->Size = System::Drawing::Size(122, 44);
+			this->logOutBtn->TabIndex = 22;
+			this->logOutBtn->UseVisualStyleBackColor = true;
+			this->logOutBtn->UseWaitCursor = true;
+			this->logOutBtn->Click += gcnew System::EventHandler(this, &Startseite::logOutBtn_Click);
+			// 
 			// Startseite
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -416,6 +429,7 @@ namespace ProjektLokal {
 			this->AutoScroll = true;
 			this->BackColor = System::Drawing::SystemColors::Highlight;
 			this->ClientSize = System::Drawing::Size(822, 711);
+			this->Controls->Add(this->logOutBtn);
 			this->Controls->Add(this->pauseCbox);
 			this->Controls->Add(this->resturlaubLbl);
 			this->Controls->Add(this->pauseLbl);
@@ -437,6 +451,7 @@ namespace ProjektLokal {
 			this->Name = L"Startseite";
 			this->Text = L"Zeiterfassung Startseite";
 			this->UseWaitCursor = true;
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Startseite::Startseite_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Startseite::Startseite_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -623,9 +638,14 @@ private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs
 	}
 }
 
-private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
+//Beim Klick auf den Logout Button wird erst einen Sicherheitsabfrage durchgeführt.
+//Bei Bestätigung wird das Fenster geschlossen und das Programm neu gestartet.
+private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+}
 
-	
+
+//Beim Laden der Startseite werden einige Werte gesetzt
+private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
 
 	//Werte auslesen und im Fenster darstellen.
 	arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
@@ -656,10 +676,16 @@ private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs
 	resturlaubLbl->Text = restUrlaub + " Tage";
 }
 
+//Falls der Arbeitszeit-Timer noch läuft, wird beim Schließen des Fensters zunächst eine Sicherheitsabfrage ausgeführt, ob das Programm wirklich beendet werden soll.
 private: System::Void Startseite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-	if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?", "Fenster schliessen?", MessageBoxButtons::OKCancel,
-		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
-		e->Cancel = true;
+	if (!gegangen) {
+		if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
+			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
+			e->Cancel = true;
+		}
+		else {
+			mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+		}
 	}
 }
 

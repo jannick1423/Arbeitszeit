@@ -57,6 +57,9 @@
     <ClCompile Include="Kalenderfenster.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="RegistrierungsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startseite.h">
@@ -96,6 +99,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Kalenderfenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistrierungsFenster.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

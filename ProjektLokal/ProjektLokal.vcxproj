@@ -141,6 +141,7 @@
     <ClCompile Include="LogInFenster.cpp" />
     <ClCompile Include="Mitarbeiter.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="RegistrierungsFenster.cpp" />
     <ClCompile Include="Startseite.cpp" />
     <ClCompile Include="Statistikfenster.cpp" />
     <ClCompile Include="Unternehmen.cpp" />
@@ -160,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="Mitarbeiter.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RegistrierungsFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Startseite.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -179,6 +183,9 @@
   <ItemGroup>
     <EmbeddedResource Include="LogInFenster.resx">
       <DependentUpon>LogInFenster.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrierungsFenster.resx">
+      <DependentUpon>RegistrierungsFenster.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Startseite.resx">
       <DependentUpon>Startseite.h</DependentUpon>

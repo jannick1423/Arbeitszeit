@@ -6,6 +6,7 @@
 #include "Urlaubsantrag.h"
 #include "Mitarbeiter.h"
 #include "Unternehmen.h"
+//#include "LogInFenster.h"
 
 namespace ProjektLokal {
 
@@ -53,6 +54,7 @@ namespace ProjektLokal {
 		Urlaubfenster^ urlaubsfenster;
 		Statistikfenster^ statistikfenster;
 		Kalenderfenster^ kalenderfenster;
+		//loginFenster^ loginfenster;
 
 	System::Windows::Forms::Timer^  timerUhr;
 	System::Windows::Forms::Label^  datumLbl;
@@ -80,6 +82,7 @@ namespace ProjektLokal {
 			urlaubsfenster = gcnew Urlaubfenster;
 			kalenderfenster = gcnew Kalenderfenster;
 			statistikfenster = gcnew Statistikfenster;
+			//loginfenster = gcnew loginFenster;
 
 		}
 
@@ -620,6 +623,8 @@ private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs
 }
 
 private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
+
+	
 
 	//Werte auslesen und im Fenster darstellen.
 	arbeitsStunden = vorgesetzter->getArbeitStundenNoch();

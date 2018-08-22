@@ -24,7 +24,7 @@ namespace ProjektLokal {
 
 	private:
 
-		Vorgesetzter^ mitarbeiter;
+		Vorgesetzter^ vorgesetzter;
 
 		static int arbeitsStunden;
 		static int arbeitsMinuten;
@@ -71,9 +71,6 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Button^  addBtn;
 	private: System::Windows::Forms::Button^  editBtn;
 	private: System::Windows::Forms::Button^  personalBtn;
-
-
-
 
 			 System::Windows::Forms::Label^  uhrzeitLbl;
 
@@ -593,7 +590,7 @@ namespace ProjektLokal {
 		if (!gegangen) {
 			timerArbeitszeit->Start();
 			this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			mitarbeiter->fuegeZeitHinzu();
+			vorgesetzter->fuegeZeitHinzu();
 		}
 		else {
 			MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
@@ -609,7 +606,7 @@ namespace ProjektLokal {
 			timerArbeitszeit->Stop();
 			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 			gegangen = true;
-			mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+			vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 		}
 	}
 
@@ -621,7 +618,7 @@ namespace ProjektLokal {
 			timerPause->Start();
 			this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
-			mitarbeiter->fuegeZeitHinzu();
+			vorgesetzter->fuegeZeitHinzu();
 		}
 		else {
 			timerArbeitszeit->Start();
@@ -631,18 +628,19 @@ namespace ProjektLokal {
 		}
 	}
 
-			 //Klick auf Kalender-Button öffnet Kalender-Fenster
+	//Klick auf Kalender-Button öffnet Kalender-Fenster
 	private: System::Void kalenderBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		System::Windows::Forms::DialogResult result = kalenderfenster->ShowDialog(this);
 	}
 
-			 //Klick auf Statistik-Button öffnet Statistik-Fenster
+	//Klick auf Statistik-Button öffnet Statistik-Fenster
 	private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
 	}
 
-			 //Klick auf Urlaub-Button öffnet Urlaub-Fenster
+	//Klick auf Urlaub-Button öffnet Urlaub-Fenster
 	private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		urlaubsfenster->setAngestellter(vorgesetzter);
 		System::Windows::Forms::DialogResult result = urlaubsfenster->ShowDialog(this);
 
 		//Der Urlaubsantrag als String
@@ -676,11 +674,11 @@ namespace ProjektLokal {
 	private: System::Void VorgesetztenSeite_Load(System::Object^  sender, System::EventArgs^  e) {
 
 		//Werte auslesen und im Fenster darstellen.
-		arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
-		arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
-		nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
+		arbeitsStunden = vorgesetzter->getArbeitStundenNoch();
+		arbeitsMinuten = vorgesetzter->getArbeitMinutenNoch();
+		nameLbl->Text = vorgesetzter->getVorname() + " " + vorgesetzter->getNachname();
 
-		restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
+		restUrlaub = vorgesetzter->getAnzUrlaubstage() - vorgesetzter->getGenommenUrlaub();
 
 		//Startwerte Timer setzen:
 		uhrSekunde = 0;
@@ -713,7 +711,7 @@ namespace ProjektLokal {
 
 	//NEU: ÜBERGABE DES VORGESETZTEN
 	public: void setVorgesetzter(Angestellter^ mitarbeiterUebergabe) {
-		this->mitarbeiter = (Vorgesetzter^) mitarbeiterUebergabe;
+		this->vorgesetzter = (Vorgesetzter^) mitarbeiterUebergabe;
 	}
 
 	};

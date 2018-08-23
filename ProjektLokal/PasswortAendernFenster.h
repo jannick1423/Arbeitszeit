@@ -20,16 +20,19 @@ namespace ProjektLokal {
 	public ref class PasswortAendernFenster : public System::Windows::Forms::Form
 	{
 	private:
+		//Unterfenster
 		Unternehmen ^ unternehmen;
 		Startseite^ startseite;
-		VorgesetztenSeite^ vorgesetztenseite;
+	private: System::Windows::Forms::Label^  lbl_PasswortAendern;
+
+			 VorgesetztenSeite^ vorgesetztenseite;
 		
 
 	public:
 		PasswortAendernFenster(void)
 		{
 			InitializeComponent();
-			//unternehmen = gcnew Unternehmen();
+			//Unterfenster initialisieren
 			startseite = gcnew Startseite();
 			vorgesetztenseite = gcnew VorgesetztenSeite();
 			
@@ -52,8 +55,6 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Button^  btn_bestätigen;
 	private: System::Windows::Forms::Button^  btn_abbrechen;
 	protected:
-
-
 	private: System::Windows::Forms::Label^  lbl_benutzername;
 	private: System::Windows::Forms::Label^  lbl_altesPasswort;
 	private: System::Windows::Forms::Label^  lbl_neuesPasswort;
@@ -62,14 +63,6 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::TextBox^  txt_altespasswort;
 	private: System::Windows::Forms::TextBox^  txt_neuespasswort;
 	private: System::Windows::Forms::TextBox^  txt_passwortwiederholen;
-
-
-
-
-
-
-
-
 
 	protected:
 
@@ -97,14 +90,15 @@ namespace ProjektLokal {
 			this->txt_altespasswort = (gcnew System::Windows::Forms::TextBox());
 			this->txt_neuespasswort = (gcnew System::Windows::Forms::TextBox());
 			this->txt_passwortwiederholen = (gcnew System::Windows::Forms::TextBox());
+			this->lbl_PasswortAendern = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btn_bestätigen
 			// 
-			this->btn_bestätigen->Location = System::Drawing::Point(38, 180);
-			this->btn_bestätigen->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_bestätigen->Location = System::Drawing::Point(52, 290);
+			this->btn_bestätigen->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_bestätigen->Name = L"btn_bestätigen";
-			this->btn_bestätigen->Size = System::Drawing::Size(69, 36);
+			this->btn_bestätigen->Size = System::Drawing::Size(98, 52);
 			this->btn_bestätigen->TabIndex = 0;
 			this->btn_bestätigen->Text = L"Bestätigen";
 			this->btn_bestätigen->UseVisualStyleBackColor = true;
@@ -112,10 +106,10 @@ namespace ProjektLokal {
 			// 
 			// btn_abbrechen
 			// 
-			this->btn_abbrechen->Location = System::Drawing::Point(171, 180);
-			this->btn_abbrechen->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_abbrechen->Location = System::Drawing::Point(229, 290);
+			this->btn_abbrechen->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_abbrechen->Name = L"btn_abbrechen";
-			this->btn_abbrechen->Size = System::Drawing::Size(69, 36);
+			this->btn_abbrechen->Size = System::Drawing::Size(98, 52);
 			this->btn_abbrechen->TabIndex = 1;
 			this->btn_abbrechen->Text = L"Abbrechen";
 			this->btn_abbrechen->UseVisualStyleBackColor = true;
@@ -123,81 +117,90 @@ namespace ProjektLokal {
 			// lbl_benutzername
 			// 
 			this->lbl_benutzername->AutoSize = true;
-			this->lbl_benutzername->Location = System::Drawing::Point(9, 20);
-			this->lbl_benutzername->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lbl_benutzername->Location = System::Drawing::Point(13, 93);
 			this->lbl_benutzername->Name = L"lbl_benutzername";
-			this->lbl_benutzername->Size = System::Drawing::Size(75, 13);
+			this->lbl_benutzername->Size = System::Drawing::Size(100, 17);
 			this->lbl_benutzername->TabIndex = 2;
 			this->lbl_benutzername->Text = L"Benutzername";
 			// 
 			// lbl_altesPasswort
 			// 
 			this->lbl_altesPasswort->AutoSize = true;
-			this->lbl_altesPasswort->Location = System::Drawing::Point(9, 53);
-			this->lbl_altesPasswort->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lbl_altesPasswort->Location = System::Drawing::Point(13, 133);
 			this->lbl_altesPasswort->Name = L"lbl_altesPasswort";
-			this->lbl_altesPasswort->Size = System::Drawing::Size(76, 13);
+			this->lbl_altesPasswort->Size = System::Drawing::Size(100, 17);
 			this->lbl_altesPasswort->TabIndex = 3;
 			this->lbl_altesPasswort->Text = L"Altes Passwort";
 			// 
 			// lbl_neuesPasswort
 			// 
 			this->lbl_neuesPasswort->AutoSize = true;
-			this->lbl_neuesPasswort->Location = System::Drawing::Point(8, 92);
-			this->lbl_neuesPasswort->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lbl_neuesPasswort->Location = System::Drawing::Point(12, 181);
 			this->lbl_neuesPasswort->Name = L"lbl_neuesPasswort";
-			this->lbl_neuesPasswort->Size = System::Drawing::Size(84, 13);
+			this->lbl_neuesPasswort->Size = System::Drawing::Size(110, 17);
 			this->lbl_neuesPasswort->TabIndex = 4;
 			this->lbl_neuesPasswort->Text = L"Neues Passwort";
 			// 
 			// lbl_neuesPasswortbestättigen
 			// 
 			this->lbl_neuesPasswortbestättigen->AutoSize = true;
-			this->lbl_neuesPasswortbestättigen->Location = System::Drawing::Point(8, 127);
-			this->lbl_neuesPasswortbestättigen->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lbl_neuesPasswortbestättigen->Location = System::Drawing::Point(12, 224);
 			this->lbl_neuesPasswortbestättigen->Name = L"lbl_neuesPasswortbestättigen";
-			this->lbl_neuesPasswortbestättigen->Size = System::Drawing::Size(110, 13);
+			this->lbl_neuesPasswortbestättigen->Size = System::Drawing::Size(145, 17);
 			this->lbl_neuesPasswortbestättigen->TabIndex = 5;
 			this->lbl_neuesPasswortbestättigen->Text = L"Passwort wiederholen";
 			// 
 			// txt_benutzername
 			// 
-			this->txt_benutzername->Location = System::Drawing::Point(143, 20);
-			this->txt_benutzername->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_benutzername->Location = System::Drawing::Point(192, 93);
+			this->txt_benutzername->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_benutzername->Name = L"txt_benutzername";
-			this->txt_benutzername->Size = System::Drawing::Size(108, 20);
+			this->txt_benutzername->Size = System::Drawing::Size(149, 22);
 			this->txt_benutzername->TabIndex = 6;
 			// 
 			// txt_altespasswort
 			// 
-			this->txt_altespasswort->Location = System::Drawing::Point(143, 50);
-			this->txt_altespasswort->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_altespasswort->Location = System::Drawing::Point(192, 130);
+			this->txt_altespasswort->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_altespasswort->Name = L"txt_altespasswort";
-			this->txt_altespasswort->Size = System::Drawing::Size(108, 20);
+			this->txt_altespasswort->Size = System::Drawing::Size(149, 22);
 			this->txt_altespasswort->TabIndex = 7;
 			// 
 			// txt_neuespasswort
 			// 
-			this->txt_neuespasswort->Location = System::Drawing::Point(143, 88);
-			this->txt_neuespasswort->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_neuespasswort->Location = System::Drawing::Point(192, 176);
+			this->txt_neuespasswort->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_neuespasswort->Name = L"txt_neuespasswort";
-			this->txt_neuespasswort->Size = System::Drawing::Size(108, 20);
+			this->txt_neuespasswort->Size = System::Drawing::Size(149, 22);
 			this->txt_neuespasswort->TabIndex = 8;
 			// 
 			// txt_passwortwiederholen
 			// 
-			this->txt_passwortwiederholen->Location = System::Drawing::Point(143, 127);
-			this->txt_passwortwiederholen->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_passwortwiederholen->Location = System::Drawing::Point(192, 224);
+			this->txt_passwortwiederholen->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_passwortwiederholen->Name = L"txt_passwortwiederholen";
-			this->txt_passwortwiederholen->Size = System::Drawing::Size(108, 20);
+			this->txt_passwortwiederholen->Size = System::Drawing::Size(149, 22);
 			this->txt_passwortwiederholen->TabIndex = 9;
+			// 
+			// lbl_PasswortAendern
+			// 
+			this->lbl_PasswortAendern->AutoSize = true;
+			this->lbl_PasswortAendern->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_PasswortAendern->Location = System::Drawing::Point(13, 21);
+			this->lbl_PasswortAendern->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->lbl_PasswortAendern->Name = L"lbl_PasswortAendern";
+			this->lbl_PasswortAendern->Size = System::Drawing::Size(334, 46);
+			this->lbl_PasswortAendern->TabIndex = 10;
+			this->lbl_PasswortAendern->Text = L"Passwort ändern";
 			// 
 			// PasswortAendernFenster
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Window;
-			this->ClientSize = System::Drawing::Size(280, 225);
+			this->ClientSize = System::Drawing::Size(377, 371);
+			this->Controls->Add(this->lbl_PasswortAendern);
 			this->Controls->Add(this->txt_passwortwiederholen);
 			this->Controls->Add(this->txt_neuespasswort);
 			this->Controls->Add(this->txt_altespasswort);
@@ -209,7 +212,7 @@ namespace ProjektLokal {
 			this->Controls->Add(this->btn_abbrechen);
 			this->Controls->Add(this->btn_bestätigen);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"PasswortAendernFenster";
 			this->Text = L"Passwort Ändern";
 			this->ResumeLayout(false);
@@ -245,6 +248,7 @@ namespace ProjektLokal {
 				this->txt_neuespasswort->Text = "";
 				this->txt_passwortwiederholen->Text = "";
 			}
+	//Beim Klick auf den Button wird überprüft ob alle Textboxen richtig ausgefüllt ansonsten Hinweis
 	private: System::Void btn_bestätigen_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		if (this->txt_benutzername->Text->Length == 0) {
@@ -312,7 +316,7 @@ namespace ProjektLokal {
 			}
 		
 	}
-	
+//Bei Klick auf den Button wird das Fenster geschlossen
 private: System::Void btn_abbrechen_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->Close();
 }

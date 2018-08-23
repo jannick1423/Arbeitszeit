@@ -623,28 +623,32 @@ namespace ProjektLokal {
 
 	//Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
 	private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-		//Gehen nur moeglich, wenn der Mitarbeiter nicht gerade in der Pause ist.
-		if (!pauseCbox->Checked) {
+		//Gehen nur möglich, falls der Arbeitstag vorher auch begonnen wurde.
+		if (gekommen) {
 			//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
 			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-				timerArbeitszeit->Stop();
+				//Falls der Angestellte in der Pause ist, wird diese zunächst beendet.
+				if (timerPause->Enabled) {
+					timerPause->Stop();
+					this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+					vorgesetzter->fuegeZeitHinzu();
+				}
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 				gegangen = true;
 				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 			}
 		}
 		else {
-			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Gehen fehlgeschlagen",
+			MessageBox::Show("Sie koennen keinen Arbeitstag beenden, den Sie noch nicht begonnen haben!", "Gehen fehlgeschlagen",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
-
 	}
 
 	//Beim Drücken der Pause-Taste wird die Arbeitszeit-Uhr entweder gestartet oder gestoppt
 	//Gleichzeitig wird der Pause-Timer gestartet bzw. gestoppt
 	private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (gekommen) {
+		if (gekommen && !gegangen) {
 			if (timerArbeitszeit->Enabled) {
 				timerArbeitszeit->Stop();
 				timerPause->Start();
@@ -657,7 +661,12 @@ namespace ProjektLokal {
 				timerPause->Stop();
 				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 				this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+				vorgesetzter->fuegeZeitHinzu();
 			}
+		}
+		else if (gekommen && gegangen) {
+			MessageBox::Show("Sie haben Ihren Arbeitstag bereits beendet!", "Keine Pause moeglich",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
 			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause moeglich",
@@ -710,22 +719,24 @@ namespace ProjektLokal {
 
 	//Beim Klick auf den LogOutButton wird das Programm neu gestartet
 	private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-		//Während einer Pause ist kein LogOut möglich
-		if (pauseCbox->Checked) {
-			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "LogOut fehlgeschlagen",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		//Falls der Angestellte den Arbeitstag noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
+		if (!gegangen && gekommen) {
+			if (MessageBox::Show("Wollen Sie sich wirklich ausloggen?\nIhr Arbeitstag wird dann beendet.", "Wirklich ausloggen?", MessageBoxButtons::YesNo,
+				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+				//Falls der Angestellte gerade die Pause aktiviert hat, wird diese zunächst beendet
+				if (timerPause->Enabled) {
+					timerPause->Stop();
+					this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+					vorgesetzter->fuegeZeitHinzu();
+				}
+				gegangen = true;
+				timerArbeitszeit->Stop();
+				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+				Application::Restart();
+			}
 		}
 		else {
-			//Falls der Angestellte den Arbeitstag noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
-			if (!gegangen) {
-				if (MessageBox::Show("Wollen Sie sich wirklich ausloggen?\nIhr Arbeitstag wird dann beendet.", "Wirklich ausloggen?", MessageBoxButtons::YesNo,
-					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-					gegangen = true;
-					timerArbeitszeit->Stop();
-					vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
-					Application::Restart();
-				}
-			}
+			Application::Restart();
 		}
 	}
 
@@ -762,22 +773,23 @@ namespace ProjektLokal {
 		resturlaubLbl->Text = restUrlaub + " Tage";
 	}
 
+	//Schließen des Programms:
 	private: System::Void VorgesetztenSeite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-		if (pauseCbox->Checked) {
-			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Schliessen fehlgeschlagen",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-			e->Cancel = true;
-		}
-		else {
-			if (!gegangen) {
-				if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
-					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
-					e->Cancel = true;
+		//Falls der Angestellte den Arbeitstag begonnen, aber noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
+		if (!gegangen && gekommen) {
+			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::YesNo,
+				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::No) {
+				e->Cancel = true;
+			}
+			else {
+				//Falls der Angestellte gerade die Pause aktiviert hat, wird diese zunächst beendet
+				if (timerPause->Enabled) {
+					timerPause->Stop();
+					this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+					vorgesetzter->fuegeZeitHinzu();
 				}
-				else {
-					timerArbeitszeit->Stop();
-					vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
-				}
+				timerArbeitszeit->Stop();
+				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 			}
 		}
 	}

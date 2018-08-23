@@ -37,6 +37,7 @@ namespace ProjektLokal {
 		static int pauseSekunde;
 
 		bool gegangen;
+		bool gekommen;
 
 		int restUrlaub;
 
@@ -609,6 +610,7 @@ namespace ProjektLokal {
 	private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		//Wenn ein Mitarbeiter schonmal auf "Gehen" geklickt hat, muss er sich neu einloggen, um wieder starten zu können.
 		if (!gegangen) {
+			gekommen = true;
 			timerArbeitszeit->Start();
 			this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			vorgesetzter->fuegeZeitHinzu();
@@ -642,18 +644,24 @@ namespace ProjektLokal {
 	//Beim Drücken der Pause-Taste wird die Arbeitszeit-Uhr entweder gestartet oder gestoppt
 	//Gleichzeitig wird der Pause-Timer gestartet bzw. gestoppt
 	private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (timerArbeitszeit->Enabled) {
-			timerArbeitszeit->Stop();
-			timerPause->Start();
-			this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
-			vorgesetzter->fuegeZeitHinzu();
+		if (gekommen) {
+			if (timerArbeitszeit->Enabled) {
+				timerArbeitszeit->Stop();
+				timerPause->Start();
+				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
+				vorgesetzter->fuegeZeitHinzu();
+			}
+			else {
+				timerArbeitszeit->Start();
+				timerPause->Stop();
+				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+				this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			}
 		}
 		else {
-			timerArbeitszeit->Start();
-			timerPause->Stop();
-			this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause moeglich",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
 
@@ -700,9 +708,25 @@ namespace ProjektLokal {
 		}
 	}
 
-	//Beim Klick auf den LogOutButton wird das Fenster geschlossen
+	//Beim Klick auf den LogOutButton wird das Programm neu gestartet
 	private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->Close();
+		//Während einer Pause ist kein LogOut möglich
+		if (pauseCbox->Checked) {
+			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "LogOut fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		else {
+			//Falls der Angestellte den Arbeitstag noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
+			if (!gegangen) {
+				if (MessageBox::Show("Wollen Sie sich wirklich ausloggen?\nIhr Arbeitstag wird dann beendet.", "Wirklich ausloggen?", MessageBoxButtons::YesNo,
+					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+					gegangen = true;
+					timerArbeitszeit->Stop();
+					vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+					Application::Restart();
+				}
+			}
+		}
 	}
 
 	//Beim Laden der Vorgesetztenseite werden einige Werte gesetzt
@@ -721,6 +745,7 @@ namespace ProjektLokal {
 		uhrStunde = 0;
 
 		gegangen = false;
+		gekommen = false;
 
 		//Noch übrigen Wochenstunden werden beim Öffnen der Seite eingelesen
 		arbeitsStundenS = Convert::ToString(arbeitsStunden);

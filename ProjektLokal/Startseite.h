@@ -37,6 +37,7 @@ namespace ProjektLokal {
 		static int pauseSekunde;
 
 		bool gegangen;
+		bool gekommen;
 
 		int restUrlaub;
 
@@ -459,256 +460,282 @@ namespace ProjektLokal {
 		}
 #pragma endregion
 
-private: System::Void timerPause_Tick(System::Object^  sender, System::EventArgs^  e) {
-	pauseSekunde++;
+	private: System::Void timerPause_Tick(System::Object^  sender, System::EventArgs^  e) {
+		pauseSekunde++;
 
-	if (pauseSekunde == 60) {
-		pauseSekunde = 0;
-		pauseMinute++;
-		if (pauseMinute == 60) {
-			pauseMinute = 0;
-			pauseStunde++;
+		if (pauseSekunde == 60) {
+			pauseSekunde = 0;
+			pauseMinute++;
+			if (pauseMinute == 60) {
+				pauseMinute = 0;
+				pauseStunde++;
+			}
 		}
-	}
 
-	if (pauseSekunde < 10) {
-		pauseSekundeS = "0" + Convert::ToString(pauseSekunde);
-	}
-	else {
-		pauseSekundeS = Convert::ToString(pauseSekunde);
-	}
-
-	if (pauseMinute < 10) {
-		pauseMinuteS = "0" + Convert::ToString(pauseMinute);
-	}
-	else {
-		pauseMinuteS = Convert::ToString(pauseMinute);
-	}
-
-	pauseStundeS = Convert::ToString(pauseStunde);
-
-	pauseLbl->Text = pauseStundeS + ":" + pauseMinuteS + ":" + pauseSekundeS + " Stunden";
-
-}
-
-//Timer für die Arbeitszeit und rückwärts laufend für die restliche Wochenarbeitszeit
-private: System::Void timerArbeitszeit_Tick(System::Object^  sender, System::EventArgs^  e) {
-	
-	uhrSekunde++;
-	
-	if (uhrSekunde == 60) {
-		uhrSekunde = 0;
-		uhrMinute++;
-		arbeitsMinuten--;
-		if (uhrMinute == 60) {
-			uhrMinute = 0;
-			uhrStunde++;
-		}
-		if (arbeitsMinuten == -1) {
-			arbeitsStunden--;
-			arbeitsMinuten = 59;
-		}
-	}
-	
-	if (uhrSekunde < 10) {
-		sekundeS = "0" + Convert::ToString(uhrSekunde);
-	}
-	else {
-		sekundeS = Convert::ToString(uhrSekunde);
-	}
-
-	if (uhrMinute < 10) {
-		minuteS = "0" + Convert::ToString(uhrMinute);
-	}
-	else {
-		minuteS = Convert::ToString(uhrMinute);
-	}
-
-	if (uhrStunde < 10) {
-		stundeS = "0" + Convert::ToString(uhrStunde);
-	}
-	else {
-		stundeS = Convert::ToString(uhrStunde);
-	}
-
-	arbeitsStundenS = Convert::ToString(arbeitsStunden);
-	if (arbeitsStunden < 10) {
-		arbeitsStundenS = "0" + Convert::ToString(arbeitsStunden);
-	}
-	arbeitsMinutenS = Convert::ToString(arbeitsMinuten);
-	if (arbeitsMinuten < 10) {
-		arbeitsMinutenS = "0" + Convert::ToString(arbeitsMinuten);
-	}
-
-	arbeitszeitLbl->Text = stundeS + ":" + minuteS + ":" + sekundeS;
-	nochWochenstundenLbl->Text = arbeitsStundenS + ":" + arbeitsMinutenS + " Stunden";
-
-}
-
-//Uhrzeit und Datum werden in getrennten Labels im gewünschten Format dargestellt
-private: System::Void timerUhr_Tick(System::Object^  sender, System::EventArgs^  e) {
-	uhrzeitLbl->Text = DateTime::Now.ToString("HH:mm:ss");
-	datumLbl->Text = DateTime::Now.ToString("dddd, dd. MMMM yyyy");
-}
-
-//Bei Klick auf den Kommen-Button wird der Arbeitszeit-Timer gestartet
-private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	//Wenn ein Mitarbeiter schonmal auf "Gehen" geklickt hat, muss er sich neu einloggen, um wieder starten zu können.
-	if (!gegangen) {
-		timerArbeitszeit->Start();
-		this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-		mitarbeiter->fuegeZeitHinzu();
-	}
-	else {
-		MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
-			MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
-}
-
-//Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
-private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	//Gehen nur moeglich, wenn der Mitarbeiter nicht gerade in der Pause ist.
-	if (!pauseCbox->Checked) {
-		//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
-		if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
-			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-			timerArbeitszeit->Stop();
-			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
-			gegangen = true;
-			mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
-		}
-	}
-	else {
-		MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Gehen fehlgeschlagen",
-			MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
-	
-}
-
-//Beim Drücken der Pause-Taste wird die Arbeitszeit-Uhr entweder gestartet oder gestoppt
-//Gleichzeitig wird der Pause-Timer gestartet bzw. gestoppt
-private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (timerArbeitszeit->Enabled) {
-		timerArbeitszeit->Stop();
-		timerPause->Start();
-		this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-		this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
-		mitarbeiter->fuegeZeitHinzu();
-	}
-	else {
-		timerArbeitszeit->Start();
-		timerPause->Stop();
-		this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-		this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-	}
-}
-
-//Klick auf Kalender-Button öffnet Kalender-Fenster
-private: System::Void kalenderBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	System::Windows::Forms::DialogResult result = kalenderfenster->ShowDialog(this);
-}
-
-//Klick auf Statistik-Button öffnet Statistik-Fenster
-private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
-}
-
-//Klick auf Urlaub-Button öffnet Urlaub-Fenster
-private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	urlaubsfenster->setAngestellter(mitarbeiter);
-	System::Windows::Forms::DialogResult result = urlaubsfenster->ShowDialog(this);
-	
-	//Der Urlaubsantrag als String
-	urlaubString = "Beginn: " + urlaubsfenster->p_Anfang.ToString("dddd, dd. MMMM yyyy") + "\nEnde: " + urlaubsfenster->p_Ende.ToString("dddd, dd. MMMM yyyy") + "\nUrlaubstage: " + urlaubsfenster->p_Tage.ToString() + "\n";
-
-	//Wenn vom Urlaubsfenster OK gegeben wird, wir zunächst eine Abfrage erzeugt, ob der Antrag so in Ordnung ist. Wenn der Mitarbeiter mit "Ja" bestätigt, wird ein neues Objekt vom Typ
-	//Urlaubsantrag erstellt. Bei "Nein" wird abgebrochen.
-	if (result == System::Windows::Forms::DialogResult::OK) {
-		if (MessageBox::Show("Sie wollen folgenden Urlaub beantragen:\n" + urlaubString + "\nWollen Sie diesen Antrag einreichen?", "Antrag einreichen?", MessageBoxButtons::YesNo,
-			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-			//Neuen Urlaubsantrag aus Werten aus dem Urlaubsfenster erstellen
-			Urlaubsantrag ^u = gcnew Urlaubsantrag(urlaubsfenster->p_Anfang, urlaubsfenster->p_Ende, urlaubsfenster->p_Tage);
-
-			MessageBox::Show("Urlaubsantrag erfolgreich eingereicht!", "Antrag erfolgreich!",
-				MessageBoxButtons::OK, MessageBoxIcon::Information);
+		if (pauseSekunde < 10) {
+			pauseSekundeS = "0" + Convert::ToString(pauseSekunde);
 		}
 		else {
-			MessageBox::Show("Ihr Urlaubsantrag wurde nicht eingereicht!", "Antrag abgebrochen!",
+			pauseSekundeS = Convert::ToString(pauseSekunde);
+		}
+
+		if (pauseMinute < 10) {
+			pauseMinuteS = "0" + Convert::ToString(pauseMinute);
+		}
+		else {
+			pauseMinuteS = Convert::ToString(pauseMinute);
+		}
+
+		pauseStundeS = Convert::ToString(pauseStunde);
+
+		pauseLbl->Text = pauseStundeS + ":" + pauseMinuteS + ":" + pauseSekundeS + " Stunden";
+
+	}
+
+	//Timer für die Arbeitszeit und rückwärts laufend für die restliche Wochenarbeitszeit
+	private: System::Void timerArbeitszeit_Tick(System::Object^  sender, System::EventArgs^  e) {
+	
+		uhrSekunde++;
+	
+		if (uhrSekunde == 60) {
+			uhrSekunde = 0;
+			uhrMinute++;
+			arbeitsMinuten--;
+			if (uhrMinute == 60) {
+				uhrMinute = 0;
+				uhrStunde++;
+			}
+			if (arbeitsMinuten == -1) {
+				arbeitsStunden--;
+				arbeitsMinuten = 59;
+			}
+		}
+	
+		if (uhrSekunde < 10) {
+			sekundeS = "0" + Convert::ToString(uhrSekunde);
+		}
+		else {
+			sekundeS = Convert::ToString(uhrSekunde);
+		}
+
+		if (uhrMinute < 10) {
+			minuteS = "0" + Convert::ToString(uhrMinute);
+		}
+		else {
+			minuteS = Convert::ToString(uhrMinute);
+		}
+
+		if (uhrStunde < 10) {
+			stundeS = "0" + Convert::ToString(uhrStunde);
+		}
+		else {
+			stundeS = Convert::ToString(uhrStunde);
+		}
+
+		arbeitsStundenS = Convert::ToString(arbeitsStunden);
+		if (arbeitsStunden < 10) {
+			arbeitsStundenS = "0" + Convert::ToString(arbeitsStunden);
+		}
+		arbeitsMinutenS = Convert::ToString(arbeitsMinuten);
+		if (arbeitsMinuten < 10) {
+			arbeitsMinutenS = "0" + Convert::ToString(arbeitsMinuten);
+		}
+
+		arbeitszeitLbl->Text = stundeS + ":" + minuteS + ":" + sekundeS;
+		nochWochenstundenLbl->Text = arbeitsStundenS + ":" + arbeitsMinutenS + " Stunden";
+
+	}
+
+	//Uhrzeit und Datum werden in getrennten Labels im gewünschten Format dargestellt
+	private: System::Void timerUhr_Tick(System::Object^  sender, System::EventArgs^  e) {
+		uhrzeitLbl->Text = DateTime::Now.ToString("HH:mm:ss");
+		datumLbl->Text = DateTime::Now.ToString("dddd, dd. MMMM yyyy");
+	}
+
+	//Bei Klick auf den Kommen-Button wird der Arbeitszeit-Timer gestartet
+	private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		//Wenn ein Mitarbeiter schonmal auf "Gehen" geklickt hat, muss er sich neu einloggen, um wieder starten zu können.
+		if (!gegangen) {
+			gekommen = true;
+			timerArbeitszeit->Start();
+			this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			mitarbeiter->fuegeZeitHinzu();
+		}
+		else {
+			MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
-		
-		urlaubsfenster->clear(); //Textfelder wieder leeren
-
-	}
-	else {
-		MessageBox::Show("Urlaubsantrag konnte nicht erstellt werden!", "Erstellen fehlgeschlagen",
-			MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
-}
-
- //Beim Klick auf den LogOutButton wird das Fenster geschlossen
-private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->Close();
-}
-
-
-//Beim Laden der Startseite werden einige Werte gesetzt
-private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
-
-	//Werte auslesen und im Fenster darstellen.
-	arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
-	arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
-	nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
-
-	restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
-
-	//Startwerte Timer setzen:
-	uhrSekunde = 0;
-	uhrMinute = 0;
-	uhrStunde = 0;
-
-	gegangen = false;
-
-	//Noch übrigen Wochenstunden werden beim Öffnen der Seite eingelesen
-	arbeitsStundenS = Convert::ToString(arbeitsStunden);
-	if (arbeitsStunden < 10) {
-		arbeitsStundenS = "0" + Convert::ToString(arbeitsStunden);
-	}
-	arbeitsMinutenS = Convert::ToString(arbeitsMinuten);
-	if (arbeitsMinuten < 10) {
-		arbeitsMinutenS = "0" + Convert::ToString(arbeitsMinuten);
 	}
 
-	nochWochenstundenLbl->Text = arbeitsStundenS + ":" + arbeitsMinutenS + " Stunden";
-
-	resturlaubLbl->Text = restUrlaub + " Tage";
-}
-
-//Falls der Arbeitszeit-Timer noch läuft, wird beim Schließen des Fensters zunächst eine Sicherheitsabfrage ausgeführt, ob das Programm wirklich beendet werden soll.
-private: System::Void Startseite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-	if (pauseCbox->Checked) {
-		MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Schliessen fehlgeschlagen",
-			MessageBoxButtons::OK, MessageBoxIcon::Error);
-		e->Cancel = true;
-	}
-	else {
-		if (!gegangen) {
-			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::OKCancel,
-				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Cancel) {
-				e->Cancel = true;
-			}
-			else {
+	//Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
+	private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		//Gehen nur moeglich, wenn der Mitarbeiter nicht gerade in der Pause ist.
+		if (!pauseCbox->Checked) {
+			//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
+			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
+				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 				timerArbeitszeit->Stop();
+				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
+				gegangen = true;
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 			}
 		}
+		else {
+			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Gehen fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	
 	}
-}
 
-//NEU: ÜBERGABE DES MITARBEITERS
-public: void setMitarbeiter(Angestellter^ mitarbeiterUebergabe) {
-	this->mitarbeiter = (Mitarbeiter^) mitarbeiterUebergabe;
-}
+	//Beim Drücken der Pause-Taste wird die Arbeitszeit-Uhr entweder gestartet oder gestoppt
+	//Gleichzeitig wird der Pause-Timer gestartet bzw. gestoppt
+	private: System::Void pauseCbox_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (gekommen) {
+			if (timerArbeitszeit->Enabled) {
+				timerArbeitszeit->Stop();
+				timerPause->Start();
+				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
+				mitarbeiter->fuegeZeitHinzu();
+			}
+			else {
+				timerArbeitszeit->Start();
+				timerPause->Stop();
+				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+				this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			}
+		}
+		else {
+			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause moeglich",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+
+	//Klick auf Kalender-Button öffnet Kalender-Fenster
+	private: System::Void kalenderBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		System::Windows::Forms::DialogResult result = kalenderfenster->ShowDialog(this);
+	}
+
+	//Klick auf Statistik-Button öffnet Statistik-Fenster
+	private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
+	}
+
+	//Klick auf Urlaub-Button öffnet Urlaub-Fenster
+	private: System::Void urlaubBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		urlaubsfenster->setAngestellter(mitarbeiter);
+		System::Windows::Forms::DialogResult result = urlaubsfenster->ShowDialog(this);
+	
+		//Der Urlaubsantrag als String
+		urlaubString = "Beginn: " + urlaubsfenster->p_Anfang.ToString("dddd, dd. MMMM yyyy") + "\nEnde: " + urlaubsfenster->p_Ende.ToString("dddd, dd. MMMM yyyy") + "\nUrlaubstage: " + urlaubsfenster->p_Tage.ToString() + "\n";
+
+		//Wenn vom Urlaubsfenster OK gegeben wird, wir zunächst eine Abfrage erzeugt, ob der Antrag so in Ordnung ist. Wenn der Mitarbeiter mit "Ja" bestätigt, wird ein neues Objekt vom Typ
+		//Urlaubsantrag erstellt. Bei "Nein" wird abgebrochen.
+		if (result == System::Windows::Forms::DialogResult::OK) {
+			if (MessageBox::Show("Sie wollen folgenden Urlaub beantragen:\n" + urlaubString + "\nWollen Sie diesen Antrag einreichen?", "Antrag einreichen?", MessageBoxButtons::YesNo,
+				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+				//Neuen Urlaubsantrag aus Werten aus dem Urlaubsfenster erstellen
+				Urlaubsantrag ^u = gcnew Urlaubsantrag(urlaubsfenster->p_Anfang, urlaubsfenster->p_Ende, urlaubsfenster->p_Tage);
+
+				MessageBox::Show("Urlaubsantrag erfolgreich eingereicht!", "Antrag erfolgreich!",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			else {
+				MessageBox::Show("Ihr Urlaubsantrag wurde nicht eingereicht!", "Antrag abgebrochen!",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		
+			urlaubsfenster->clear(); //Textfelder wieder leeren
+
+		}
+		else {
+			MessageBox::Show("Urlaubsantrag konnte nicht erstellt werden!", "Erstellen fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+
+	 //Beim Klick auf den LogOutButton wird das Programm neu gestartet
+	private: System::Void logOutBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		//Während einer Pause ist kein LogOut möglich
+		if (pauseCbox->Checked) {
+			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "LogOut fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		else {
+			//Falls der Angestellte den Arbeitstag noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
+			if (!gegangen) {
+				if (MessageBox::Show("Wollen Sie sich wirklich ausloggen?\nIhr Arbeitstag wird dann beendet.", "Wirklich ausloggen?", MessageBoxButtons::YesNo,
+					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+					gegangen = true;
+					timerArbeitszeit->Stop();
+					mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+					Application::Restart();
+				}
+			}
+		}
+	}
+
+
+	//Beim Laden der Startseite werden einige Werte gesetzt
+	private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
+
+		//Werte auslesen und im Fenster darstellen.
+		arbeitsStunden = mitarbeiter->getArbeitStundenNoch();
+		arbeitsMinuten = mitarbeiter->getArbeitMinutenNoch();
+		nameLbl->Text = mitarbeiter->getVorname() + " " + mitarbeiter->getNachname();
+
+		restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
+
+		//Startwerte Timer setzen:
+		uhrSekunde = 0;
+		uhrMinute = 0;
+		uhrStunde = 0;
+
+		gegangen = false;
+		gekommen = false;
+
+		//Noch übrigen Wochenstunden werden beim Öffnen der Seite eingelesen
+		arbeitsStundenS = Convert::ToString(arbeitsStunden);
+		if (arbeitsStunden < 10) {
+			arbeitsStundenS = "0" + Convert::ToString(arbeitsStunden);
+		}
+		arbeitsMinutenS = Convert::ToString(arbeitsMinuten);
+		if (arbeitsMinuten < 10) {
+			arbeitsMinutenS = "0" + Convert::ToString(arbeitsMinuten);
+		}
+
+		nochWochenstundenLbl->Text = arbeitsStundenS + ":" + arbeitsMinutenS + " Stunden";
+
+		resturlaubLbl->Text = restUrlaub + " Tage";
+	}
+
+	//Schließen des Programms:
+	private: System::Void Startseite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		//Während einer Pause ist kein Beenden möglich
+		if (pauseCbox->Checked) {
+			MessageBox::Show("Sie haben im Moment Pause.\nBitte starten Sie erst wieder Ihre Arbeitszeit, bevor Sie gehen!", "Schliessen fehlgeschlagen",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+			e->Cancel = true;
+		}
+		else {
+			//Falls der Angestellte den Arbeitstag noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
+			if (!gegangen) {
+				if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::YesNo,
+					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::No) {
+					e->Cancel = true;
+				}
+				else {
+					timerArbeitszeit->Stop();
+					mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
+				}
+			}
+		}
+	}
+
+	//NEU: ÜBERGABE DES MITARBEITERS
+	public: void setMitarbeiter(Angestellter^ mitarbeiterUebergabe) {
+		this->mitarbeiter = (Mitarbeiter^) mitarbeiterUebergabe;
+	}
 
 };
 }

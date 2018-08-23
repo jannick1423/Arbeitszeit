@@ -1,6 +1,5 @@
 #pragma once
 #include "Angestellter.h"
-//#include "Mitarbeiter.h"
 #include <iterator>
 
 ref class Mitarbeiter;

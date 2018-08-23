@@ -23,6 +23,8 @@ namespace ProjektLokal {
 		Unternehmen ^ unternehmen;
 		Startseite^ startseite;
 		VorgesetztenSeite^ vorgesetztenseite;
+		
+
 	public:
 		PasswortAendernFenster(void)
 		{
@@ -220,6 +222,7 @@ namespace ProjektLokal {
 			void setUnternehmen(Unternehmen^ unternehmen) {
 				this->unternehmen = unternehmen;
 			}
+
 			String ^ getBenutzername() {
 				return this->txt_benutzername->Text;
 			}
@@ -239,12 +242,39 @@ namespace ProjektLokal {
 			void clear() {
 				this->txt_benutzername->Text = "";
 				this->txt_altespasswort->Text = "";
+				this->txt_neuespasswort->Text = "";
+				this->txt_passwortwiederholen->Text = "";
 			}
 	private: System::Void btn_bestätigen_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		if (this->txt_benutzername->Text->Length == 0) {
+
+			this->DialogResult = System::Windows::Forms::DialogResult::None;
+
+		}
+
+		else if (this->txt_altespasswort->Text->Length == 0) {
+
+			this->DialogResult = System::Windows::Forms::DialogResult::None;
+
+		}
+
+		else if (this->txt_neuespasswort->Text->Length == 0) {
+
+			this->DialogResult = System::Windows::Forms::DialogResult::None;
+
+		}
+
+		else if (this->txt_passwortwiederholen->Text->Length == 0) {
+
+			this->DialogResult = System::Windows::Forms::DialogResult::None;
+
+		}
 		String^ personalnummer = getBenutzername();
 		String^ passwort = getAltesPasswort();
 		String^ neuespasswort = getNeuesPasswort();
 		String^ passwortwiederholen = getPasswortWiederholen();
+		Angestellter^ aktuellerAngestellter;
 
 		bool gefunden = false;
 		for (int i = 0; i < unternehmen->getAngestellte()->Count && !gefunden; i++) {
@@ -252,34 +282,35 @@ namespace ProjektLokal {
 
 			if (angestellter->getPersonalnummer()->Equals(personalnummer)) {
 				gefunden = true;
+				aktuellerAngestellter = angestellter;
 
 				if (angestellter->getPasswort()->Equals(passwort)) {
-					if (!angestellter->istVorgesetzter()) {
-
-
-						gefunden = true;
-					}
-					
-					
+					gefunden = true;
 				}
 				else {
-					MessageBox::Show("Passwort falsch!", "Fehler!",
+					MessageBox::Show("Altes Passwort falsch!", "Fehler!",
 						MessageBoxButtons::OK, MessageBoxIcon::Information);
-
 				}
 
 			}
 
 		}
 
-		if (!gefunden) {
-			MessageBox::Show("Benutzer nicht vorhanden!", "Fehler!",
-				MessageBoxButtons::OK, MessageBoxIcon::Information);
-		}
+			if (!gefunden) {
+				MessageBox::Show("Benutzer nicht vorhanden!", "Fehler!",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
 
-		if (neuespasswort->Equals(passwortwiederholen)) {
-			this->Close();
-		}
+			if (neuespasswort->Equals(passwortwiederholen) && neuespasswort != "") {
+				aktuellerAngestellter->setPasswort(neuespasswort);
+				this->clear();
+				this->Close();
+			}
+			else {
+				MessageBox::Show("Neues Passwort stimmt nicht überein oder Feld leer!", "Fehler!",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+		
 	}
 	
 private: System::Void btn_abbrechen_Click(System::Object^  sender, System::EventArgs^  e) {

@@ -4,6 +4,7 @@
 #include "Unternehmen.h"
 #include "Startseite.h"
 #include "VorgesetztenSeite.h"
+#include "PasswortAendernFenster.h"
 
 namespace ProjektLokal {
 
@@ -24,11 +25,9 @@ namespace ProjektLokal {
 	{
 	private:
 		Unternehmen ^ unternehmen;
-	private: System::Windows::Forms::TextBox^  txt_Kennwort;
-
-			 Startseite^ startseite;
-	private: System::Windows::Forms::PictureBox^  pictureBox2;
-			 VorgesetztenSeite^ vorgesetztenseite;
+		Startseite^ startseite;
+		VorgesetztenSeite^ vorgesetztenseite;
+		PasswortAendernFenster^ passwortaendernseite;
 		
 	public:
 		loginFenster(void)
@@ -37,6 +36,7 @@ namespace ProjektLokal {
 			unternehmen = gcnew Unternehmen();
 			startseite = gcnew Startseite();
 			vorgesetztenseite = gcnew VorgesetztenSeite();
+			passwortaendernseite = gcnew PasswortAendernFenster();
 		}
 
 	protected:
@@ -50,10 +50,13 @@ namespace ProjektLokal {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::TextBox^  txt_Kennwort;
+	private: System::Windows::Forms::Button^  btn_passwortAendern;
+
 	private: System::Windows::Forms::Button^  logInButton;
 	private: System::Windows::Forms::Label^  BenutzernameLabel;
 	private: System::Windows::Forms::Label^  KennwortLabel;
-
+	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::Button^  passwortvergessenButton;
 	private: System::Windows::Forms::TextBox^  txt_Benutzername;
 
@@ -70,14 +73,14 @@ namespace ProjektLokal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(loginFenster::typeid));
 			this->logInButton = (gcnew System::Windows::Forms::Button());
 			this->BenutzernameLabel = (gcnew System::Windows::Forms::Label());
 			this->KennwortLabel = (gcnew System::Windows::Forms::Label());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->passwortvergessenButton = (gcnew System::Windows::Forms::Button());
 			this->txt_Benutzername = (gcnew System::Windows::Forms::TextBox());
 			this->txt_Kennwort = (gcnew System::Windows::Forms::TextBox());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->btn_passwortAendern = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -87,9 +90,9 @@ namespace ProjektLokal {
 			this->logInButton->Font = (gcnew System::Drawing::Font(L"Arial", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->logInButton->ForeColor = System::Drawing::SystemColors::Control;
-			this->logInButton->Location = System::Drawing::Point(31, 152);
+			this->logInButton->Location = System::Drawing::Point(30, 152);
 			this->logInButton->Name = L"logInButton";
-			this->logInButton->Size = System::Drawing::Size(128, 45);
+			this->logInButton->Size = System::Drawing::Size(112, 45);
 			this->logInButton->TabIndex = 0;
 			this->logInButton->Text = L"Einloggen";
 			this->logInButton->UseVisualStyleBackColor = false;
@@ -102,7 +105,7 @@ namespace ProjektLokal {
 				static_cast<System::Byte>(0)));
 			this->BenutzernameLabel->Location = System::Drawing::Point(27, 33);
 			this->BenutzernameLabel->Name = L"BenutzernameLabel";
-			this->BenutzernameLabel->Size = System::Drawing::Size(104, 14);
+			this->BenutzernameLabel->Size = System::Drawing::Size(127, 16);
 			this->BenutzernameLabel->TabIndex = 2;
 			this->BenutzernameLabel->Text = L"Personalnummer";
 			// 
@@ -113,9 +116,17 @@ namespace ProjektLokal {
 				static_cast<System::Byte>(0)));
 			this->KennwortLabel->Location = System::Drawing::Point(27, 81);
 			this->KennwortLabel->Name = L"KennwortLabel";
-			this->KennwortLabel->Size = System::Drawing::Size(61, 14);
+			this->KennwortLabel->Size = System::Drawing::Size(76, 16);
 			this->KennwortLabel->TabIndex = 3;
 			this->KennwortLabel->Text = L"Kennwort";
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Location = System::Drawing::Point(-1, 243);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(517, 178);
+			this->pictureBox2->TabIndex = 5;
+			this->pictureBox2->TabStop = false;
 			// 
 			// passwortvergessenButton
 			// 
@@ -131,7 +142,7 @@ namespace ProjektLokal {
 			// 
 			this->txt_Benutzername->Location = System::Drawing::Point(198, 33);
 			this->txt_Benutzername->Name = L"txt_Benutzername";
-			this->txt_Benutzername->Size = System::Drawing::Size(178, 19);
+			this->txt_Benutzername->Size = System::Drawing::Size(254, 22);
 			this->txt_Benutzername->TabIndex = 10;
 			// 
 			// txt_Kennwort
@@ -139,27 +150,29 @@ namespace ProjektLokal {
 			this->txt_Kennwort->Location = System::Drawing::Point(198, 81);
 			this->txt_Kennwort->Name = L"txt_Kennwort";
 			this->txt_Kennwort->PasswordChar = '*';
-			this->txt_Kennwort->Size = System::Drawing::Size(178, 19);
+			this->txt_Kennwort->Size = System::Drawing::Size(254, 22);
 			this->txt_Kennwort->TabIndex = 11;
 			// 
-			// pictureBox2
+			// btn_passwortAendern
 			// 
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(-1, 227);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(517, 114);
-			this->pictureBox2->TabIndex = 5;
-			this->pictureBox2->TabStop = false;
+			this->btn_passwortAendern->Location = System::Drawing::Point(340, 152);
+			this->btn_passwortAendern->Name = L"btn_passwortAendern";
+			this->btn_passwortAendern->Size = System::Drawing::Size(112, 45);
+			this->btn_passwortAendern->TabIndex = 12;
+			this->btn_passwortAendern->Text = L"Passwort ändern";
+			this->btn_passwortAendern->UseVisualStyleBackColor = true;
+			this->btn_passwortAendern->Click += gcnew System::EventHandler(this, &loginFenster::btn_passwortAendern_Click);
 			// 
 			// loginFenster
 			// 
 			this->AllowDrop = true;
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
 			this->AutoValidate = System::Windows::Forms::AutoValidate::EnablePreventFocusChange;
 			this->BackColor = System::Drawing::SystemColors::Window;
-			this->ClientSize = System::Drawing::Size(516, 353);
+			this->ClientSize = System::Drawing::Size(516, 421);
+			this->Controls->Add(this->btn_passwortAendern);
 			this->Controls->Add(this->txt_Kennwort);
 			this->Controls->Add(this->txt_Benutzername);
 			this->Controls->Add(this->passwortvergessenButton);
@@ -170,9 +183,8 @@ namespace ProjektLokal {
 			this->Font = (gcnew System::Drawing::Font(L"Arial", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->ForeColor = System::Drawing::SystemColors::MenuText;
-			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"loginFenster";
-			this->Text = L"Imperium LogIn";
+			this->Text = L"Firma XY";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -243,6 +255,10 @@ namespace ProjektLokal {
 private: System::Void passwortvergessenButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	MessageBox::Show("Bitte melden Sie sich bei Ihrem Arbeitgeber für ein neues Passwort!", "Passwort vergessen?!",
 		MessageBoxButtons::OK, MessageBoxIcon::Information);
+}
+private: System::Void btn_passwortAendern_Click(System::Object^  sender, System::EventArgs^  e) {
+	passwortaendernseite->setUnternehmen(unternehmen);
+	System::Windows::Forms::DialogResult result = passwortaendernseite->ShowDialog(this);
 }
 };
 }

@@ -140,6 +140,7 @@
     <ClCompile Include="Kalenderfenster.cpp" />
     <ClCompile Include="LogInFenster.cpp" />
     <ClCompile Include="Mitarbeiter.cpp" />
+    <ClCompile Include="PasswortAendernFenster.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="RegistrierungsFenster.cpp" />
     <ClCompile Include="Startseite.cpp" />
@@ -160,6 +161,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Mitarbeiter.h" />
+    <ClInclude Include="PasswortAendernFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="RegistrierungsFenster.h">
       <FileType>CppForm</FileType>
@@ -186,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LogInFenster.resx">
       <DependentUpon>LogInFenster.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswortAendernFenster.resx">
+      <DependentUpon>PasswortAendernFenster.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrierungsFenster.resx">
       <DependentUpon>RegistrierungsFenster.h</DependentUpon>

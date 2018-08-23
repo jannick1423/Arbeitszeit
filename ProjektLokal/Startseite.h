@@ -555,7 +555,7 @@ namespace ProjektLokal {
 			mitarbeiter->fuegeZeitHinzu();
 		}
 		else {
-			MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.\nBitte loggen Sie sich neu ein!", "Beginnen fehlgeschlagen!",
+			MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.", "Beginnen fehlgeschlagen!",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
@@ -563,7 +563,7 @@ namespace ProjektLokal {
 	//Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
 	private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		//Gehen nur möglich, falls der Arbeitstag vorher auch begonnen wurde.
-		if (gekommen) {
+		if (gekommen && !gegangen) {
 			//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
 			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
@@ -573,10 +573,15 @@ namespace ProjektLokal {
 					this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 					mitarbeiter->fuegeZeitHinzu();
 				}
+				this->timerArbeitszeit->Stop();
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 				gegangen = true;
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
+		}
+		else if (gekommen && gegangen) {
+			MessageBox::Show("Sie haben heute bereits einen Arbeitstag abgeschlossen.", "Gehen fehlgeschlagen!",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
 			MessageBox::Show("Sie koennen keinen Arbeitstag beenden, den Sie noch nicht begonnen haben!", "Gehen fehlgeschlagen",

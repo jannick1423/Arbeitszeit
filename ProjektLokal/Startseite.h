@@ -6,7 +6,7 @@
 #include "Urlaubsantrag.h"
 #include "Mitarbeiter.h"
 #include "Unternehmen.h"
-//#include "LogInFenster.h"
+
 
 namespace ProjektLokal {
 
@@ -483,7 +483,7 @@ namespace ProjektLokal {
 			pauseMinuteS = "0" + Convert::ToString(pauseMinute);
 		}
 		else {
-			pauseMinuteS = Convert::ToString(pauseMinute);
+pauseMinuteS = Convert::ToString(pauseMinute);
 		}
 
 		pauseStundeS = Convert::ToString(pauseStunde);
@@ -494,9 +494,9 @@ namespace ProjektLokal {
 
 	//Timer für die Arbeitszeit und rückwärts laufend für die restliche Wochenarbeitszeit
 	private: System::Void timerArbeitszeit_Tick(System::Object^  sender, System::EventArgs^  e) {
-	
+
 		uhrSekunde++;
-	
+
 		if (uhrSekunde == 60) {
 			uhrSekunde = 0;
 			uhrMinute++;
@@ -510,7 +510,7 @@ namespace ProjektLokal {
 				arbeitsMinuten = 59;
 			}
 		}
-	
+
 		if (uhrSekunde < 10) {
 			sekundeS = "0" + Convert::ToString(uhrSekunde);
 		}
@@ -546,13 +546,13 @@ namespace ProjektLokal {
 
 	}
 
-	//Uhrzeit und Datum werden in getrennten Labels im gewünschten Format dargestellt
+			 //Uhrzeit und Datum werden in getrennten Labels im gewünschten Format dargestellt
 	private: System::Void timerUhr_Tick(System::Object^  sender, System::EventArgs^  e) {
 		uhrzeitLbl->Text = DateTime::Now.ToString("HH:mm:ss");
 		datumLbl->Text = DateTime::Now.ToString("dddd, dd. MMMM yyyy");
 	}
 
-	//Bei Klick auf den Kommen-Button wird der Arbeitszeit-Timer gestartet
+			 //Bei Klick auf den Kommen-Button wird der Arbeitszeit-Timer gestartet
 	private: System::Void kommenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		//Wenn ein Mitarbeiter schonmal auf "Gehen" geklickt hat, muss er sich neu einloggen, um wieder starten zu können.
 		if (!gegangen) {
@@ -567,7 +567,7 @@ namespace ProjektLokal {
 		}
 	}
 
-	//Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
+			 //Bei Klick auf Gehen-Button wird der Arbeitszeit-Timer gestoppt
 	private: System::Void gehenBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 		//Gehen nur möglich, falls der Arbeitstag vorher auch begonnen wurde.
 		if (gekommen) {
@@ -582,6 +582,9 @@ namespace ProjektLokal {
 				}
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 				gegangen = true;
+			
+
+
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten);
 			}
 		}

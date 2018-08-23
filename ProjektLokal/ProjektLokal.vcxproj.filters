@@ -60,6 +60,9 @@
     <ClCompile Include="RegistrierungsFenster.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="PasswortAendernFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startseite.h">
@@ -102,6 +105,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="RegistrierungsFenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="PasswortAendernFenster.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

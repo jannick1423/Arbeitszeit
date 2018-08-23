@@ -268,33 +268,32 @@ namespace ProjektLokal {
 			// resturlaubSchriftLbl
 			// 
 			this->resturlaubSchriftLbl->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->resturlaubSchriftLbl->AutoSize = true;
 			this->resturlaubSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->resturlaubSchriftLbl->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->resturlaubSchriftLbl->Location = System::Drawing::Point(628, 725);
+			this->resturlaubSchriftLbl->Location = System::Drawing::Point(580, 725);
 			this->resturlaubSchriftLbl->Name = L"resturlaubSchriftLbl";
-			this->resturlaubSchriftLbl->Size = System::Drawing::Size(116, 25);
+			this->resturlaubSchriftLbl->Size = System::Drawing::Size(235, 25);
 			this->resturlaubSchriftLbl->TabIndex = 9;
 			this->resturlaubSchriftLbl->Text = L"Resturlaub";
+			this->resturlaubSchriftLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// PausenSchriftLbl
 			// 
 			this->PausenSchriftLbl->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->PausenSchriftLbl->AutoSize = true;
 			this->PausenSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->PausenSchriftLbl->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->PausenSchriftLbl->Location = System::Drawing::Point(342, 725);
+			this->PausenSchriftLbl->Location = System::Drawing::Point(297, 725);
 			this->PausenSchriftLbl->Name = L"PausenSchriftLbl";
-			this->PausenSchriftLbl->Size = System::Drawing::Size(133, 25);
+			this->PausenSchriftLbl->Size = System::Drawing::Size(235, 25);
 			this->PausenSchriftLbl->TabIndex = 10;
 			this->PausenSchriftLbl->Text = L"Pause heute";
+			this->PausenSchriftLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// nochWochenstundenSchriftLbl
 			// 
 			this->nochWochenstundenSchriftLbl->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->nochWochenstundenSchriftLbl->AutoSize = true;
 			this->nochWochenstundenSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->nochWochenstundenSchriftLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
@@ -303,6 +302,7 @@ namespace ProjektLokal {
 			this->nochWochenstundenSchriftLbl->Size = System::Drawing::Size(237, 25);
 			this->nochWochenstundenSchriftLbl->TabIndex = 11;
 			this->nochWochenstundenSchriftLbl->Text = L"Übrige Wochenstunden";
+			this->nochWochenstundenSchriftLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// statistikBtn
 			// 
@@ -535,6 +535,8 @@ namespace ProjektLokal {
 		if (arbeitsStunden == 0 && arbeitsMinuten == 0 && uhrSekunde == 60) {
 			wochenZeitErreicht = true;
 			this->nochWochenstundenLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->nochWochenstundenSchriftLbl->Text = L"Überstunden";
+			this->nochWochenstundenSchriftLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 		}
 
 		if (uhrSekunde == 60) {
@@ -739,6 +741,8 @@ namespace ProjektLokal {
 
 		if (wochenZeitErreicht) {
 			this->nochWochenstundenLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->nochWochenstundenSchriftLbl->Text = L"Überstunden";
+			this->nochWochenstundenSchriftLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 		}
 
 		//Werte auslesen und im Fenster darstellen.

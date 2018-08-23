@@ -301,13 +301,13 @@ namespace ProjektLokal {
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 
-			if (neuespasswort->Equals(passwortwiederholen)) {
+			if (neuespasswort->Equals(passwortwiederholen) && neuespasswort != "") {
 				aktuellerAngestellter->setPasswort(neuespasswort);
 				this->clear();
 				this->Close();
 			}
 			else {
-				MessageBox::Show("Neues Passwort stimmt nicht überein!", "Fehler!",
+				MessageBox::Show("Neues Passwort stimmt nicht überein oder Feld leer!", "Fehler!",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 		

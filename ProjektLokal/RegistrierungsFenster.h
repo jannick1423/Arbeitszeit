@@ -90,6 +90,7 @@ namespace ProjektLokal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(RegistrierungsFenster::typeid));
 			this->txt_personalnummer = (gcnew System::Windows::Forms::TextBox());
 			this->txt_vorname = (gcnew System::Windows::Forms::TextBox());
 			this->txt_name = (gcnew System::Windows::Forms::TextBox());
@@ -117,123 +118,138 @@ namespace ProjektLokal {
 			// 
 			// txt_personalnummer
 			// 
-			this->txt_personalnummer->Location = System::Drawing::Point(149, 217);
+			this->txt_personalnummer->Location = System::Drawing::Point(112, 176);
+			this->txt_personalnummer->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_personalnummer->Name = L"txt_personalnummer";
-			this->txt_personalnummer->Size = System::Drawing::Size(351, 22);
+			this->txt_personalnummer->Size = System::Drawing::Size(264, 20);
 			this->txt_personalnummer->TabIndex = 0;
 			// 
 			// txt_vorname
 			// 
-			this->txt_vorname->Location = System::Drawing::Point(149, 71);
+			this->txt_vorname->Location = System::Drawing::Point(112, 58);
+			this->txt_vorname->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_vorname->Name = L"txt_vorname";
-			this->txt_vorname->Size = System::Drawing::Size(351, 22);
+			this->txt_vorname->Size = System::Drawing::Size(264, 20);
 			this->txt_vorname->TabIndex = 1;
 			// 
 			// txt_name
 			// 
-			this->txt_name->Location = System::Drawing::Point(149, 43);
+			this->txt_name->Location = System::Drawing::Point(112, 35);
+			this->txt_name->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_name->Name = L"txt_name";
-			this->txt_name->Size = System::Drawing::Size(351, 22);
+			this->txt_name->Size = System::Drawing::Size(264, 20);
 			this->txt_name->TabIndex = 2;
 			// 
 			// txt_telefonnummer
 			// 
-			this->txt_telefonnummer->Location = System::Drawing::Point(149, 129);
+			this->txt_telefonnummer->Location = System::Drawing::Point(112, 105);
+			this->txt_telefonnummer->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_telefonnummer->Name = L"txt_telefonnummer";
-			this->txt_telefonnummer->Size = System::Drawing::Size(351, 22);
+			this->txt_telefonnummer->Size = System::Drawing::Size(264, 20);
 			this->txt_telefonnummer->TabIndex = 3;
 			// 
 			// txt_adresse
 			// 
-			this->txt_adresse->Location = System::Drawing::Point(149, 100);
+			this->txt_adresse->Location = System::Drawing::Point(112, 81);
+			this->txt_adresse->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_adresse->Name = L"txt_adresse";
-			this->txt_adresse->Size = System::Drawing::Size(351, 22);
+			this->txt_adresse->Size = System::Drawing::Size(264, 20);
 			this->txt_adresse->TabIndex = 4;
 			// 
 			// txt_email
 			// 
-			this->txt_email->Location = System::Drawing::Point(149, 159);
+			this->txt_email->Location = System::Drawing::Point(112, 129);
+			this->txt_email->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_email->Name = L"txt_email";
-			this->txt_email->Size = System::Drawing::Size(351, 22);
+			this->txt_email->Size = System::Drawing::Size(264, 20);
 			this->txt_email->TabIndex = 5;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(7, 20);
+			this->label1->Location = System::Drawing::Point(5, 16);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(79, 17);
+			this->label1->Size = System::Drawing::Size(61, 13);
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"Geschlecht";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(9, 48);
+			this->label2->Location = System::Drawing::Point(7, 39);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(45, 17);
+			this->label2->Size = System::Drawing::Size(35, 13);
 			this->label2->TabIndex = 8;
 			this->label2->Text = L"Name";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(4, 76);
+			this->label3->Location = System::Drawing::Point(3, 62);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(65, 17);
+			this->label3->Size = System::Drawing::Size(49, 13);
 			this->label3->TabIndex = 9;
 			this->label3->Text = L"Vorname";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(3, 105);
+			this->label4->Location = System::Drawing::Point(2, 85);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(60, 17);
+			this->label4->Size = System::Drawing::Size(45, 13);
 			this->label4->TabIndex = 10;
 			this->label4->Text = L"Adresse";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(2, 134);
+			this->label5->Location = System::Drawing::Point(2, 109);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(107, 17);
+			this->label5->Size = System::Drawing::Size(80, 13);
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"Telefonnummer";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(3, 164);
+			this->label6->Location = System::Drawing::Point(2, 133);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(98, 17);
+			this->label6->Size = System::Drawing::Size(73, 13);
 			this->label6->TabIndex = 12;
 			this->label6->Text = L"Email Adresse";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(3, 194);
+			this->label7->Location = System::Drawing::Point(2, 158);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(67, 17);
+			this->label7->Size = System::Drawing::Size(51, 13);
 			this->label7->TabIndex = 13;
 			this->label7->Text = L"Abteilung";
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(3, 222);
+			this->label8->Location = System::Drawing::Point(2, 180);
+			this->label8->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(115, 17);
+			this->label8->Size = System::Drawing::Size(85, 13);
 			this->label8->TabIndex = 14;
 			this->label8->Text = L"Personalnummer";
 			// 
 			// btn_mitarbeiter_hinzufuegen
 			// 
-			this->btn_mitarbeiter_hinzufuegen->Location = System::Drawing::Point(149, 358);
+			this->btn_mitarbeiter_hinzufuegen->Location = System::Drawing::Point(112, 291);
+			this->btn_mitarbeiter_hinzufuegen->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_mitarbeiter_hinzufuegen->Name = L"btn_mitarbeiter_hinzufuegen";
-			this->btn_mitarbeiter_hinzufuegen->Size = System::Drawing::Size(171, 35);
+			this->btn_mitarbeiter_hinzufuegen->Size = System::Drawing::Size(128, 28);
 			this->btn_mitarbeiter_hinzufuegen->TabIndex = 16;
 			this->btn_mitarbeiter_hinzufuegen->Text = L"Hinzufügen";
 			this->btn_mitarbeiter_hinzufuegen->UseVisualStyleBackColor = true;
@@ -241,75 +257,83 @@ namespace ProjektLokal {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(3, 250);
+			this->label9->Location = System::Drawing::Point(2, 203);
+			this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(65, 17);
+			this->label9->Size = System::Drawing::Size(50, 13);
 			this->label9->TabIndex = 17;
 			this->label9->Text = L"Passwort";
 			// 
 			// txt_passwort
 			// 
-			this->txt_passwort->Location = System::Drawing::Point(149, 245);
+			this->txt_passwort->Location = System::Drawing::Point(112, 199);
+			this->txt_passwort->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_passwort->Name = L"txt_passwort";
-			this->txt_passwort->Size = System::Drawing::Size(351, 22);
+			this->txt_passwort->Size = System::Drawing::Size(264, 20);
 			this->txt_passwort->TabIndex = 19;
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(3, 280);
+			this->label10->Location = System::Drawing::Point(2, 228);
+			this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(103, 17);
+			this->label10->Size = System::Drawing::Size(77, 13);
 			this->label10->TabIndex = 20;
 			this->label10->Text = L"Arbeitsstunden";
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(4, 309);
+			this->label11->Location = System::Drawing::Point(3, 251);
+			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(85, 17);
+			this->label11->Size = System::Drawing::Size(64, 13);
 			this->label11->TabIndex = 21;
 			this->label11->Text = L"Urlaubstage";
 			// 
 			// txt_urlaubstage
 			// 
-			this->txt_urlaubstage->Location = System::Drawing::Point(149, 305);
+			this->txt_urlaubstage->Location = System::Drawing::Point(112, 248);
+			this->txt_urlaubstage->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_urlaubstage->Name = L"txt_urlaubstage";
-			this->txt_urlaubstage->Size = System::Drawing::Size(351, 22);
+			this->txt_urlaubstage->Size = System::Drawing::Size(264, 20);
 			this->txt_urlaubstage->TabIndex = 22;
 			// 
 			// txt_arbeitsstunden
 			// 
-			this->txt_arbeitsstunden->Location = System::Drawing::Point(149, 275);
+			this->txt_arbeitsstunden->Location = System::Drawing::Point(112, 223);
+			this->txt_arbeitsstunden->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_arbeitsstunden->Name = L"txt_arbeitsstunden";
-			this->txt_arbeitsstunden->Size = System::Drawing::Size(351, 22);
+			this->txt_arbeitsstunden->Size = System::Drawing::Size(264, 20);
 			this->txt_arbeitsstunden->TabIndex = 23;
 			// 
 			// txt_geschlecht
 			// 
 			this->txt_geschlecht->FormattingEnabled = true;
 			this->txt_geschlecht->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"weiblich", L"männlich" });
-			this->txt_geschlecht->Location = System::Drawing::Point(149, 13);
+			this->txt_geschlecht->Location = System::Drawing::Point(112, 11);
+			this->txt_geschlecht->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_geschlecht->Name = L"txt_geschlecht";
-			this->txt_geschlecht->Size = System::Drawing::Size(351, 24);
+			this->txt_geschlecht->Size = System::Drawing::Size(264, 21);
 			this->txt_geschlecht->TabIndex = 24;
 			// 
 			// txt_abteilung
 			// 
 			this->txt_abteilung->FormattingEnabled = true;
 			this->txt_abteilung->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Verwaltung", L"IT Sicherheit", L"Software Entwicklung" });
-			this->txt_abteilung->Location = System::Drawing::Point(149, 187);
+			this->txt_abteilung->Location = System::Drawing::Point(112, 152);
+			this->txt_abteilung->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txt_abteilung->Name = L"txt_abteilung";
-			this->txt_abteilung->Size = System::Drawing::Size(351, 24);
+			this->txt_abteilung->Size = System::Drawing::Size(264, 21);
 			this->txt_abteilung->TabIndex = 25;
 			// 
 			// RegistrierungsFenster
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Highlight;
-			this->ClientSize = System::Drawing::Size(524, 436);
+			this->ClientSize = System::Drawing::Size(393, 354);
 			this->Controls->Add(this->txt_abteilung);
 			this->Controls->Add(this->txt_geschlecht);
 			this->Controls->Add(this->txt_arbeitsstunden);
@@ -333,8 +357,10 @@ namespace ProjektLokal {
 			this->Controls->Add(this->txt_name);
 			this->Controls->Add(this->txt_vorname);
 			this->Controls->Add(this->txt_personalnummer);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"RegistrierungsFenster";
-			this->Text = L"Registrierung";
+			this->Text = L"Registrierung Imperium";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

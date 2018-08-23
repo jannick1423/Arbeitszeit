@@ -78,10 +78,9 @@ namespace ProjektLokal {
 			// 
 			// urlaubBeginnDTP
 			// 
-			this->urlaubBeginnDTP->Location = System::Drawing::Point(304, 212);
-			this->urlaubBeginnDTP->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->urlaubBeginnDTP->Location = System::Drawing::Point(203, 138);
 			this->urlaubBeginnDTP->Name = L"urlaubBeginnDTP";
-			this->urlaubBeginnDTP->Size = System::Drawing::Size(298, 26);
+			this->urlaubBeginnDTP->Size = System::Drawing::Size(200, 20);
 			this->urlaubBeginnDTP->TabIndex = 0;
 			// 
 			// urlaubsabtragLbl
@@ -89,19 +88,17 @@ namespace ProjektLokal {
 			this->urlaubsabtragLbl->AutoSize = true;
 			this->urlaubsabtragLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->urlaubsabtragLbl->Location = System::Drawing::Point(62, 55);
-			this->urlaubsabtragLbl->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->urlaubsabtragLbl->Location = System::Drawing::Point(41, 36);
 			this->urlaubsabtragLbl->Name = L"urlaubsabtragLbl";
-			this->urlaubsabtragLbl->Size = System::Drawing::Size(501, 82);
+			this->urlaubsabtragLbl->Size = System::Drawing::Size(340, 55);
 			this->urlaubsabtragLbl->TabIndex = 2;
 			this->urlaubsabtragLbl->Text = L"Urlaubsantrag";
 			// 
 			// einreichenBtn
 			// 
-			this->einreichenBtn->Location = System::Drawing::Point(68, 511);
-			this->einreichenBtn->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->einreichenBtn->Location = System::Drawing::Point(45, 332);
 			this->einreichenBtn->Name = L"einreichenBtn";
-			this->einreichenBtn->Size = System::Drawing::Size(183, 57);
+			this->einreichenBtn->Size = System::Drawing::Size(122, 37);
 			this->einreichenBtn->TabIndex = 3;
 			this->einreichenBtn->Text = L"Einreichen";
 			this->einreichenBtn->UseVisualStyleBackColor = true;
@@ -112,27 +109,24 @@ namespace ProjektLokal {
 			this->urlaubBeginnLbl->AutoSize = true;
 			this->urlaubBeginnLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->urlaubBeginnLbl->Location = System::Drawing::Point(44, 209);
-			this->urlaubBeginnLbl->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->urlaubBeginnLbl->Location = System::Drawing::Point(29, 136);
 			this->urlaubBeginnLbl->Name = L"urlaubBeginnLbl";
-			this->urlaubBeginnLbl->Size = System::Drawing::Size(242, 33);
+			this->urlaubBeginnLbl->Size = System::Drawing::Size(153, 24);
 			this->urlaubBeginnLbl->TabIndex = 5;
 			this->urlaubBeginnLbl->Text = L"Erster Urlaubstag";
 			// 
 			// urlaubEndeDTP
 			// 
-			this->urlaubEndeDTP->Location = System::Drawing::Point(304, 300);
-			this->urlaubEndeDTP->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->urlaubEndeDTP->Location = System::Drawing::Point(203, 195);
 			this->urlaubEndeDTP->Name = L"urlaubEndeDTP";
-			this->urlaubEndeDTP->Size = System::Drawing::Size(298, 26);
+			this->urlaubEndeDTP->Size = System::Drawing::Size(200, 20);
 			this->urlaubEndeDTP->TabIndex = 9;
 			// 
 			// abbrechenBtn
 			// 
-			this->abbrechenBtn->Location = System::Drawing::Point(388, 511);
-			this->abbrechenBtn->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->abbrechenBtn->Location = System::Drawing::Point(259, 332);
 			this->abbrechenBtn->Name = L"abbrechenBtn";
-			this->abbrechenBtn->Size = System::Drawing::Size(183, 57);
+			this->abbrechenBtn->Size = System::Drawing::Size(122, 37);
 			this->abbrechenBtn->TabIndex = 10;
 			this->abbrechenBtn->Text = L"Abbrechen";
 			this->abbrechenBtn->UseVisualStyleBackColor = true;
@@ -143,10 +137,9 @@ namespace ProjektLokal {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(44, 294);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(29, 191);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(253, 33);
+			this->label1->Size = System::Drawing::Size(159, 24);
 			this->label1->TabIndex = 11;
 			this->label1->Text = L"Letzter Urlaubstag";
 			// 
@@ -155,27 +148,25 @@ namespace ProjektLokal {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(44, 389);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(29, 253);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(172, 33);
+			this->label2->Size = System::Drawing::Size(110, 24);
 			this->label2->TabIndex = 12;
 			this->label2->Text = L"Urlaubstage";
 			// 
 			// tageTxt
 			// 
-			this->tageTxt->Location = System::Drawing::Point(304, 394);
-			this->tageTxt->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->tageTxt->Location = System::Drawing::Point(203, 256);
 			this->tageTxt->Name = L"tageTxt";
-			this->tageTxt->Size = System::Drawing::Size(68, 26);
+			this->tageTxt->Size = System::Drawing::Size(47, 20);
 			this->tageTxt->TabIndex = 13;
 			// 
 			// Urlaubfenster
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Window;
-			this->ClientSize = System::Drawing::Size(650, 586);
+			this->ClientSize = System::Drawing::Size(433, 381);
 			this->Controls->Add(this->tageTxt);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -185,7 +176,6 @@ namespace ProjektLokal {
 			this->Controls->Add(this->einreichenBtn);
 			this->Controls->Add(this->urlaubsabtragLbl);
 			this->Controls->Add(this->urlaubBeginnDTP);
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"Urlaubfenster";
 			this->Text = L"Urlaubsantrag";
 			this->Load += gcnew System::EventHandler(this, &Urlaubfenster::Urlaubfenster_Load);

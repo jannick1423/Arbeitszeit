@@ -181,6 +181,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Kalenderfenster.resx">
+      <DependentUpon>Kalenderfenster.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogInFenster.resx">
       <DependentUpon>LogInFenster.h</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +193,9 @@
     <EmbeddedResource Include="Startseite.resx">
       <DependentUpon>Startseite.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Statistikfenster.resx">
+      <DependentUpon>Statistikfenster.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Urlaubsfenster.resx">
       <DependentUpon>Urlaubsfenster.h</DependentUpon>
     </EmbeddedResource>
@@ -198,6 +204,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\imperiumSchriftzug.jpg" />
+    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\imperiumSchriftzug2.jpg" />
     <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\LogOutIcon2.jpg" />
     <Image Include="Images\addIcon.jpg" />
     <Image Include="Images\editIcon.jpg" />

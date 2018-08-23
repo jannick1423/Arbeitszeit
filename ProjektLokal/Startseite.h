@@ -427,8 +427,9 @@ namespace ProjektLokal {
 			this->Controls->Add(this->halloLbl);
 			this->Controls->Add(this->gehenBtn);
 			this->Controls->Add(this->kommenBtn);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Startseite";
-			this->Text = L"Zeiterfassung Startseite";
+			this->Text = L"Zeiterfassung Imperium Startseite";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Startseite::Startseite_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Startseite::Startseite_Load);
 			this->ResumeLayout(false);

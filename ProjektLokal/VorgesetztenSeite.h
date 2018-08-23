@@ -482,8 +482,9 @@ namespace ProjektLokal {
 			this->Controls->Add(this->halloLbl);
 			this->Controls->Add(this->gehenBtn);
 			this->Controls->Add(this->kommenBtn);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"VorgesetztenSeite";
-			this->Text = L"Zeiterfassung VorgesetztenSeite";
+			this->Text = L"Zeiterfassung Imperium Startseite Vorgesetzte";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &VorgesetztenSeite::VorgesetztenSeite_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &VorgesetztenSeite::VorgesetztenSeite_Load);
 			this->ResumeLayout(false);

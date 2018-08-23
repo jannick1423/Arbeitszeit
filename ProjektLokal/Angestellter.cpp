@@ -24,6 +24,9 @@ Angestellter::Angestellter(String^ vorname, String^ nachname, String^ abteilungs
 	this->arbeitMinutenNoch = arbeitMinuten;
 	this->arbeitsTagAktuell = gcnew List<DateTime>;
 	this->arbeitsTage = gcnew Hashtable;
+	this->wochenZeitErreicht = true;
+	this->ueberStunden = 0;
+	this->ueberMinuten = 24;
 }
 
 
@@ -81,25 +84,21 @@ int Angestellter::getArbeitMinuten()
 	return arbeitMinuten;
 }
 
-//NEU
 int Angestellter::getArbeitStundenNoch()
 {
 	return arbeitStundenNoch;
 }
 
-//NEU
 int Angestellter::getArbeitMinutenNoch()
 {
 	return arbeitMinutenNoch;
 }
 
-//NEU
 int Angestellter::getUeberStunden()
 {
 	return ueberStunden;
 }
 
-//NEU
 int Angestellter::getUeberMinuten()
 {
 	return ueberMinuten;
@@ -115,12 +114,15 @@ int Angestellter::getGenommenUrlaub()
 	return genommenUrlaub;
 }
 
-//NEU
+bool Angestellter::getWochenZeitErreicht() 
+{
+	return wochenZeitErreicht;
+}
+
 List<DateTime>^ Angestellter::getArbeitsTagAktuell() {
 	return arbeitsTagAktuell;
 }
 
-//NEU
 Hashtable^ Angestellter::getArbeitsTage() {
 	return arbeitsTage;
 }
@@ -175,13 +177,11 @@ void Angestellter::setArbeitMinuten(int arbeitMinuten)
 	this->arbeitMinuten = arbeitMinuten;
 }
 
-//NEU
 void Angestellter::setArbeitStundenNoch(int arbeitStundenNochNeu)
 {
 	this->arbeitStundenNoch = arbeitStundenNochNeu;
 }
 
-//NEU
 void Angestellter::setArbeitMinutenNoch(int arbeitMinutenNochNeu)
 {
 	this->arbeitMinutenNoch = arbeitMinutenNochNeu;
@@ -197,25 +197,33 @@ void Angestellter::setGenommenUrlaub(int genommenUrlaub)
 	this->genommenUrlaub = genommenUrlaub;
 }
 
-//NEU
 void Angestellter::fuegeZeitHinzu() 
 {
 	arbeitsTagAktuell->Add(DateTime::Now);
 }
 
-//NEU
+void Angestellter::setWochenZeitErreicht(bool wochenZeitErreicht) {
+	this->wochenZeitErreicht = wochenZeitErreicht;
+}
+
 void Angestellter::aendereTag(DateTime tag, List<DateTime>^ neueZeiten) 
 {
 	arbeitsTage->Remove(tag.Date);
 	arbeitsTage->Add(tag.Date, neueZeiten);
 }
 
-//NEU
-void Angestellter::arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu) 
+void Angestellter::arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu, bool wochenZeitErreicht) 
 {
-	fuegeZeitHinzu();
-	arbeitsTage->Add(DateTime::Today, arbeitsTagAktuell);
-	arbeitsTagAktuell->Clear();
-	setArbeitStundenNoch(arbeitStundenNochNeu);
-	setArbeitMinutenNoch(arbeitMinutenNochNeu);
+	this->wochenZeitErreicht = wochenZeitErreicht;
+	this->fuegeZeitHinzu();
+	this->arbeitsTage->Add(DateTime::Today, arbeitsTagAktuell);
+	this->arbeitsTagAktuell->Clear();
+	if (wochenZeitErreicht) {
+		this->arbeitStundenNoch = arbeitStundenNochNeu;
+		this->arbeitMinutenNoch = arbeitMinutenNochNeu;
+	}
+	else {
+		this->ueberStunden = arbeitStundenNochNeu;
+		this->ueberStunden = arbeitStundenNochNeu;
+	}
 }

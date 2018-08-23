@@ -24,9 +24,9 @@ Angestellter::Angestellter(String^ vorname, String^ nachname, String^ abteilungs
 	this->arbeitMinutenNoch = arbeitMinuten;
 	this->arbeitsTagAktuell = gcnew List<DateTime>;
 	this->arbeitsTage = gcnew Hashtable;
-	this->wochenZeitErreicht = true;
+	this->wochenZeitErreicht = false;
 	this->ueberStunden = 0;
-	this->ueberMinuten = 24;
+	this->ueberMinuten = 0;
 }
 
 

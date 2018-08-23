@@ -23,12 +23,10 @@ ref class Angestellter
 	int arbeitMinutenNoch;
 	int anzUrlaubstage;
 	int genommenUrlaub;
-	//NEU
 	int ueberStunden;
 	int ueberMinuten;
-	//NEU
+	bool wochenZeitErreicht;
 	List<DateTime>^ arbeitsTagAktuell;
-	//NEU
 	Hashtable^ arbeitsTage;
 
 public:
@@ -48,21 +46,14 @@ public:
 	Adresse^ getAdresse();
 	int getArbeitStunden();
 	int getArbeitMinuten();
-
-	//NEU
 	int getArbeitStundenNoch();
-	//NEU
 	int getArbeitMinutenNoch();
-	//NEU
 	int getUeberStunden();
-	//NEU
 	int getUeberMinuten();
-
 	int getAnzUrlaubstage();
 	int getGenommenUrlaub();
-	//NEU
+	bool getWochenZeitErreicht();
 	List<DateTime>^ getArbeitsTagAktuell();
-	//NEU
 	Hashtable^ getArbeitsTage();
 
 	//Setter
@@ -76,27 +67,17 @@ public:
 	void setAdresse(Adresse^ adresse);
 	void setArbeitStunden(int arbeitStunden);
 	void setArbeitMinuten(int arbeitMinuten);
-
-	//NEU
 	void setArbeitStundenNoch(int arbeitStundenNochNeu);
-	//NEU
 	void setArbeitMinutenNoch(int arbeitMinutenNochNeu);
-	
 	void setAnzUrlaubstage(int anzUrlaubstage);
 	void setGenommenUrlaub(int genommenUrlaub);
+	void setWochenZeitErreicht(bool wochenZeitErreicht);
 
 	//Methoden
-	//NEU
 	void fuegeZeitHinzu();
-
-	//NEU
 	void aendereTag(DateTime tag, List<DateTime>^ neueZeiten);
-
-	//NEU
-	void arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu);
-
+	void arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu, bool wochenZeitErreicht);
 	virtual String^ asString() = 0;
-
 	virtual bool istVorgesetzter() = 0;
 
 };

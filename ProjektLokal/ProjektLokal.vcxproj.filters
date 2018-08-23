@@ -66,6 +66,12 @@
     <ClCompile Include="PasswortAendernFenster.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="AenderungsantragsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Aenderungsantrag.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startseite.h">
@@ -113,6 +119,12 @@
     <ClInclude Include="PasswortAendernFenster.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="AenderungsantragsFenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Aenderungsantrag.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\addIcon.jpg">
@@ -145,10 +157,10 @@
     <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\LogOutIcon2.jpg">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\imperiumSchriftzug.jpg">
+    <Image Include="Images\imperiumSchriftzug2.jpg">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\imperiumSchriftzug2.jpg">
+    <Image Include="Images\iconDarthVader.ico">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
   </ItemGroup>

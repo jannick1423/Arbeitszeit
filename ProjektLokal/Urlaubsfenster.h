@@ -86,11 +86,11 @@ namespace ProjektLokal {
 			// urlaubsabtragLbl
 			// 
 			this->urlaubsabtragLbl->AutoSize = true;
-			this->urlaubsabtragLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->urlaubsabtragLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->urlaubsabtragLbl->Location = System::Drawing::Point(41, 36);
+			this->urlaubsabtragLbl->Location = System::Drawing::Point(99, 51);
 			this->urlaubsabtragLbl->Name = L"urlaubsabtragLbl";
-			this->urlaubsabtragLbl->Size = System::Drawing::Size(340, 55);
+			this->urlaubsabtragLbl->Size = System::Drawing::Size(233, 37);
 			this->urlaubsabtragLbl->TabIndex = 2;
 			this->urlaubsabtragLbl->Text = L"Urlaubsantrag";
 			// 
@@ -107,11 +107,11 @@ namespace ProjektLokal {
 			// urlaubBeginnLbl
 			// 
 			this->urlaubBeginnLbl->AutoSize = true;
-			this->urlaubBeginnLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->urlaubBeginnLbl->Location = System::Drawing::Point(29, 136);
+			this->urlaubBeginnLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->urlaubBeginnLbl->Location = System::Drawing::Point(22, 139);
 			this->urlaubBeginnLbl->Name = L"urlaubBeginnLbl";
-			this->urlaubBeginnLbl->Size = System::Drawing::Size(153, 24);
+			this->urlaubBeginnLbl->Size = System::Drawing::Size(134, 20);
 			this->urlaubBeginnLbl->TabIndex = 5;
 			this->urlaubBeginnLbl->Text = L"Erster Urlaubstag";
 			// 
@@ -135,22 +135,22 @@ namespace ProjektLokal {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(29, 191);
+			this->label1->Location = System::Drawing::Point(22, 196);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(159, 24);
+			this->label1->Size = System::Drawing::Size(141, 20);
 			this->label1->TabIndex = 11;
 			this->label1->Text = L"Letzter Urlaubstag";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(29, 253);
+			this->label2->Location = System::Drawing::Point(22, 256);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(110, 24);
+			this->label2->Size = System::Drawing::Size(96, 20);
 			this->label2->TabIndex = 12;
 			this->label2->Text = L"Urlaubstage";
 			// 

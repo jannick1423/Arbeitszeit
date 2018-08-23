@@ -203,7 +203,7 @@ namespace ProjektLokal {
 			this->arbeitszeitLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
-			this->arbeitszeitLbl->Location = System::Drawing::Point(296, 435);
+			this->arbeitszeitLbl->Location = System::Drawing::Point(303, 436);
 			this->arbeitszeitLbl->Name = L"arbeitszeitLbl";
 			this->arbeitszeitLbl->Size = System::Drawing::Size(212, 55);
 			this->arbeitszeitLbl->TabIndex = 5;
@@ -244,15 +244,15 @@ namespace ProjektLokal {
 			// arbeitszeitSchriftLbl
 			// 
 			this->arbeitszeitSchriftLbl->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->arbeitszeitSchriftLbl->AutoSize = true;
 			this->arbeitszeitSchriftLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->arbeitszeitSchriftLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->arbeitszeitSchriftLbl->Location = System::Drawing::Point(293, 395);
+			this->arbeitszeitSchriftLbl->Location = System::Drawing::Point(283, 391);
 			this->arbeitszeitSchriftLbl->Name = L"arbeitszeitSchriftLbl";
-			this->arbeitszeitSchriftLbl->Size = System::Drawing::Size(215, 31);
+			this->arbeitszeitSchriftLbl->Size = System::Drawing::Size(246, 31);
 			this->arbeitszeitSchriftLbl->TabIndex = 8;
 			this->arbeitszeitSchriftLbl->Text = L"Tagesarbeitszeit";
+			this->arbeitszeitSchriftLbl->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// resturlaubSchriftLbl
 			// 

@@ -136,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
+    <ClCompile Include="Aenderungsantrag.cpp" />
+    <ClCompile Include="AenderungsantragsFenster.cpp" />
     <ClCompile Include="Angestellter.cpp" />
     <ClCompile Include="Kalenderfenster.cpp" />
     <ClCompile Include="LogInFenster.cpp" />
@@ -153,6 +155,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
+    <ClInclude Include="Aenderungsantrag.h" />
+    <ClInclude Include="AenderungsantragsFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Angestellter.h" />
     <ClInclude Include="Kalenderfenster.h">
       <FileType>CppForm</FileType>
@@ -185,6 +191,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AenderungsantragsFenster.resx">
+      <DependentUpon>AenderungsantragsFenster.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Kalenderfenster.resx">
       <DependentUpon>Kalenderfenster.h</DependentUpon>
     </EmbeddedResource>
@@ -211,12 +220,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\imperiumSchriftzug.jpg" />
-    <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\imperiumSchriftzug2.jpg" />
     <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\LogOutIcon2.jpg" />
     <Image Include="Images\addIcon.jpg" />
     <Image Include="Images\editIcon.jpg" />
     <Image Include="Images\gehenIcon.jpg" />
+    <Image Include="Images\iconDarthVader.ico" />
+    <Image Include="Images\imperiumSchriftzug2.jpg" />
     <Image Include="Images\kalenderIcon.jpg" />
     <Image Include="Images\kommenIcon.jpg" />
     <Image Include="Images\pauseIcon.jpg" />

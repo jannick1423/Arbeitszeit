@@ -18,7 +18,6 @@ public:
 	//Konstruktoren und Destruktor:
 	Urlaubsantrag();
 	Urlaubsantrag(DateTime anfang, DateTime ende, Int32 tage);
-	Urlaubsantrag(Urlaubsantrag const ^urlaubsantrag);
 	~Urlaubsantrag();
 
 	//Getter und Setter

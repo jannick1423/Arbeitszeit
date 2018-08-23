@@ -224,6 +224,9 @@
     <Image Include="Images\statistikIcon.jpg" />
     <Image Include="Images\urlaubIcon2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Sounds\soundImperialMarch.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

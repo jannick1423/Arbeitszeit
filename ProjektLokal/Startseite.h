@@ -406,7 +406,7 @@ namespace ProjektLokal {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
-			this->BackColor = System::Drawing::SystemColors::Highlight;
+			this->BackColor = System::Drawing::SystemColors::MenuHighlight;
 			this->ClientSize = System::Drawing::Size(819, 710);
 			this->Controls->Add(this->logOutBtn);
 			this->Controls->Add(this->pauseCbox);

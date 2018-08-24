@@ -136,10 +136,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
+    <ClCompile Include="Aenderungsantrag.cpp" />
+    <ClCompile Include="AenderungsantragsFenster.cpp" />
     <ClCompile Include="Angestellter.cpp" />
     <ClCompile Include="Kalenderfenster.cpp" />
     <ClCompile Include="LogInFenster.cpp" />
     <ClCompile Include="Mitarbeiter.cpp" />
+    <ClCompile Include="PasswortAendernFenster.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="RegistrierungsFenster.cpp" />
     <ClCompile Include="Startseite.cpp" />
@@ -152,6 +155,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
+    <ClInclude Include="Aenderungsantrag.h" />
+    <ClInclude Include="AenderungsantragsFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Angestellter.h" />
     <ClInclude Include="Kalenderfenster.h">
       <FileType>CppForm</FileType>
@@ -160,6 +167,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Mitarbeiter.h" />
+    <ClInclude Include="PasswortAendernFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="RegistrierungsFenster.h">
       <FileType>CppForm</FileType>
@@ -181,14 +191,26 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AenderungsantragsFenster.resx">
+      <DependentUpon>AenderungsantragsFenster.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalenderfenster.resx">
+      <DependentUpon>Kalenderfenster.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogInFenster.resx">
       <DependentUpon>LogInFenster.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswortAendernFenster.resx">
+      <DependentUpon>PasswortAendernFenster.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrierungsFenster.resx">
       <DependentUpon>RegistrierungsFenster.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Startseite.resx">
       <DependentUpon>Startseite.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistikfenster.resx">
+      <DependentUpon>Statistikfenster.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Urlaubsfenster.resx">
       <DependentUpon>Urlaubsfenster.h</DependentUpon>
@@ -202,12 +224,17 @@
     <Image Include="Images\addIcon.jpg" />
     <Image Include="Images\editIcon.jpg" />
     <Image Include="Images\gehenIcon.jpg" />
+    <Image Include="Images\iconDarthVader.ico" />
+    <Image Include="Images\imperiumSchriftzug2.jpg" />
     <Image Include="Images\kalenderIcon.jpg" />
     <Image Include="Images\kommenIcon.jpg" />
     <Image Include="Images\pauseIcon.jpg" />
     <Image Include="Images\PersonalIcon2.jpg" />
     <Image Include="Images\statistikIcon.jpg" />
     <Image Include="Images\urlaubIcon2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Sounds\soundImperialMarch.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

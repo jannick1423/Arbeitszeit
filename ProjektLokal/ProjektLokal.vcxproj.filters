@@ -16,6 +16,9 @@
     <Filter Include="Quelldateien\Icons">
       <UniqueIdentifier>{78a3e633-1f8c-40fb-a3b5-20aea587833e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Soundeffekte">
+      <UniqueIdentifier>{f7ed2f48-f137-43ca-8a71-466f6c228620}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Urlaubsantrag.cpp">
@@ -58,6 +61,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="RegistrierungsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PasswortAendernFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AenderungsantragsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Aenderungsantrag.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,6 +116,15 @@
     <ClInclude Include="RegistrierungsFenster.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="PasswortAendernFenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AenderungsantragsFenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Aenderungsantrag.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\addIcon.jpg">
@@ -136,6 +157,12 @@
     <Image Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Images\LogOutIcon2.jpg">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
+    <Image Include="Images\imperiumSchriftzug2.jpg">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
+    <Image Include="Images\iconDarthVader.ico">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Startseite.resx">
@@ -153,5 +180,19 @@
     <EmbeddedResource Include="RegistrierungsFenster.resx">
       <Filter>Ressourcendateien</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="Kalenderfenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswortAendernFenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistikfenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Sounds\soundImperialMarch.wav">
+      <Filter>Quelldateien\Soundeffekte</Filter>
+    </Media>
   </ItemGroup>
 </Project>

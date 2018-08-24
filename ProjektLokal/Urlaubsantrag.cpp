@@ -6,11 +6,9 @@ Urlaubsantrag::Urlaubsantrag() {
 }
 
 Urlaubsantrag::Urlaubsantrag(DateTime anfang, DateTime ende, Int32 tage) {
-
-}
-
-Urlaubsantrag::Urlaubsantrag(Urlaubsantrag const ^urlaubsantrag) {
-
+	this->m_Anfang = anfang;
+	this->m_Ende = ende;
+	this->m_Tage = tage;
 }
 
 Urlaubsantrag::~Urlaubsantrag() {

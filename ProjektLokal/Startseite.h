@@ -601,6 +601,7 @@ namespace ProjektLokal {
 			if (timerArbeitszeit->Enabled) {
 				timerArbeitszeit->Stop();
 				timerPause->Start();
+				this->pauseCbox->Image = Image::FromFile("Images/pauseIcon3.jpg");
 				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
 				mitarbeiter->fuegeZeitHinzu();
@@ -608,6 +609,7 @@ namespace ProjektLokal {
 			else {
 				timerArbeitszeit->Start();
 				timerPause->Stop();
+				this->pauseCbox->Image = Image::FromFile("Images/pauseIcon.jpg");
 				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 				this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 				mitarbeiter->fuegeZeitHinzu();

@@ -163,6 +163,12 @@
     <Image Include="Images\iconDarthVader.ico">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
+    <Image Include="Images\pauseIcon2.jpg">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
+    <Image Include="Images\pauseIcon3.jpg">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Startseite.resx">
@@ -187,6 +193,9 @@
       <Filter>Ressourcendateien</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="Statistikfenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AenderungsantragsFenster.resx">
       <Filter>Ressourcendateien</Filter>
     </EmbeddedResource>
   </ItemGroup>

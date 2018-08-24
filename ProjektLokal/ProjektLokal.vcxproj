@@ -198,6 +198,9 @@
     <EmbeddedResource Include="AenderungsantragsFenster.resx">
       <DependentUpon>AenderungsantragsFenster.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AnfragenbearbeitungsFenster.resx">
+      <DependentUpon>AnfragenbearbeitungsFenster.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Kalenderfenster.resx">
       <DependentUpon>Kalenderfenster.h</DependentUpon>
     </EmbeddedResource>

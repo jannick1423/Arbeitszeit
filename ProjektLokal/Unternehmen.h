@@ -9,7 +9,7 @@
 
 using namespace System;
 
-
+[ Serializable ]
 ref class Unternehmen
 {
 

@@ -4,6 +4,7 @@
 #include "Angestellter.h"
 #include <iterator>
 
+[ Serializable ]
 ref class Mitarbeiter;
 
 using namespace System;

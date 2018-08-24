@@ -18,7 +18,9 @@ namespace ProjektLokal {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 	using namespace System::Media;
-
+	//Namespace zum lesen und schreiben
+	using namespace System::Runtime::Serialization::Formatters::Binary;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Zusammenfassung für loginFenster
@@ -276,11 +278,24 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 	sound->SoundLocation = "Sounds/soundImperialMarch.wav";
 	sound->Load();
 	sound->Play();
+	
+	
+	String^ file = "Imperium.dat";
+	if (!File::Exists(file)) {
+		FileStream^ os = File::Create(file);
+		BinaryFormatter^ bf = gcnew BinaryFormatter();
+		bf->Serialize(os, unternehmen);
+		os->Close();
+	}
+	//else {
+		//FileStream^ os = File::OpenRead(file);
+		//BinaryFormatter^ bf = gcnew BinaryFormatter();
+		//unternehmen = (Unternehmen^)bf->Deserialize(os);
+		//os->Close();
+	//}
 }
 
 };
 }
 
 #endif
-
-

@@ -7,6 +7,7 @@
 
 using namespace System;
 
+[ Serializable ]
 ref class Mitarbeiter :
 	public Angestellter
 {

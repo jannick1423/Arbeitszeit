@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _KALENDERFENSTER_H_
+#define _KALENDERFENSTER_H_
 
 namespace ProjektLokal {
 
@@ -57,3 +59,4 @@ namespace ProjektLokal {
 #pragma endregion
 	};
 }
+#endif

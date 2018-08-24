@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _LOGINFENSTER_H_
+#define _LOGINFENSTER_H_
 #include "Mitarbeiter.h"
 #include "Vorgesetzter.h"
 #include "Unternehmen.h"
@@ -208,13 +210,15 @@ namespace ProjektLokal {
 					if (!angestellter->istVorgesetzter()) {
 						//ÄNDERUNG ÜBERGABE MITARBEITER:
 						startseite->setMitarbeiter(angestellter);
-
+						//ÄNDERUNG
+						startseite->setUnternehmen(unternehmen);
 						System::Windows::Forms::DialogResult result = startseite->ShowDialog(this);
 					}
 					else {
 						//ÄNDERUNG ÜBERGABE VORGESETZTER:
 						vorgesetztenseite->setVorgesetzter(angestellter);
-
+						//ÄNDERUNG
+						vorgesetztenseite->setUnternehmen(unternehmen);
 						System::Windows::Forms::DialogResult result = vorgesetztenseite->ShowDialog(this);
 					}
 					this->Close();
@@ -242,5 +246,7 @@ private: System::Void passwortvergessenButton_Click(System::Object^  sender, Sys
 }
 };
 }
+
+#endif
 
 

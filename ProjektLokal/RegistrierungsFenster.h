@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _REGISTRIERUNGSFENSTER_H_
+#define _REGISTRIERUNGSFENSTER_H_
 
 namespace ProjektLokal {
 
@@ -43,10 +45,11 @@ namespace ProjektLokal {
 
 	private: System::Windows::Forms::TextBox^  txt_name;
 	private: System::Windows::Forms::TextBox^  txt_telefonnummer;
+	private: System::Windows::Forms::TextBox^  txt_strasse;
 
 
 
-	private: System::Windows::Forms::TextBox^  txt_adresse;
+
 	private: System::Windows::Forms::TextBox^  txt_email;
 
 
@@ -73,6 +76,13 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::TextBox^  txt_arbeitsstunden;
 	private: System::Windows::Forms::ComboBox^  txt_geschlecht;
 	private: System::Windows::Forms::ComboBox^  txt_abteilung;
+	private: System::Windows::Forms::Label^  lbl_hausnummer;
+	private: System::Windows::Forms::TextBox^  txt_hausnummer;
+	private: System::Windows::Forms::Label^  label12;
+	private: System::Windows::Forms::TextBox^  txt_plz;
+	private: System::Windows::Forms::Label^  label13;
+	private: System::Windows::Forms::TextBox^  txt_ort;
+
 
 
 
@@ -94,7 +104,7 @@ namespace ProjektLokal {
 			this->txt_vorname = (gcnew System::Windows::Forms::TextBox());
 			this->txt_name = (gcnew System::Windows::Forms::TextBox());
 			this->txt_telefonnummer = (gcnew System::Windows::Forms::TextBox());
-			this->txt_adresse = (gcnew System::Windows::Forms::TextBox());
+			this->txt_strasse = (gcnew System::Windows::Forms::TextBox());
 			this->txt_email = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -113,11 +123,17 @@ namespace ProjektLokal {
 			this->txt_arbeitsstunden = (gcnew System::Windows::Forms::TextBox());
 			this->txt_geschlecht = (gcnew System::Windows::Forms::ComboBox());
 			this->txt_abteilung = (gcnew System::Windows::Forms::ComboBox());
+			this->lbl_hausnummer = (gcnew System::Windows::Forms::Label());
+			this->txt_hausnummer = (gcnew System::Windows::Forms::TextBox());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->txt_plz = (gcnew System::Windows::Forms::TextBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->txt_ort = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// txt_personalnummer
 			// 
-			this->txt_personalnummer->Location = System::Drawing::Point(149, 217);
+			this->txt_personalnummer->Location = System::Drawing::Point(149, 250);
 			this->txt_personalnummer->Name = L"txt_personalnummer";
 			this->txt_personalnummer->Size = System::Drawing::Size(351, 22);
 			this->txt_personalnummer->TabIndex = 0;
@@ -138,21 +154,21 @@ namespace ProjektLokal {
 			// 
 			// txt_telefonnummer
 			// 
-			this->txt_telefonnummer->Location = System::Drawing::Point(149, 129);
+			this->txt_telefonnummer->Location = System::Drawing::Point(149, 162);
 			this->txt_telefonnummer->Name = L"txt_telefonnummer";
 			this->txt_telefonnummer->Size = System::Drawing::Size(351, 22);
 			this->txt_telefonnummer->TabIndex = 3;
 			// 
-			// txt_adresse
+			// txt_strasse
 			// 
-			this->txt_adresse->Location = System::Drawing::Point(149, 100);
-			this->txt_adresse->Name = L"txt_adresse";
-			this->txt_adresse->Size = System::Drawing::Size(351, 22);
-			this->txt_adresse->TabIndex = 4;
+			this->txt_strasse->Location = System::Drawing::Point(149, 100);
+			this->txt_strasse->Name = L"txt_strasse";
+			this->txt_strasse->Size = System::Drawing::Size(250, 22);
+			this->txt_strasse->TabIndex = 4;
 			// 
 			// txt_email
 			// 
-			this->txt_email->Location = System::Drawing::Point(149, 159);
+			this->txt_email->Location = System::Drawing::Point(149, 192);
 			this->txt_email->Name = L"txt_email";
 			this->txt_email->Size = System::Drawing::Size(351, 22);
 			this->txt_email->TabIndex = 5;
@@ -189,14 +205,14 @@ namespace ProjektLokal {
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(3, 105);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(60, 17);
+			this->label4->Size = System::Drawing::Size(51, 17);
 			this->label4->TabIndex = 10;
-			this->label4->Text = L"Adresse";
+			this->label4->Text = L"Straße";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(2, 134);
+			this->label5->Location = System::Drawing::Point(2, 167);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(107, 17);
 			this->label5->TabIndex = 11;
@@ -205,7 +221,7 @@ namespace ProjektLokal {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(3, 164);
+			this->label6->Location = System::Drawing::Point(3, 197);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(98, 17);
 			this->label6->TabIndex = 12;
@@ -214,7 +230,7 @@ namespace ProjektLokal {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(3, 194);
+			this->label7->Location = System::Drawing::Point(3, 227);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(67, 17);
 			this->label7->TabIndex = 13;
@@ -223,7 +239,7 @@ namespace ProjektLokal {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(3, 222);
+			this->label8->Location = System::Drawing::Point(3, 255);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(115, 17);
 			this->label8->TabIndex = 14;
@@ -231,17 +247,18 @@ namespace ProjektLokal {
 			// 
 			// btn_mitarbeiter_hinzufuegen
 			// 
-			this->btn_mitarbeiter_hinzufuegen->Location = System::Drawing::Point(149, 358);
+			this->btn_mitarbeiter_hinzufuegen->Location = System::Drawing::Point(149, 391);
 			this->btn_mitarbeiter_hinzufuegen->Name = L"btn_mitarbeiter_hinzufuegen";
 			this->btn_mitarbeiter_hinzufuegen->Size = System::Drawing::Size(171, 35);
 			this->btn_mitarbeiter_hinzufuegen->TabIndex = 16;
 			this->btn_mitarbeiter_hinzufuegen->Text = L"Hinzufügen";
 			this->btn_mitarbeiter_hinzufuegen->UseVisualStyleBackColor = true;
+			this->btn_mitarbeiter_hinzufuegen->Click += gcnew System::EventHandler(this, &RegistrierungsFenster::btn_mitarbeiter_hinzufuegen_Click);
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(3, 250);
+			this->label9->Location = System::Drawing::Point(3, 283);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(65, 17);
 			this->label9->TabIndex = 17;
@@ -249,7 +266,7 @@ namespace ProjektLokal {
 			// 
 			// txt_passwort
 			// 
-			this->txt_passwort->Location = System::Drawing::Point(149, 245);
+			this->txt_passwort->Location = System::Drawing::Point(149, 278);
 			this->txt_passwort->Name = L"txt_passwort";
 			this->txt_passwort->Size = System::Drawing::Size(351, 22);
 			this->txt_passwort->TabIndex = 19;
@@ -257,7 +274,7 @@ namespace ProjektLokal {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(3, 280);
+			this->label10->Location = System::Drawing::Point(3, 313);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(103, 17);
 			this->label10->TabIndex = 20;
@@ -266,7 +283,7 @@ namespace ProjektLokal {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(4, 309);
+			this->label11->Location = System::Drawing::Point(4, 342);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(85, 17);
 			this->label11->TabIndex = 21;
@@ -274,14 +291,14 @@ namespace ProjektLokal {
 			// 
 			// txt_urlaubstage
 			// 
-			this->txt_urlaubstage->Location = System::Drawing::Point(149, 305);
+			this->txt_urlaubstage->Location = System::Drawing::Point(149, 338);
 			this->txt_urlaubstage->Name = L"txt_urlaubstage";
 			this->txt_urlaubstage->Size = System::Drawing::Size(351, 22);
 			this->txt_urlaubstage->TabIndex = 22;
 			// 
 			// txt_arbeitsstunden
 			// 
-			this->txt_arbeitsstunden->Location = System::Drawing::Point(149, 275);
+			this->txt_arbeitsstunden->Location = System::Drawing::Point(149, 308);
 			this->txt_arbeitsstunden->Name = L"txt_arbeitsstunden";
 			this->txt_arbeitsstunden->Size = System::Drawing::Size(351, 22);
 			this->txt_arbeitsstunden->TabIndex = 23;
@@ -299,10 +316,58 @@ namespace ProjektLokal {
 			// 
 			this->txt_abteilung->FormattingEnabled = true;
 			this->txt_abteilung->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Verwaltung", L"IT Sicherheit", L"Software Entwicklung" });
-			this->txt_abteilung->Location = System::Drawing::Point(149, 187);
+			this->txt_abteilung->Location = System::Drawing::Point(149, 220);
 			this->txt_abteilung->Name = L"txt_abteilung";
 			this->txt_abteilung->Size = System::Drawing::Size(351, 24);
 			this->txt_abteilung->TabIndex = 25;
+			// 
+			// lbl_hausnummer
+			// 
+			this->lbl_hausnummer->AutoSize = true;
+			this->lbl_hausnummer->Location = System::Drawing::Point(405, 103);
+			this->lbl_hausnummer->Name = L"lbl_hausnummer";
+			this->lbl_hausnummer->Size = System::Drawing::Size(27, 17);
+			this->lbl_hausnummer->TabIndex = 26;
+			this->lbl_hausnummer->Text = L"Nr.";
+			// 
+			// txt_hausnummer
+			// 
+			this->txt_hausnummer->Location = System::Drawing::Point(438, 100);
+			this->txt_hausnummer->Name = L"txt_hausnummer";
+			this->txt_hausnummer->Size = System::Drawing::Size(62, 22);
+			this->txt_hausnummer->TabIndex = 27;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(2, 137);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(34, 17);
+			this->label12->TabIndex = 28;
+			this->label12->Text = L"PLZ";
+			// 
+			// txt_plz
+			// 
+			this->txt_plz->Location = System::Drawing::Point(149, 131);
+			this->txt_plz->Name = L"txt_plz";
+			this->txt_plz->Size = System::Drawing::Size(100, 22);
+			this->txt_plz->TabIndex = 29;
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(256, 135);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(28, 17);
+			this->label13->TabIndex = 30;
+			this->label13->Text = L"Ort";
+			// 
+			// txt_ort
+			// 
+			this->txt_ort->Location = System::Drawing::Point(291, 132);
+			this->txt_ort->Name = L"txt_ort";
+			this->txt_ort->Size = System::Drawing::Size(209, 22);
+			this->txt_ort->TabIndex = 31;
 			// 
 			// RegistrierungsFenster
 			// 
@@ -310,6 +375,12 @@ namespace ProjektLokal {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Highlight;
 			this->ClientSize = System::Drawing::Size(524, 436);
+			this->Controls->Add(this->txt_ort);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->txt_plz);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->txt_hausnummer);
+			this->Controls->Add(this->lbl_hausnummer);
 			this->Controls->Add(this->txt_abteilung);
 			this->Controls->Add(this->txt_geschlecht);
 			this->Controls->Add(this->txt_arbeitsstunden);
@@ -328,7 +399,7 @@ namespace ProjektLokal {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->txt_email);
-			this->Controls->Add(this->txt_adresse);
+			this->Controls->Add(this->txt_strasse);
 			this->Controls->Add(this->txt_telefonnummer);
 			this->Controls->Add(this->txt_name);
 			this->Controls->Add(this->txt_vorname);
@@ -352,8 +423,23 @@ public:
 		return this->txt_vorname->Text;
 	}
 
-	String^ getAdresse() {
-		return this->txt_adresse->Text;
+	String^ getAbteilung() {
+		return this->txt_abteilung->Text;
+	}
+
+	String^ getStrasse() {
+		return this->txt_strasse->Text;
+	}
+	String^ getHausnummer() {
+		return this->txt_hausnummer->Text;
+	}
+
+	String^ getPlz(){
+		return this->txt_plz->Text;
+	}
+
+	String^ getOrt() {
+		return this->txt_ort->Text;
 	}
 
 	String^ getTelefon() {
@@ -384,7 +470,10 @@ public:
 	void clear() {
 		this->txt_name->Text = "";
 		this->txt_vorname->Text = "";
-		this->txt_adresse->Text = "";
+		this->txt_strasse->Text = "";
+		this->txt_hausnummer->Text = "";
+		this->txt_plz->Text = "";
+		this->txt_ort->Text = "";
 		this->txt_telefonnummer->Text = "";
 		this->txt_email->Text = "";
 		this->txt_personalnummer->Text = "";
@@ -393,71 +482,97 @@ public:
 		this->txt_urlaubstage->Text = "";
 	}
 
-
 private: System::Void btn_mitarbeiter_hinzufuegen_Click(System::Object^  sender, System::EventArgs^  e) {
+	bool fehler = false;
 
 	//Eingabepprüfung im Eventhandler
 	if (this->txt_name->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
 	else if (this->txt_vorname->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
-	else if (this->txt_adresse->Text->Length == 0) {
+	else if (this->txt_strasse->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		fehler = true;
+	}
 
+	else if (this->txt_hausnummer->Text->Length == 0) {
+
+		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		fehler = true;
+	}
+
+	else if (this->txt_plz->Text->Length == 0) {
+
+		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		fehler = true;
+	}
+
+	else if (this->txt_ort->Text->Length == 0) {
+
+		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		fehler = true;
 	}
 
 	else if (this->txt_telefonnummer->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
 	else if (this->txt_email->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
 	else if (this->txt_personalnummer->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
 	else if (this->txt_passwort->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
 	else if (this->txt_arbeitsstunden->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 
 	else if (this->txt_urlaubstage->Text->Length == 0) {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
-
+		fehler = true;
 	}
 	else {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::OK;
 
 	}
+	//ÄNDERUNG
+	if (fehler) {
+		System::Windows::Forms::MessageBox::Show("Bitte füllen Sie alle Felder aus!", "Fehler!",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
+	else {
+		
+	}
 	//this->Close();
-
+}
+};
 }
 
-	};
-}
+#endif

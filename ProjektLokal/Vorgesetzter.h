@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _VORGESETZTER_H_
+#define _VORGESETZTER_H_
 #include "Angestellter.h"
 #include <iterator>
 
@@ -25,3 +27,5 @@ public:
 	void deleteMA(Mitarbeiter^ ma);
 	bool istVorgesetzter() override;
 };
+
+#endif

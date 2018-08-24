@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _STATISTIKFENSTER_H_
+#define _STATISTIKFENSTER_H_
 
 namespace ProjektLokal {
 
@@ -57,3 +59,5 @@ namespace ProjektLokal {
 #pragma endregion
 	};
 }
+
+#endif

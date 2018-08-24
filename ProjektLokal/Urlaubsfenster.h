@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _URLAUBSFENSTER_H_
+#define _URLAUBSFENSTER_H_
 #include "Mitarbeiter.h"
 #include "Vorgesetzter.h"
 
@@ -292,3 +294,5 @@ public: void setAngestellter(Angestellter^ angestellterUebergabe)
 
 };
 }
+
+#endif

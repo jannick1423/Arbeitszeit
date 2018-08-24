@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _MITARBEITER_H_
+#define _MITARBEITER_H_
 #include "Angestellter.h"
 #include "Vorgesetzter.h"
 #include <vector>
@@ -22,3 +24,5 @@ public:
 	void setVorgesetzte(Vorgesetzter^ v);
 	bool istVorgesetzter() override;
 };
+
+#endif

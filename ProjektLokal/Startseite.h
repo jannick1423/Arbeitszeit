@@ -17,6 +17,7 @@ namespace ProjektLokal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Globalization;
 
 	/// <summary>
 	/// Zusammenfassung für Startseite
@@ -697,7 +698,45 @@ namespace ProjektLokal {
 	//Beim Laden der Startseite werden einige Werte gesetzt
 	private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
 
+		//Wenn eine neue Woche startet, wird die Arbeitszeit zurueckgesetzt
+		//Dafür müssen die Kalenderwochen des letzten Arbeitstags mit der KW von heute verglichen werden
+		CultureInfo^ myCI = gcnew CultureInfo("de");
+		Calendar^ myCal = myCI->Calendar;
+		CalendarWeekRule^ myCWR = myCI->DateTimeFormat->CalendarWeekRule;
+		DayOfWeek^ myFirstDOW = myCI->DateTimeFormat->FirstDayOfWeek;
+
+		//Kalenderwoche von heute berechnen
+		DateTime^ heute = DateTime::Today;
+		int kWHeute = myCal->GetWeekOfYear(*heute, *myCWR, *myFirstDOW);
+		
+		//Kalenderwoche vom letzten Arbeitstag berechnen
+		int kWLetzterTag;
+		try {
+			DateTime^ letzterTag = mitarbeiter->getLetzterArbeitstag();
+			kWLetzterTag = myCal->GetWeekOfYear(*letzterTag, *myCWR, *myFirstDOW);
+		}
+		catch (System::NullReferenceException ^e) {
+			DateTime^ letzterTag = DateTime::Today;
+			kWLetzterTag = myCal->GetWeekOfYear(*letzterTag, *myCWR, *myFirstDOW);
+		}
+
+		//Kalenderwochen vergleichen und evtl. notwendige Werte zurücksetzen
+		if (kWHeute > kWLetzterTag) {
+			//Wenn der Mitarbeiter in der letzten Woche seine Arbeitszeit nicht erreicht hat, wird ihm das von seinen Überstunden wieder abgezogen
+			if (!mitarbeiter->getWochenZeitErreicht()) {
+				mitarbeiter->setUeberStunden(mitarbeiter->getUeberStunden() - mitarbeiter->getArbeitStundenNoch());
+				mitarbeiter->setUeberMinuten(mitarbeiter->getUeberMinuten() - mitarbeiter->getArbeitMinutenNoch());
+			}
+			//Wochenarbeitszeit wird wieder auf ihre Anfangswerte zurückgesetzt
+			mitarbeiter->setWochenZeitErreicht(false);
+			mitarbeiter->setArbeitStundenNoch(mitarbeiter->getArbeitStunden());
+			mitarbeiter->setArbeitMinutenNoch(mitarbeiter->getArbeitMinuten());
+		}
+		
+		//Resturlaub wird eingelesen
 		restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
+		
+		//Es wird geprüft, ob die Wochenarbeitszeit bereits erreich wurde
 		wochenZeitErreicht = mitarbeiter->getWochenZeitErreicht();
 
 		//Wenn die Wochenarbeitszeit bereits erreicht ist, werden unten links stattdessen die Überstunden angezeigt.

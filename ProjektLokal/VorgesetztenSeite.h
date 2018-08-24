@@ -19,6 +19,7 @@ namespace ProjektLokal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Globalization;
 
 	/// <summary>
 	/// Zusammenfassung für VorgesetztenSeite
@@ -749,8 +750,45 @@ namespace ProjektLokal {
 
 	//Beim Laden der Vorgesetztenseite werden einige Werte gesetzt
 	private: System::Void VorgesetztenSeite_Load(System::Object^  sender, System::EventArgs^  e) {
+		//Wenn eine neue Woche startet, wird die Arbeitszeit zurueckgesetzt
+				//Dafür müssen die Kalenderwochen des letzten Arbeitstags mit der KW von heute verglichen werden
+		CultureInfo^ myCI = gcnew CultureInfo("de");
+		Calendar^ myCal = myCI->Calendar;
+		CalendarWeekRule^ myCWR = myCI->DateTimeFormat->CalendarWeekRule;
+		DayOfWeek^ myFirstDOW = myCI->DateTimeFormat->FirstDayOfWeek;
 
+		//Kalenderwoche von heute berechnen
+		DateTime^ heute = DateTime::Today;
+		int kWHeute = myCal->GetWeekOfYear(*heute, *myCWR, *myFirstDOW);
+
+		//Kalenderwoche vom letzten Arbeitstag berechnen
+		int kWLetzterTag;
+		try {
+			DateTime^ letzterTag = vorgesetzter->getLetzterArbeitstag();
+			kWLetzterTag = myCal->GetWeekOfYear(*letzterTag, *myCWR, *myFirstDOW);
+		}
+		catch (System::NullReferenceException ^e) {
+			DateTime^ letzterTag = DateTime::Today;
+			kWLetzterTag = myCal->GetWeekOfYear(*letzterTag, *myCWR, *myFirstDOW);
+		}
+
+		//Kalenderwochen vergleichen und evtl. notwendige Werte zurücksetzen
+		if (kWHeute > kWLetzterTag) {
+			//Wenn der Mitarbeiter in der letzten Woche seine Arbeitszeit nicht erreicht hat, wird ihm das von seinen Überstunden wieder abgezogen
+			if (!vorgesetzter->getWochenZeitErreicht()) {
+				vorgesetzter->setUeberStunden(vorgesetzter->getUeberStunden() - vorgesetzter->getArbeitStundenNoch());
+				vorgesetzter->setUeberMinuten(vorgesetzter->getUeberMinuten() - vorgesetzter->getArbeitMinutenNoch());
+			}
+			//Wochenarbeitszeit wird wieder auf ihre Anfangswerte zurückgesetzt
+			vorgesetzter->setWochenZeitErreicht(false);
+			vorgesetzter->setArbeitStundenNoch(vorgesetzter->getArbeitStunden());
+			vorgesetzter->setArbeitMinutenNoch(vorgesetzter->getArbeitMinuten());
+		}
+
+		//Resturlaub wird eingelesen
 		restUrlaub = vorgesetzter->getAnzUrlaubstage() - vorgesetzter->getGenommenUrlaub();
+
+		//Es wird geprüft, ob die Wochenarbeitszeit bereits erreich wurde
 		wochenZeitErreicht = vorgesetzter->getWochenZeitErreicht();
 
 		if (wochenZeitErreicht) {

@@ -30,6 +30,7 @@ ref class Angestellter
 	bool wochenZeitErreicht;
 	List<DateTime>^ arbeitsTagAktuell;
 	Hashtable^ arbeitsTage;
+	DateTime^ letzterArbeitstag;
 
 public:
 	Angestellter();
@@ -57,6 +58,7 @@ public:
 	bool getWochenZeitErreicht();
 	List<DateTime>^ getArbeitsTagAktuell();
 	Hashtable^ getArbeitsTage();
+	DateTime^ getLetzterArbeitstag();
 
 	//Setter
 	void setVorname(String^ vorname);
@@ -71,9 +73,12 @@ public:
 	void setArbeitMinuten(int arbeitMinuten);
 	void setArbeitStundenNoch(int arbeitStundenNochNeu);
 	void setArbeitMinutenNoch(int arbeitMinutenNochNeu);
+	void setUeberStunden(int ueberstunden);
+	void setUeberMinuten(int ueberminuten);
 	void setAnzUrlaubstage(int anzUrlaubstage);
 	void setGenommenUrlaub(int genommenUrlaub);
 	void setWochenZeitErreicht(bool wochenZeitErreicht);
+	void setLetzterArbeitstag(DateTime^ tag);
 
 	//Methoden
 	void fuegeZeitHinzu();

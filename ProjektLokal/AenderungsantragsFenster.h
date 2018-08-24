@@ -23,7 +23,6 @@ namespace ProjektLokal {
 	private:
 
 	Angestellter^ antragsteller;
-	bool vergleichMitHeute;
 
 	private: System::Windows::Forms::TextBox^  kommentarTxt;
 	private: System::Windows::Forms::Label^  gehenLbl;
@@ -387,7 +386,7 @@ namespace ProjektLokal {
 	private: System::Void Einreichen_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		//Vergleich der Daten wird in einem Integer32 gespeichert
-		vergleichMitHeute = DateTime::Compare(p_Tag, DateTime::Today.Date);
+		int vergleichMitHeute = DateTime::Compare(p_Tag, DateTime::Today.Date);
 
 		if (this->ankunftStdTxt->Text->Length == 0) {
 			this->DialogResult = System::Windows::Forms::DialogResult::None;
@@ -409,7 +408,7 @@ namespace ProjektLokal {
 			MessageBox::Show("Bitte füllen Sie alle Felder aus!", "Absenden nicht möglich!",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
-		else if (vergleichMitHeute > 0) {
+		else if (vergleichMitHeute >= 0) {
 			this->DialogResult = System::Windows::Forms::DialogResult::None;
 			MessageBox::Show("Sie können eine Änderung nur für einen in der Vergangenheit liegenden Tag beantragen!", "Absenden nicht möglich!",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);

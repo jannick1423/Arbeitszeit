@@ -624,10 +624,11 @@ namespace ProjektLokal {
 		//Gehen nur möglich, falls der Arbeitstag vorher auch begonnen wurde.
 		if (gekommen && !gegangen) {
 			//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
-			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
+			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen möchten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 				//Falls der Angestellte in der Pause ist, wird diese zunächst beendet.
 				if (timerPause->Enabled) {
+					this->pauseCbox->Image = Image::FromFile("Images/pauseIcon.jpg");
 					timerPause->Stop();
 					this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 					vorgesetzter->fuegeZeitHinzu();
@@ -643,7 +644,7 @@ namespace ProjektLokal {
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
-			MessageBox::Show("Sie koennen keinen Arbeitstag beenden, den Sie noch nicht begonnen haben!", "Gehen fehlgeschlagen",
+			MessageBox::Show("Sie können keinen Arbeitstag beenden, den Sie noch nicht begonnen haben!", "Gehen fehlgeschlagen",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
@@ -670,11 +671,11 @@ namespace ProjektLokal {
 			}
 		}
 		else if (gekommen && gegangen) {
-			MessageBox::Show("Sie haben Ihren Arbeitstag bereits beendet!", "Keine Pause moeglich",
+			MessageBox::Show("Sie haben Ihren Arbeitstag bereits beendet!", "Keine Pause möglich",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
-			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause moeglich",
+			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause möglich",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
@@ -791,7 +792,7 @@ namespace ProjektLokal {
 	private: System::Void VorgesetztenSeite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 		//Falls der Angestellte den Arbeitstag begonnen, aber noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
 		if (!gegangen && gekommen) {
-			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::YesNo,
+			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schließen?\nIhr Arbeitstag wird dann beendet!", "Fenster schließen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::No) {
 				e->Cancel = true;
 			}

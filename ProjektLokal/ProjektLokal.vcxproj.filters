@@ -203,5 +203,8 @@
     <Media Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Sounds\soundImperialMarch.wav">
       <Filter>Quelldateien\Soundeffekte</Filter>
     </Media>
+    <Media Include="Sounds\lacucarachaKurz.wav">
+      <Filter>Quelldateien\Soundeffekte</Filter>
+    </Media>
   </ItemGroup>
 </Project>

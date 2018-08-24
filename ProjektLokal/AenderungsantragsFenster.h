@@ -386,7 +386,6 @@ namespace ProjektLokal {
 	//der Beginn nicht nach dem Ende liegt und der Beginn nicht in der Vergangenheit liegt.
 	private: System::Void Einreichen_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		MessageBox::Show(p_Ankunft.ToString(), "Testfenster", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		//Vergleich der Daten wird in einem Integer32 gespeichert
 		vergleichMitHeute = DateTime::Compare(p_Tag, DateTime::Today.Date);
 

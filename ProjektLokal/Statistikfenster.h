@@ -92,16 +92,25 @@ namespace ProjektLokal {
 
 	//Klick auf Bearbeiten-Button öffnet Änderungsantragsfenster
 	private: System::Void editBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		String^ antragAlsText;
 		aenderungsantragsFenster->setAntragssteller(angestellter);
 		System::Windows::Forms::DialogResult result = aenderungsantragsFenster->ShowDialog(this);
 
 		//Wenn vom AenderungsantragsFenster OK gegeben wird, wir zunächst eine Abfrage erzeugt, ob der Antrag so in Ordnung ist. Wenn der Mitarbeiter mit "Ja" bestätigt, wird ein neues Objekt vom Typ
 		//Urlaubsantrag erstellt. Bei "Nein" wird abgebrochen.
 		if (result == System::Windows::Forms::DialogResult::OK) {
-			if (MessageBox::Show("Sie wollen folgende Änderung beantragen:\n" + "\nWollen Sie diesen Antrag einreichen?", "Antrag einreichen?", MessageBoxButtons::YesNo,
+
+			//Der Änderungsantrag als String zusammengefasst
+			antragAlsText = "Tag der Änderung: " + aenderungsantragsFenster->p_Tag.ToString("dddd, dd. MMMM yyyy") + "\nNeue Ankunft: " + aenderungsantragsFenster->p_Ankunft.ToString(L"t") + "\nNeues Gehen: " 
+				+ aenderungsantragsFenster->p_Gehen.ToString(L"t") + "\nGrund: " + aenderungsantragsFenster->p_Grund + "\nKommentar: " + aenderungsantragsFenster->p_Kommentar;
+			
+			//Sicherheitsabfrage, ob der Antrag wirklich eingereicht werden soll
+			if (MessageBox::Show("Sie wollen folgende Änderung beantragen:\n\n" + antragAlsText +  "\n\nWollen Sie diesen Antrag einreichen?", "Antrag einreichen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 				//Neuen Änderungsantrag aus Werten aus dem Änderungsfenster erstellen
-				Aenderungsantrag ^aenderung = gcnew Aenderungsantrag(aenderungsantragsFenster->p_AntragstellerName, aenderungsantragsFenster->getAntragsteller(), aenderungsantragsFenster->p_Tag, aenderungsantragsFenster->p_Ankunft, aenderungsantragsFenster->p_Gehen, aenderungsantragsFenster->p_Grund, aenderungsantragsFenster->p_Kommentar);
+				Aenderungsantrag ^aenderung = gcnew Aenderungsantrag(aenderungsantragsFenster->p_AntragstellerName, aenderungsantragsFenster->getAntragsteller(), aenderungsantragsFenster->p_Tag, 
+					aenderungsantragsFenster->p_Ankunft, aenderungsantragsFenster->p_Gehen, aenderungsantragsFenster->p_Grund, aenderungsantragsFenster->p_Kommentar);
 
 				MessageBox::Show("Änderungsantrag erfolgreich eingereicht!", "Antrag erfolgreich!",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);

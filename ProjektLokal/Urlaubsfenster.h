@@ -12,6 +12,7 @@ namespace ProjektLokal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Zusammenfassung für Urlaubsfenster
@@ -25,12 +26,13 @@ namespace ProjektLokal {
 		static int vergleichMitHeute;
 		Angestellter^ angestellter;
 		Int32 restUrlaub;
+		SoundPlayer^ sound;
 
 	public:
 		Urlaubfenster(void)
 		{
+			sound = gcnew SoundPlayer();
 			InitializeComponent();
-
 		}
 
 	protected:
@@ -273,6 +275,9 @@ private: System::Void abbrechenBtn_Click(System::Object^  sender, System::EventA
 
 private: System::Void Urlaubfenster_Load(System::Object^  sender, System::EventArgs^  e) 
 {
+	sound->SoundLocation = "Sounds/lacucarachaKurz.wav";
+	sound->Load();
+	sound->Play();
 }
 
 //NEU: Angestellter wird gesetzt:

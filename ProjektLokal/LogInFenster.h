@@ -99,7 +99,7 @@ namespace ProjektLokal {
 			this->logInButton->Location = System::Drawing::Point(30, 152);
 			this->logInButton->Name = L"logInButton";
 			this->logInButton->Size = System::Drawing::Size(112, 45);
-			this->logInButton->TabIndex = 0;
+			this->logInButton->TabIndex = 2;
 			this->logInButton->Text = L"Einloggen";
 			this->logInButton->UseVisualStyleBackColor = false;
 			this->logInButton->Click += gcnew System::EventHandler(this, &loginFenster::logInButton_Click);
@@ -140,7 +140,7 @@ namespace ProjektLokal {
 			this->passwortvergessenButton->Location = System::Drawing::Point(186, 152);
 			this->passwortvergessenButton->Name = L"passwortvergessenButton";
 			this->passwortvergessenButton->Size = System::Drawing::Size(112, 45);
-			this->passwortvergessenButton->TabIndex = 8;
+			this->passwortvergessenButton->TabIndex = 3;
 			this->passwortvergessenButton->Text = L"Passwort vergessen\?";
 			this->passwortvergessenButton->UseVisualStyleBackColor = true;
 			this->passwortvergessenButton->Click += gcnew System::EventHandler(this, &loginFenster::passwortvergessenButton_Click);
@@ -150,7 +150,7 @@ namespace ProjektLokal {
 			this->txt_Benutzername->Location = System::Drawing::Point(198, 33);
 			this->txt_Benutzername->Name = L"txt_Benutzername";
 			this->txt_Benutzername->Size = System::Drawing::Size(254, 19);
-			this->txt_Benutzername->TabIndex = 10;
+			this->txt_Benutzername->TabIndex = 0;
 			// 
 			// txt_Kennwort
 			// 
@@ -158,14 +158,14 @@ namespace ProjektLokal {
 			this->txt_Kennwort->Name = L"txt_Kennwort";
 			this->txt_Kennwort->PasswordChar = '*';
 			this->txt_Kennwort->Size = System::Drawing::Size(254, 19);
-			this->txt_Kennwort->TabIndex = 11;
+			this->txt_Kennwort->TabIndex = 1;
 			// 
 			// btn_passwortAendern
 			// 
 			this->btn_passwortAendern->Location = System::Drawing::Point(340, 152);
 			this->btn_passwortAendern->Name = L"btn_passwortAendern";
 			this->btn_passwortAendern->Size = System::Drawing::Size(112, 45);
-			this->btn_passwortAendern->TabIndex = 12;
+			this->btn_passwortAendern->TabIndex = 4;
 			this->btn_passwortAendern->Text = L"Passwort ändern";
 			this->btn_passwortAendern->UseVisualStyleBackColor = true;
 			this->btn_passwortAendern->Click += gcnew System::EventHandler(this, &loginFenster::btn_passwortAendern_Click);

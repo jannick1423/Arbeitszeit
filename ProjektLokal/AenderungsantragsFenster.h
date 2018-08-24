@@ -22,7 +22,7 @@ namespace ProjektLokal {
 
 	private:
 
-	Angestellter^ angestellter;
+	Angestellter^ antragsteller;
 	bool vergleichMitHeute;
 
 	private: System::Windows::Forms::TextBox^  kommentarTxt;
@@ -36,14 +36,14 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::Label^  grundLbl;
+	private: System::Windows::Forms::ComboBox^  gruendeAuswahl;
 
-	private: System::Windows::Forms::ComboBox^  comboBox1;
+
 
 	public:
 		AenderungsantragsFenster(void)
 		{
 			InitializeComponent();
-
 		}
 
 	protected:
@@ -96,7 +96,7 @@ namespace ProjektLokal {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->grundLbl = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->gruendeAuswahl = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// tagDTP
@@ -122,7 +122,7 @@ namespace ProjektLokal {
 			this->einreichenBtn->Location = System::Drawing::Point(61, 426);
 			this->einreichenBtn->Name = L"einreichenBtn";
 			this->einreichenBtn->Size = System::Drawing::Size(122, 37);
-			this->einreichenBtn->TabIndex = 3;
+			this->einreichenBtn->TabIndex = 7;
 			this->einreichenBtn->Text = L"Einreichen";
 			this->einreichenBtn->UseVisualStyleBackColor = true;
 			this->einreichenBtn->Click += gcnew System::EventHandler(this, &AenderungsantragsFenster::Einreichen_Click);
@@ -143,7 +143,7 @@ namespace ProjektLokal {
 			this->abbrechenBtn->Location = System::Drawing::Point(232, 426);
 			this->abbrechenBtn->Name = L"abbrechenBtn";
 			this->abbrechenBtn->Size = System::Drawing::Size(122, 37);
-			this->abbrechenBtn->TabIndex = 10;
+			this->abbrechenBtn->TabIndex = 8;
 			this->abbrechenBtn->Text = L"Abbrechen";
 			this->abbrechenBtn->UseVisualStyleBackColor = true;
 			this->abbrechenBtn->Click += gcnew System::EventHandler(this, &AenderungsantragsFenster::abbrechenBtn_Click);
@@ -176,7 +176,7 @@ namespace ProjektLokal {
 			this->kommentarTxt->Multiline = true;
 			this->kommentarTxt->Name = L"kommentarTxt";
 			this->kommentarTxt->Size = System::Drawing::Size(381, 117);
-			this->kommentarTxt->TabIndex = 13;
+			this->kommentarTxt->TabIndex = 6;
 			// 
 			// gehenLbl
 			// 
@@ -194,28 +194,28 @@ namespace ProjektLokal {
 			this->ankunftStdTxt->Location = System::Drawing::Point(203, 143);
 			this->ankunftStdTxt->Name = L"ankunftStdTxt";
 			this->ankunftStdTxt->Size = System::Drawing::Size(40, 20);
-			this->ankunftStdTxt->TabIndex = 15;
+			this->ankunftStdTxt->TabIndex = 1;
 			// 
 			// gehenStdTxt
 			// 
 			this->gehenStdTxt->Location = System::Drawing::Point(203, 180);
 			this->gehenStdTxt->Name = L"gehenStdTxt";
 			this->gehenStdTxt->Size = System::Drawing::Size(40, 20);
-			this->gehenStdTxt->TabIndex = 16;
+			this->gehenStdTxt->TabIndex = 3;
 			// 
 			// ankunftMinuteTxt
 			// 
 			this->ankunftMinuteTxt->Location = System::Drawing::Point(265, 143);
 			this->ankunftMinuteTxt->Name = L"ankunftMinuteTxt";
 			this->ankunftMinuteTxt->Size = System::Drawing::Size(40, 20);
-			this->ankunftMinuteTxt->TabIndex = 17;
+			this->ankunftMinuteTxt->TabIndex = 2;
 			// 
 			// gehenMinuteTxt
 			// 
 			this->gehenMinuteTxt->Location = System::Drawing::Point(265, 180);
 			this->gehenMinuteTxt->Name = L"gehenMinuteTxt";
 			this->gehenMinuteTxt->Size = System::Drawing::Size(40, 20);
-			this->gehenMinuteTxt->TabIndex = 18;
+			this->gehenMinuteTxt->TabIndex = 4;
 			// 
 			// label1
 			// 
@@ -268,13 +268,13 @@ namespace ProjektLokal {
 			this->grundLbl->TabIndex = 23;
 			this->grundLbl->Text = L"Grund der Änderung";
 			// 
-			// comboBox1
+			// gruendeAuswahl
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(203, 216);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(200, 21);
-			this->comboBox1->TabIndex = 24;
+			this->gruendeAuswahl->FormattingEnabled = true;
+			this->gruendeAuswahl->Location = System::Drawing::Point(203, 216);
+			this->gruendeAuswahl->Name = L"gruendeAuswahl";
+			this->gruendeAuswahl->Size = System::Drawing::Size(200, 21);
+			this->gruendeAuswahl->TabIndex = 5;
 			// 
 			// AenderungsantragsFenster
 			// 
@@ -282,7 +282,7 @@ namespace ProjektLokal {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Window;
 			this->ClientSize = System::Drawing::Size(435, 480);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->gruendeAuswahl);
 			this->Controls->Add(this->grundLbl);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -320,44 +320,54 @@ namespace ProjektLokal {
 			}
 		}
 
-		property Int32 p_KommenStunde
+		property DateTime p_Ankunft
 		{
-			Int32 get() {
-				return Convert::ToInt32(this->ankunftStdTxt->Text);
+			DateTime get() {
+				Double stunde = Convert::ToDouble(this->ankunftStdTxt->Text);
+				Double minute = Convert::ToDouble(this->ankunftMinuteTxt->Text);
+				DateTime ankunft = p_Tag;
+				ankunft = ankunft.AddHours(stunde);
+				ankunft = ankunft.AddMinutes(minute);
+				return ankunft;
 			}
 		}
 
-		property Int32 p_KommenMinute
+		property DateTime p_Gehen
 		{
-			Int32 get() {
-				return Convert::ToInt32(this->ankunftMinuteTxt->Text);
-			}
-		}
-
-		property Int32 p_GehenStunde
-		{
-			Int32 get() {
-				return Convert::ToInt32(this->gehenStdTxt->Text);
-			}
-		}
-
-		property Int32 p_GehenMinute
-		{
-			Int32 get() {
-				return Convert::ToInt32(this->gehenMinuteTxt->Text);
+			DateTime get() {
+				Double stunde = Convert::ToDouble(this->gehenStdTxt->Text);
+				Double minute = Convert::ToDouble(this->gehenMinuteTxt->Text);
+				DateTime gehen = p_Tag;
+				gehen = gehen.AddHours(stunde);
+				gehen = gehen.AddMinutes(minute);
+				return gehen;
 			}
 		}
 
 		property String^ p_AntragstellerName
 		{
 			String^ get() {
-				return angestellter->getVorname() + " " + angestellter->getNachname();
+				return antragsteller->getVorname() + " " + antragsteller->getNachname();
+			}
+		}
+
+		property String^ p_Kommentar
+		{
+			String^ get() {
+				return this->kommentarTxt->Text;
+			}
+		}
+
+		property String^ p_Grund
+		{
+			String^ get() {
+				return this->gruendeAuswahl->SelectedItem->ToString();
 			}
 		}
 
 		Angestellter^ getAntragsteller()
 		{
-			return angestellter;
+			return antragsteller;
 		}
 
 		//Eingaben werden zurückgesetzt
@@ -368,12 +378,15 @@ namespace ProjektLokal {
 			this->ankunftMinuteTxt->Text = "";
 			this->gehenStdTxt->Text = "";
 			this->gehenMinuteTxt->Text = "";
+			this->kommentarTxt->Text = "";
+			this->gruendeAuswahl->ResetCursor();
 		}
 
 	//Beim Klick auf "Einreichen" wird das Fenster geschlossen und OK gesendet, falls: Die Tage eingetragen wurden und die Zahl positiv ist,
 	//der Beginn nicht nach dem Ende liegt und der Beginn nicht in der Vergangenheit liegt.
 	private: System::Void Einreichen_Click(System::Object^  sender, System::EventArgs^  e)
 	{
+		MessageBox::Show(p_Ankunft.ToString(), "Testfenster", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		//Vergleich der Daten wird in einem Integer32 gespeichert
 		vergleichMitHeute = DateTime::Compare(p_Tag, DateTime::Today.Date);
 
@@ -397,7 +410,7 @@ namespace ProjektLokal {
 			MessageBox::Show("Bitte füllen Sie alle Felder aus!", "Absenden nicht möglich!",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
-		else if (vergleichMitHeute >= 0) {
+		else if (vergleichMitHeute > 0) {
 			this->DialogResult = System::Windows::Forms::DialogResult::None;
 			MessageBox::Show("Sie können eine Änderung nur für einen in der Vergangenheit liegenden Tag beantragen!", "Absenden nicht möglich!",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -415,12 +428,17 @@ namespace ProjektLokal {
 	
 	private: System::Void AenderungsantragsFenster_Load(System::Object^  sender, System::EventArgs^  e)
 	{
+		//Fügt der ComboBox gruendeAuswahl verschieden Gründe hinzu, die für den Änderungsantrag hinzugefügt werden
+		gruendeAuswahl->Items->Add("Krankheit");
+		gruendeAuswahl->Items->Add("Fehler beim LogOut");
+		gruendeAuswahl->Items->Add("Fehler beim LogIn");
+		gruendeAuswahl->Items->Add("Sonstiges (siehe Kommentar)");
 	}
 
 	//Angestellter wird gesetzt:
-	public: void setAngestellter(Angestellter^ angestellterUebergabe)
+	public: void setAntragssteller(Angestellter^ antragstellerUebergabe)
 	{
-		Angestellter^ angestellter = angestellterUebergabe;
+		antragsteller = antragstellerUebergabe;
 	}
 };
 }

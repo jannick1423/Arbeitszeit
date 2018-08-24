@@ -632,6 +632,7 @@ namespace ProjektLokal {
 
 	//Klick auf Statistik-Button öffnet Statistik-Fenster
 	private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		statistikfenster->setAngestellter(mitarbeiter);
 		System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
 	}
 

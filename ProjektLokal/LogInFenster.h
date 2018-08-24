@@ -287,12 +287,12 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 		bf->Serialize(os, unternehmen);
 		os->Close();
 	}
-	//else {
-		//FileStream^ os = File::OpenRead(file);
-		//BinaryFormatter^ bf = gcnew BinaryFormatter();
-		//unternehmen = (Unternehmen^)bf->Deserialize(os);
-		//os->Close();
-	//}
+	else {
+		FileStream^ os = File::OpenRead(file);
+		BinaryFormatter^ bf = gcnew BinaryFormatter();
+		unternehmen = (Unternehmen^)bf->Deserialize(os);
+		os->Close();
+	}
 }
 
 };

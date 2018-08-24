@@ -4,12 +4,13 @@
 #include "Angestellter.h"
 #include <iterator>
 
-[ Serializable ]
+
 ref class Mitarbeiter;
 
 using namespace System;
 using namespace System::Collections::Generic;
 
+[Serializable]
 ref class Vorgesetzter : 
 	public Angestellter 
 {

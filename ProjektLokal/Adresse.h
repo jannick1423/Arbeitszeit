@@ -2,7 +2,7 @@
 #ifndef _ADRESSE_H_
 #define _ADRESSE_H_
 using namespace System;
-
+[Serializable]
 ref class Adresse
 {
 private:

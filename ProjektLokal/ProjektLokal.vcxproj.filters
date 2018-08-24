@@ -72,6 +72,9 @@
     <ClCompile Include="Aenderungsantrag.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="AnfragenbearbeitungsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startseite.h">
@@ -123,6 +126,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Aenderungsantrag.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AnfragenbearbeitungsFenster.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

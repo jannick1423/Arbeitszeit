@@ -138,6 +138,7 @@
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="Aenderungsantrag.cpp" />
     <ClCompile Include="AenderungsantragsFenster.cpp" />
+    <ClCompile Include="AnfragenbearbeitungsFenster.cpp" />
     <ClCompile Include="Angestellter.cpp" />
     <ClCompile Include="Kalenderfenster.cpp" />
     <ClCompile Include="LogInFenster.cpp" />
@@ -157,6 +158,9 @@
     <ClInclude Include="Adresse.h" />
     <ClInclude Include="Aenderungsantrag.h" />
     <ClInclude Include="AenderungsantragsFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AnfragenbearbeitungsFenster.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Angestellter.h" />

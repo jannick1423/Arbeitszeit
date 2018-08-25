@@ -582,6 +582,7 @@ namespace ProjektLokal {
 				this->timerArbeitszeit->Stop();
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 				gegangen = true;
+				mitarbeiter->setLetzterArbeitstag(DateTime::Today);
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
 		}
@@ -685,6 +686,7 @@ namespace ProjektLokal {
 				}
 				gegangen = true;
 				timerArbeitszeit->Stop();
+				mitarbeiter->setLetzterArbeitstag(DateTime::Today);
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 				Application::Restart();
 			}
@@ -791,6 +793,7 @@ namespace ProjektLokal {
 					mitarbeiter->fuegeZeitHinzu();
 				}
 				timerArbeitszeit->Stop();
+				mitarbeiter->setLetzterArbeitstag(DateTime::Today);
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
 		}

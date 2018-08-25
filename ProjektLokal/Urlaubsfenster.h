@@ -284,11 +284,16 @@ private: System::Void abbrechenBtn_Click(System::Object^  sender, System::EventA
 	this->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 }
 
-private: System::Void Urlaubfenster_Load(System::Object^  sender, System::EventArgs^  e) 
-{
-	sound->SoundLocation = "Sounds/lacucarachaKurz.wav";
-	sound->Load();
-	sound->Play();
+	private: System::Void Urlaubfenster_Load(System::Object^  sender, System::EventArgs^  e)
+	{
+		try {
+			sound->SoundLocation = "Sounds/lacucarachaKurz.wav";
+			sound->Load();
+			sound->Play();
+		}
+		catch (System::IO::FileNotFoundException ^e) {
+			//Wenn die Sound-Datei nicht gefunden werden kann, wird nichts abgespielt.
+		}
 }
 
 //NEU: Angestellter wird gesetzt:

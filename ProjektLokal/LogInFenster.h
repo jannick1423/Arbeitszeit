@@ -271,9 +271,14 @@ private: System::Void btn_passwortAendern_Click(System::Object^  sender, System:
 
 //Beim Laden des Fensters wird eine Sound Datei abgespielt
 private: System::Void loginFenster_Load(System::Object^  sender, System::EventArgs^  e) {
-	sound->SoundLocation = "Sounds/soundImperialMarch.wav";
-	sound->Load();
-	sound->Play();
+	try {
+		sound->SoundLocation = "Sounds/soundImperialMarch.wav";
+		sound->Load();
+		sound->Play();
+	}
+	catch (System::IO::FileNotFoundException ^e) {
+		//Wenn die Sound-Datei nicht gefunden werden kann, wird nichts abgespielt.
+	}
 	
 	
 	String^ file = "Imperium.txt";

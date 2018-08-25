@@ -29,6 +29,16 @@ List<Mitarbeiter^>^ Vorgesetzter::getMaListe()
 	return maListe;
 }
 
+List<Aenderungsantrag^>^ Vorgesetzter::getAenderungsantragsListe() 
+{
+	return aenderungsantragsListe;
+}
+
+List<Urlaubsantrag^>^ Vorgesetzter::getUrlaubsantragsListe()
+{
+	return urlaubsantragsListe;
+}
+
 void Vorgesetzter::addMA(Mitarbeiter^ ma)
 {
 	maListe->Add(ma);
@@ -38,6 +48,26 @@ void Vorgesetzter::deleteMA(Mitarbeiter^ m)
 {
 	maListe->Remove(m);
 	//Anzeigefenster, dass MA nicht vorhanden
+}
+
+void Vorgesetzter::addAenderungsantrag(Aenderungsantrag^ antrag)
+{
+	this->aenderungsantragsListe->Add(antrag);
+}
+
+void Vorgesetzter::deleteAenderungsantrag(Aenderungsantrag^ antrag)
+{
+	this->aenderungsantragsListe->Remove(antrag);
+}
+
+void Vorgesetzter::addUrlaubsantrag(Urlaubsantrag^ antrag)
+{
+	this->urlaubsantragsListe->Add(antrag);
+}
+
+void Vorgesetzter::deleteUrlaubsantrag(Urlaubsantrag^ antrag)
+{
+	this->urlaubsantragsListe->Remove(antrag);
 }
 
 bool Vorgesetzter::istVorgesetzter()

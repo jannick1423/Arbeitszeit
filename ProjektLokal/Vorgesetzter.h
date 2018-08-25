@@ -2,6 +2,8 @@
 #ifndef _VORGESETZTER_H_
 #define _VORGESETZTER_H_
 #include "Angestellter.h"
+#include "Aenderungsantrag.h"
+#include "Urlaubsantrag.h"
 #include <iterator>
 
 
@@ -15,6 +17,8 @@ ref class Vorgesetzter :
 	public Angestellter 
 {
  	List<Mitarbeiter^>^ maListe;
+	List<Aenderungsantrag^>^ aenderungsantragsListe;
+	List<Urlaubsantrag^>^ urlaubsantragsListe;
 
 public:
 	Vorgesetzter();
@@ -24,8 +28,16 @@ public:
 	~Vorgesetzter();
 
 	List<Mitarbeiter^>^ getMaListe();
+	List<Aenderungsantrag^>^ getAenderungsantragsListe();
+	List<Urlaubsantrag^>^ getUrlaubsantragsListe();
+
 	void addMA(Mitarbeiter^ ma);
 	void deleteMA(Mitarbeiter^ ma);
+	void addAenderungsantrag(Aenderungsantrag^ antrag);
+	void deleteAenderungsantrag(Aenderungsantrag^ antrag);
+	void addUrlaubsantrag(Urlaubsantrag^ antrag);
+	void deleteUrlaubsantrag(Urlaubsantrag^ antrag);
+
 	bool istVorgesetzter() override;
 };
 

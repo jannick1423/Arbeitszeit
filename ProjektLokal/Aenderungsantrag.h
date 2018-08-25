@@ -6,7 +6,7 @@
 
 using namespace System;
 
-#pragma once
+[Serializable]
 ref class Aenderungsantrag
 {
 private:

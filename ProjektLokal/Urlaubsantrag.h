@@ -4,6 +4,7 @@
 
 using namespace System;
 
+[Serializable]
 ref class Urlaubsantrag
 {
 private:

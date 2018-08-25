@@ -16,7 +16,6 @@ ref class Unternehmen
 private:
 	List<Angestellter^>^ list_angestellte;
 	List<Vorgesetzter^>^ list_vorgesetzte;
-
 	
 public:
 	Unternehmen();

@@ -86,7 +86,6 @@ namespace ProjektLokal {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Statistikfenster";
 			this->Text = L"Statistik";
-			this->Load += gcnew System::EventHandler(this, &Statistikfenster::Statistikfenster_Load);
 			this->ResumeLayout(false);
 
 		}
@@ -114,7 +113,7 @@ namespace ProjektLokal {
 				Aenderungsantrag ^aenderung = gcnew Aenderungsantrag(aenderungsantragsFenster->p_AntragstellerName, aenderungsantragsFenster->getAntragsteller(), aenderungsantragsFenster->p_Tag, 
 					aenderungsantragsFenster->p_Ankunft, aenderungsantragsFenster->p_Gehen, aenderungsantragsFenster->p_Grund, aenderungsantragsFenster->p_Kommentar);
 
-				//Änderungsantrag wird dem Vprgesetzten übertragen
+				//Änderungsantrag wird dem Vorgesetzten übertragen 
 				if (!angestellter->istVorgesetzter()) {
 					Mitarbeiter^ mitarbeiter = (Mitarbeiter^)angestellter;
 					vorgesetzter = mitarbeiter->getVorgesetzte();

@@ -52,22 +52,42 @@ void Vorgesetzter::deleteMA(Mitarbeiter^ m)
 
 void Vorgesetzter::addAenderungsantrag(Aenderungsantrag^ antrag)
 {
-	this->aenderungsantragsListe->Add(antrag);
+	try {
+		this->aenderungsantragsListe->Add(antrag);
+	}
+	catch (System::NullReferenceException ^e) {
+		this->aenderungsantragsListe = gcnew List<Aenderungsantrag^>;
+		this->aenderungsantragsListe->Add(antrag);
+	}
 }
 
 void Vorgesetzter::deleteAenderungsantrag(Aenderungsantrag^ antrag)
 {
-	this->aenderungsantragsListe->Remove(antrag);
+	try {
+		this->aenderungsantragsListe->Remove(antrag);
+	}
+	catch (System::NullReferenceException ^e) {
+	}
 }
 
 void Vorgesetzter::addUrlaubsantrag(Urlaubsantrag^ antrag)
 {
-	this->urlaubsantragsListe->Add(antrag);
+	try {
+		this->urlaubsantragsListe->Add(antrag);
+	}
+	catch (System::NullReferenceException ^e) {
+		this->urlaubsantragsListe = gcnew List<Urlaubsantrag^>;
+		this->urlaubsantragsListe->Add(antrag);
+	}
 }
 
 void Vorgesetzter::deleteUrlaubsantrag(Urlaubsantrag^ antrag)
 {
-	this->urlaubsantragsListe->Remove(antrag);
+	try {
+		this->urlaubsantragsListe->Remove(antrag);
+	}
+	catch (System::NullReferenceException ^e) {
+	}
 }
 
 bool Vorgesetzter::istVorgesetzter()

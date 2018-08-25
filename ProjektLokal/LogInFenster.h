@@ -231,16 +231,12 @@ namespace ProjektLokal {
 
 				if (angestellter->getPasswort()->Equals(passwort)) {
 					if (!angestellter->istVorgesetzter()) {
-						//ÄNDERUNG ÜBERGABE MITARBEITER:
 						startseite->setMitarbeiter(angestellter);
-						//ÄNDERUNG
 						startseite->setUnternehmen(unternehmen);
 						System::Windows::Forms::DialogResult result = startseite->ShowDialog(this);
 					}
 					else {
-						//ÄNDERUNG ÜBERGABE VORGESETZTER:
 						vorgesetztenseite->setVorgesetzter(angestellter);
-						//ÄNDERUNG
 						vorgesetztenseite->setUnternehmen(unternehmen);
 						System::Windows::Forms::DialogResult result = vorgesetztenseite->ShowDialog(this);
 					}

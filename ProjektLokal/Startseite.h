@@ -17,6 +17,7 @@ namespace ProjektLokal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Globalization;
 	//zum lesen und schreiben
 	using namespace System::Runtime::Serialization::Formatters::Binary;
 	using namespace System::IO;
@@ -573,10 +574,11 @@ namespace ProjektLokal {
 		//Gehen nur möglich, falls der Arbeitstag vorher auch begonnen wurde.
 		if (gekommen && !gegangen) {
 			//Sicherheitsabfrage, ob der Mitarbeiter wirklich gehen moechte
-			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen moechten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
+			if (MessageBox::Show("Sind Sie sicher, dass Sie gehen möchten?\nWenn Sie auf \"Ja\" klicken, wird Ihr Arbeitstag beendet!", "Wirklich gehen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 				//Falls der Angestellte in der Pause ist, wird diese zunächst beendet.
 				if (timerPause->Enabled) {
+					this->pauseCbox->Image = Image::FromFile("Images/pauseIcon.jpg");
 					timerPause->Stop();
 					this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 					mitarbeiter->fuegeZeitHinzu();
@@ -584,6 +586,7 @@ namespace ProjektLokal {
 				this->timerArbeitszeit->Stop();
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Red;
 				gegangen = true;
+				mitarbeiter->setLetzterArbeitstag(DateTime::Today);
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
 		}
@@ -592,7 +595,7 @@ namespace ProjektLokal {
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
-			MessageBox::Show("Sie koennen keinen Arbeitstag beenden, den Sie noch nicht begonnen haben!", "Gehen fehlgeschlagen",
+			MessageBox::Show("Sie können keinen Arbeitstag beenden, den Sie noch nicht begonnen haben!", "Gehen fehlgeschlagen",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
@@ -605,6 +608,7 @@ namespace ProjektLokal {
 			if (timerArbeitszeit->Enabled) {
 				timerArbeitszeit->Stop();
 				timerPause->Start();
+				this->pauseCbox->Image = Image::FromFile("Images/pauseIcon3.jpg");
 				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 				this->arbeitszeitLbl->ForeColor = System::Drawing::Color::Gray;
 				mitarbeiter->fuegeZeitHinzu();
@@ -612,17 +616,18 @@ namespace ProjektLokal {
 			else {
 				timerArbeitszeit->Start();
 				timerPause->Stop();
+				this->pauseCbox->Image = Image::FromFile("Images/pauseIcon.jpg");
 				this->pauseLbl->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 				this->arbeitszeitLbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 				mitarbeiter->fuegeZeitHinzu();
 			}
 		}
 		else if (gekommen && gegangen) {
-			MessageBox::Show("Sie haben Ihren Arbeitstag bereits beendet!", "Keine Pause moeglich",
+			MessageBox::Show("Sie haben Ihren Arbeitstag bereits beendet!", "Keine Pause möglich",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
-			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause moeglich",
+			MessageBox::Show("Bitte beginnen Sie zuerst Ihre Arbeitszeit, bevor Sie eine Pause starten!", "Keine Pause möglich",
 				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
@@ -634,6 +639,7 @@ namespace ProjektLokal {
 
 	//Klick auf Statistik-Button öffnet Statistik-Fenster
 	private: System::Void statistikBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		statistikfenster->setAngestellter(mitarbeiter);
 		System::Windows::Forms::DialogResult result = statistikfenster->ShowDialog(this);
 	}
 
@@ -684,6 +690,7 @@ namespace ProjektLokal {
 				}
 				gegangen = true;
 				timerArbeitszeit->Stop();
+				mitarbeiter->setLetzterArbeitstag(DateTime::Today);
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 				Application::Restart();
 			}
@@ -696,7 +703,46 @@ namespace ProjektLokal {
 
 	//Beim Laden der Startseite werden einige Werte gesetzt
 	private: System::Void Startseite_Load(System::Object^  sender, System::EventArgs^  e) {
+
+		//Wenn eine neue Woche startet, wird die Arbeitszeit zurueckgesetzt
+		//Dafür müssen die Kalenderwochen des letzten Arbeitstags mit der KW von heute verglichen werden
+		CultureInfo^ myCI = gcnew CultureInfo("de");
+		Calendar^ myCal = myCI->Calendar;
+		CalendarWeekRule^ myCWR = myCI->DateTimeFormat->CalendarWeekRule;
+		DayOfWeek^ myFirstDOW = myCI->DateTimeFormat->FirstDayOfWeek;
+
+		//Kalenderwoche von heute berechnen
+		DateTime^ heute = DateTime::Today;
+		int kWHeute = myCal->GetWeekOfYear(*heute, *myCWR, *myFirstDOW);
+		
+		//Kalenderwoche vom letzten Arbeitstag berechnen
+		int kWLetzterTag;
+		try {
+			DateTime^ letzterTag = mitarbeiter->getLetzterArbeitstag();
+			kWLetzterTag = myCal->GetWeekOfYear(*letzterTag, *myCWR, *myFirstDOW);
+		}
+		catch (System::NullReferenceException ^e) {
+			DateTime^ letzterTag = DateTime::Today;
+			kWLetzterTag = myCal->GetWeekOfYear(*letzterTag, *myCWR, *myFirstDOW);
+		}
+
+		//Kalenderwochen vergleichen und evtl. notwendige Werte zurücksetzen
+		if (kWHeute > kWLetzterTag) {
+			//Wenn der Mitarbeiter in der letzten Woche seine Arbeitszeit nicht erreicht hat, wird ihm das von seinen Überstunden wieder abgezogen
+			if (!mitarbeiter->getWochenZeitErreicht()) {
+				mitarbeiter->setUeberStunden(mitarbeiter->getUeberStunden() - mitarbeiter->getArbeitStundenNoch());
+				mitarbeiter->setUeberMinuten(mitarbeiter->getUeberMinuten() - mitarbeiter->getArbeitMinutenNoch());
+			}
+			//Wochenarbeitszeit wird wieder auf ihre Anfangswerte zurückgesetzt
+			mitarbeiter->setWochenZeitErreicht(false);
+			mitarbeiter->setArbeitStundenNoch(mitarbeiter->getArbeitStunden());
+			mitarbeiter->setArbeitMinutenNoch(mitarbeiter->getArbeitMinuten());
+		}
+		
+		//Resturlaub wird eingelesen
 		restUrlaub = mitarbeiter->getAnzUrlaubstage() - mitarbeiter->getGenommenUrlaub();
+		
+		//Es wird geprüft, ob die Wochenarbeitszeit bereits erreich wurde
 		wochenZeitErreicht = mitarbeiter->getWochenZeitErreicht();
 
 		//Wenn die Wochenarbeitszeit bereits erreicht ist, werden unten links stattdessen die Überstunden angezeigt.
@@ -739,7 +785,7 @@ namespace ProjektLokal {
 	private: System::Void Startseite_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 		//Falls der Angestellte den Arbeitstag begonnen, aber noch nicht beendet hat, wird eine Sicherheitsabfrage ausgelöst
 		if (!gegangen && gekommen) {
-			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schliessen?\nIhr Arbeitstag wird dann beendet!", "Fenster schliessen?", MessageBoxButtons::YesNo,
+			if (MessageBox::Show("Wollen Sie dieses Fenster wirklich schließen?\nIhr Arbeitstag wird dann beendet!", "Fenster schließen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::No) {
 				e->Cancel = true;
 			}
@@ -759,6 +805,7 @@ namespace ProjektLokal {
 					mitarbeiter->fuegeZeitHinzu();
 				}
 				timerArbeitszeit->Stop();
+				mitarbeiter->setLetzterArbeitstag(DateTime::Today);
 				mitarbeiter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
 		}

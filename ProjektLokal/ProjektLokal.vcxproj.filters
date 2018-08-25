@@ -72,6 +72,12 @@
     <ClCompile Include="Aenderungsantrag.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="AnfragenbearbeitungsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UrlaubsanfragenbearbeitungsFenster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startseite.h">
@@ -125,6 +131,12 @@
     <ClInclude Include="Aenderungsantrag.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="AnfragenbearbeitungsFenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UrlaubsanfragenbearbeitungsFenster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\addIcon.jpg">
@@ -163,6 +175,12 @@
     <Image Include="Images\iconDarthVader.ico">
       <Filter>Quelldateien\Icons</Filter>
     </Image>
+    <Image Include="Images\pauseIcon2.jpg">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
+    <Image Include="Images\pauseIcon3.jpg">
+      <Filter>Quelldateien\Icons</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Startseite.resx">
@@ -189,9 +207,18 @@
     <EmbeddedResource Include="Statistikfenster.resx">
       <Filter>Ressourcendateien</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="AenderungsantragsFenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnfragenbearbeitungsFenster.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\..\..\OneDrive\Dokumente\Uni HI\Semester 2\Programmierung II C++\Projekt\ProjektLokal\ProjektLokal\Sounds\soundImperialMarch.wav">
+      <Filter>Quelldateien\Soundeffekte</Filter>
+    </Media>
+    <Media Include="Sounds\lacucarachaKurz.wav">
       <Filter>Quelldateien\Soundeffekte</Filter>
     </Media>
   </ItemGroup>

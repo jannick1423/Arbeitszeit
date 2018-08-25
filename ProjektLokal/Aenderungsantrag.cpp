@@ -4,8 +4,10 @@ Aenderungsantrag::Aenderungsantrag()
 {
 }
 
-Aenderungsantrag::Aenderungsantrag(DateTime^ tag, DateTime^ anfang, DateTime^ ende, String^ grund, String^ kommentar) 
+Aenderungsantrag::Aenderungsantrag(String^ antragstellerName, Angestellter^ antragsteller, DateTime^ tag, DateTime^ anfang, DateTime^ ende, String^ grund, String^ kommentar) 
 {
+	this->m_AntragstellerName = antragstellerName;
+	this->m_Antragsteller = antragsteller;
 	this->m_Anfang = anfang;
 	this->m_Ende = ende;
 	this->m_Tag = tag;
@@ -41,4 +43,9 @@ void Aenderungsantrag::setKommentar(String^ kommentar)
 void Aenderungsantrag::setGrund(String^ grund) 
 {
 	this->m_Grund = grund;
+}
+
+void Aenderungsantrag::setAntragsteller(Angestellter^ antragsteller)
+{
+	this->m_Antragsteller = antragsteller;
 }

@@ -116,6 +116,7 @@ namespace ProjektLokal {
 			this->btn_abbrechen->TabIndex = 1;
 			this->btn_abbrechen->Text = L"Abbrechen";
 			this->btn_abbrechen->UseVisualStyleBackColor = true;
+			this->btn_abbrechen->Click += gcnew System::EventHandler(this, &PasswortAendernFenster::btn_abbrechen_Click_1);
 			// 
 			// lbl_benutzername
 			// 
@@ -320,7 +321,8 @@ namespace ProjektLokal {
 		
 	}
 //Bei Klick auf den Button wird das Fenster geschlossen
-private: System::Void btn_abbrechen_Click(System::Object^  sender, System::EventArgs^  e) {
+
+private: System::Void btn_abbrechen_Click_1(System::Object^  sender, System::EventArgs^  e) {
 	this->Close();
 }
 };

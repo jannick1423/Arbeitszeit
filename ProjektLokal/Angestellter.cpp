@@ -27,6 +27,7 @@ Angestellter::Angestellter(String^ vorname, String^ nachname, String^ abteilungs
 	this->wochenZeitErreicht = false;
 	this->ueberStunden = 0;
 	this->ueberMinuten = 0;
+	this->letzterArbeitstag = DateTime::Today;
 }
 
 
@@ -127,6 +128,10 @@ Hashtable^ Angestellter::getArbeitsTage() {
 	return arbeitsTage;
 }
 
+DateTime^ Angestellter::getLetzterArbeitstag() {
+	return letzterArbeitstag;
+}
+
 void Angestellter::setVorname(String^ vorname)
 {
 	this->vorname = vorname;
@@ -187,6 +192,16 @@ void Angestellter::setArbeitMinutenNoch(int arbeitMinutenNochNeu)
 	this->arbeitMinutenNoch = arbeitMinutenNochNeu;
 }
 
+void Angestellter::setUeberStunden(int ueberstunden)
+{
+	this->ueberStunden = ueberstunden;
+}
+
+void Angestellter::setUeberMinuten(int ueberminuten)
+{
+	this->ueberMinuten = ueberminuten;
+}
+
 void Angestellter::setAnzUrlaubstage(int anzUrlaubstage)
 {
 	this->anzUrlaubstage = anzUrlaubstage;
@@ -202,8 +217,14 @@ void Angestellter::fuegeZeitHinzu()
 	arbeitsTagAktuell->Add(DateTime::Now);
 }
 
-void Angestellter::setWochenZeitErreicht(bool wochenZeitErreicht) {
+void Angestellter::setWochenZeitErreicht(bool wochenZeitErreicht) 
+{
 	this->wochenZeitErreicht = wochenZeitErreicht;
+}
+
+void Angestellter::setLetzterArbeitstag(DateTime^ tag) 
+{
+	this->letzterArbeitstag = tag;
 }
 
 void Angestellter::aendereTag(DateTime tag, List<DateTime>^ neueZeiten) 

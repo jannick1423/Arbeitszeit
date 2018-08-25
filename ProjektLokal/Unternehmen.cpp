@@ -2,8 +2,6 @@
 #include "Mitarbeiter.h"
 #include "Vorgesetzter.h"
 
-
-
 Unternehmen::Unternehmen()
 {
 	/*this->list_angestellte = gcnew List<Angestellter^>;

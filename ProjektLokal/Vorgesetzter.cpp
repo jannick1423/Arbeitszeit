@@ -24,23 +24,6 @@ Vorgesetzter::~Vorgesetzter()
 {
 }
 
-String^ Vorgesetzter::asString()
-{
-	String^ maText;
-	maText = "Vorname: " + this->getVorname() + "\nNachname: " + this->getNachname() + "\nAbteilung: " + this->getAbteilungsnummer() + "\nPersonalnummer: " + this->getPersonalnummer() + "\nTelefon: " + this->getTelefon() + "\nEmail: " + this->getEmail() + "\nAdresse: " + this->getAdresse()->asString();
-	if (maListe->Count == 0) {
-		maText = maText + "\nDieser Vorgesetzte hat bisher noch keine Mitarbeiter.";
-	}
-	else {
-		int a = maListe->Count;
-		//stringstream ss;
-		//ss << a;
-		//String^ anz = ss.str();
-		//maText = maText + "\nDieser Vorgesetzte hat " + anz + " Mitarbeiter.";
-	}
-	return maText;
-}
-
 List<Mitarbeiter^>^ Vorgesetzter::getMaListe()
 {
 	return maListe;

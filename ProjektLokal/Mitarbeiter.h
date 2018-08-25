@@ -20,7 +20,6 @@ public:
 		int anzUrlaubstage, int genommenUrlaub, Vorgesetzter^ v);
 	~Mitarbeiter();
 
-	String^ asString() override;
 	Vorgesetzter^ getVorgesetzte();
 	void setVorgesetzte(Vorgesetzter^ v);
 	bool istVorgesetzter() override;

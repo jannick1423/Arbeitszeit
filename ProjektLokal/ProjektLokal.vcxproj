@@ -149,6 +149,7 @@
     <ClCompile Include="Startseite.cpp" />
     <ClCompile Include="Statistikfenster.cpp" />
     <ClCompile Include="Unternehmen.cpp" />
+    <ClCompile Include="UrlaubsanfragenbearbeitungsFenster.cpp" />
     <ClCompile Include="Urlaubsfenster.cpp" />
     <ClCompile Include="Urlaubsantrag.cpp" />
     <ClCompile Include="Vorgesetzter.cpp" />
@@ -185,6 +186,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Unternehmen.h" />
+    <ClInclude Include="UrlaubsanfragenbearbeitungsFenster.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Urlaubsfenster.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -218,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Statistikfenster.resx">
       <DependentUpon>Statistikfenster.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UrlaubsanfragenbearbeitungsFenster.resx">
+      <DependentUpon>UrlaubsanfragenbearbeitungsFenster.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Urlaubsfenster.resx">
       <DependentUpon>Urlaubsfenster.h</DependentUpon>

@@ -146,6 +146,7 @@
     <ClCompile Include="PasswortAendernFenster.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="RegistrierungsFenster.cpp" />
+    <ClCompile Include="SpeichernLaden.cpp" />
     <ClCompile Include="Startseite.cpp" />
     <ClCompile Include="Statistikfenster.cpp" />
     <ClCompile Include="Unternehmen.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="RegistrierungsFenster.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="SpeichernLaden.h" />
     <ClInclude Include="Startseite.h">
       <FileType>CppForm</FileType>
     </ClInclude>

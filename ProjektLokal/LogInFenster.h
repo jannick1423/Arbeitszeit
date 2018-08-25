@@ -7,6 +7,7 @@
 #include "Startseite.h"
 #include "VorgesetztenSeite.h"
 #include "PasswortAendernFenster.h"
+#include "SpeichernLaden.h"
 
 namespace ProjektLokal {
 
@@ -33,6 +34,7 @@ namespace ProjektLokal {
 		VorgesetztenSeite^ vorgesetztenseite;
 		PasswortAendernFenster^ passwortaendernseite;
 		SoundPlayer^ sound;
+		SpeichernLaden^ laden;
 		
 	public:
 		loginFenster(void)
@@ -43,6 +45,7 @@ namespace ProjektLokal {
 			startseite = gcnew Startseite();
 			vorgesetztenseite = gcnew VorgesetztenSeite();
 			passwortaendernseite = gcnew PasswortAendernFenster();
+			laden = gcnew SpeichernLaden();
 		}
 
 	protected:
@@ -280,7 +283,9 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 		//Wenn die Sound-Datei nicht gefunden werden kann, wird nichts abgespielt.
 	}
 	
-	
+	this->unternehmen = laden->unternehmenLaden();
+
+	/*
 	String^ file = "Imperium.txt";
 	if (!File::Exists(file)) {
 		unternehmen = gcnew Unternehmen();
@@ -295,7 +300,7 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 		unternehmen = (Unternehmen^)bf->Deserialize(os);
 		os->Close();
 	}
-	
+	*/
 }
 
 };

@@ -10,6 +10,7 @@
 #include "Vorgesetzter.h"
 #include "Unternehmen.h"
 #include "RegistrierungsFenster.h"
+#include "SpeichernLaden.h"
 
 namespace ProjektLokal {
 
@@ -61,6 +62,8 @@ namespace ProjektLokal {
 		String^ pauseSekundeS;
 		String^ urlaubString;
 
+		SpeichernLaden^ speichern;
+
 		//Unterfenster:
 		Urlaubfenster^ urlaubsfenster;
 		Statistikfenster^ statistikfenster;
@@ -93,6 +96,8 @@ namespace ProjektLokal {
 		VorgesetztenSeite(void)
 		{
 			InitializeComponent();
+
+			speichern = gcnew SpeichernLaden();
 
 			//Unterfenster initialisieren:
 			urlaubsfenster = gcnew Urlaubfenster;
@@ -851,7 +856,9 @@ namespace ProjektLokal {
 				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
 		}
-		//Speichern des Unternehmens
+
+		speichern->unternehmenSpeichern(unternehmen);
+		/*Speichern des Unternehmens
 		if (File::Exists("Imperium.txt")) {
 			File::Delete("Imperium.txt");
 		}
@@ -859,6 +866,7 @@ namespace ProjektLokal {
 		BinaryFormatter^ bf = gcnew BinaryFormatter();
 		bf->Serialize(os, unternehmen);
 		os->Close();
+		*/
 	}
 
 	//NEU: ÜBERGABE DES VORGESETZTEN

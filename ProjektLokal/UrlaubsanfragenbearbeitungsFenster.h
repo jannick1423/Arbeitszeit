@@ -82,6 +82,7 @@ namespace ProjektLokal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(UrlaubsanfragenbearbeitungsFenster::typeid));
 			this->btn_AenderungBestaetigen = (gcnew System::Windows::Forms::Button());
 			this->btn_AenderungAblehnen = (gcnew System::Windows::Forms::Button());
 			this->lbl_Aenderungsanfrage = (gcnew System::Windows::Forms::Label());
@@ -96,18 +97,20 @@ namespace ProjektLokal {
 			// 
 			// btn_AenderungBestaetigen
 			// 
-			this->btn_AenderungBestaetigen->Location = System::Drawing::Point(40, 317);
+			this->btn_AenderungBestaetigen->Location = System::Drawing::Point(45, 396);
+			this->btn_AenderungBestaetigen->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btn_AenderungBestaetigen->Name = L"btn_AenderungBestaetigen";
-			this->btn_AenderungBestaetigen->Size = System::Drawing::Size(114, 49);
+			this->btn_AenderungBestaetigen->Size = System::Drawing::Size(128, 61);
 			this->btn_AenderungBestaetigen->TabIndex = 0;
 			this->btn_AenderungBestaetigen->Text = L"Bestätigen";
 			this->btn_AenderungBestaetigen->UseVisualStyleBackColor = true;
 			// 
 			// btn_AenderungAblehnen
 			// 
-			this->btn_AenderungAblehnen->Location = System::Drawing::Point(238, 317);
+			this->btn_AenderungAblehnen->Location = System::Drawing::Point(268, 396);
+			this->btn_AenderungAblehnen->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btn_AenderungAblehnen->Name = L"btn_AenderungAblehnen";
-			this->btn_AenderungAblehnen->Size = System::Drawing::Size(114, 49);
+			this->btn_AenderungAblehnen->Size = System::Drawing::Size(128, 61);
 			this->btn_AenderungAblehnen->TabIndex = 1;
 			this->btn_AenderungAblehnen->Text = L"Ablehnen";
 			this->btn_AenderungAblehnen->UseVisualStyleBackColor = true;
@@ -118,31 +121,31 @@ namespace ProjektLokal {
 			this->lbl_Aenderungsanfrage->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbl_Aenderungsanfrage->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->lbl_Aenderungsanfrage->Location = System::Drawing::Point(35, 19);
+			this->lbl_Aenderungsanfrage->Location = System::Drawing::Point(39, 24);
 			this->lbl_Aenderungsanfrage->Name = L"lbl_Aenderungsanfrage";
-			this->lbl_Aenderungsanfrage->Size = System::Drawing::Size(317, 72);
+			this->lbl_Aenderungsanfrage->Size = System::Drawing::Size(378, 80);
 			this->lbl_Aenderungsanfrage->TabIndex = 2;
 			this->lbl_Aenderungsanfrage->Text = L"Neue Urlaubsanfrage\r\n              von ";
 			// 
 			// lbl_MA
 			// 
-			this->lbl_MA->AutoSize = true;
 			this->lbl_MA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lbl_MA->Location = System::Drawing::Point(106, 108);
+			this->lbl_MA->Location = System::Drawing::Point(2, 135);
 			this->lbl_MA->Name = L"lbl_MA";
-			this->lbl_MA->Size = System::Drawing::Size(142, 29);
+			this->lbl_MA->Size = System::Drawing::Size(442, 40);
 			this->lbl_MA->TabIndex = 3;
 			this->lbl_MA->Text = L"Beispiel MA";
+			this->lbl_MA->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lbl_AnfrageErsterTag
 			// 
 			this->lbl_AnfrageErsterTag->AutoSize = true;
 			this->lbl_AnfrageErsterTag->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lbl_AnfrageErsterTag->Location = System::Drawing::Point(12, 158);
+			this->lbl_AnfrageErsterTag->Location = System::Drawing::Point(14, 198);
 			this->lbl_AnfrageErsterTag->Name = L"lbl_AnfrageErsterTag";
-			this->lbl_AnfrageErsterTag->Size = System::Drawing::Size(146, 20);
+			this->lbl_AnfrageErsterTag->Size = System::Drawing::Size(185, 25);
 			this->lbl_AnfrageErsterTag->TabIndex = 4;
 			this->lbl_AnfrageErsterTag->Text = L"Erster Urlaubstag:";
 			// 
@@ -151,9 +154,9 @@ namespace ProjektLokal {
 			this->lbl_AnfrageLetzterUrlaubstag->AutoSize = true;
 			this->lbl_AnfrageLetzterUrlaubstag->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lbl_AnfrageLetzterUrlaubstag->Location = System::Drawing::Point(14, 193);
+			this->lbl_AnfrageLetzterUrlaubstag->Location = System::Drawing::Point(16, 241);
 			this->lbl_AnfrageLetzterUrlaubstag->Name = L"lbl_AnfrageLetzterUrlaubstag";
-			this->lbl_AnfrageLetzterUrlaubstag->Size = System::Drawing::Size(153, 20);
+			this->lbl_AnfrageLetzterUrlaubstag->Size = System::Drawing::Size(194, 25);
 			this->lbl_AnfrageLetzterUrlaubstag->TabIndex = 5;
 			this->lbl_AnfrageLetzterUrlaubstag->Text = L"Letzter Urlaubstag:";
 			// 
@@ -162,27 +165,27 @@ namespace ProjektLokal {
 			this->lbl_AnfrageAnzahlUrlaubstage->AutoSize = true;
 			this->lbl_AnfrageAnzahlUrlaubstage->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lbl_AnfrageAnzahlUrlaubstage->Location = System::Drawing::Point(15, 227);
+			this->lbl_AnfrageAnzahlUrlaubstage->Location = System::Drawing::Point(17, 284);
 			this->lbl_AnfrageAnzahlUrlaubstage->Name = L"lbl_AnfrageAnzahlUrlaubstage";
-			this->lbl_AnfrageAnzahlUrlaubstage->Size = System::Drawing::Size(160, 20);
+			this->lbl_AnfrageAnzahlUrlaubstage->Size = System::Drawing::Size(206, 25);
 			this->lbl_AnfrageAnzahlUrlaubstage->TabIndex = 6;
 			this->lbl_AnfrageAnzahlUrlaubstage->Text = L"Anzahl Urlaubstage:";
 			// 
 			// lbl_ankunft
 			// 
 			this->lbl_ankunft->AutoSize = true;
-			this->lbl_ankunft->Location = System::Drawing::Point(252, 193);
+			this->lbl_ankunft->Location = System::Drawing::Point(284, 241);
 			this->lbl_ankunft->Name = L"lbl_ankunft";
-			this->lbl_ankunft->Size = System::Drawing::Size(80, 17);
+			this->lbl_ankunft->Size = System::Drawing::Size(89, 20);
 			this->lbl_ankunft->TabIndex = 7;
 			this->lbl_ankunft->Text = L"00.00.0000";
 			// 
 			// lbl_gehen
 			// 
 			this->lbl_gehen->AutoSize = true;
-			this->lbl_gehen->Location = System::Drawing::Point(252, 227);
+			this->lbl_gehen->Location = System::Drawing::Point(284, 284);
 			this->lbl_gehen->Name = L"lbl_gehen";
-			this->lbl_gehen->Size = System::Drawing::Size(24, 17);
+			this->lbl_gehen->Size = System::Drawing::Size(27, 20);
 			this->lbl_gehen->TabIndex = 8;
 			this->lbl_gehen->Text = L"00";
 			this->lbl_gehen->TextAlign = System::Drawing::ContentAlignment::TopRight;
@@ -190,18 +193,19 @@ namespace ProjektLokal {
 			// lbl_datum
 			// 
 			this->lbl_datum->AutoSize = true;
-			this->lbl_datum->Location = System::Drawing::Point(252, 168);
+			this->lbl_datum->Location = System::Drawing::Point(284, 210);
 			this->lbl_datum->Name = L"lbl_datum";
-			this->lbl_datum->Size = System::Drawing::Size(80, 17);
+			this->lbl_datum->Size = System::Drawing::Size(89, 20);
 			this->lbl_datum->TabIndex = 11;
 			this->lbl_datum->Text = L"00.00.0000";
 			this->lbl_datum->TextAlign = System::Drawing::ContentAlignment::TopRight;
 			// 
 			// UrlaubsanfragenbearbeitungsFenster
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(396, 399);
+			this->BackColor = System::Drawing::SystemColors::Window;
+			this->ClientSize = System::Drawing::Size(446, 499);
 			this->Controls->Add(this->lbl_datum);
 			this->Controls->Add(this->lbl_gehen);
 			this->Controls->Add(this->lbl_ankunft);
@@ -212,6 +216,8 @@ namespace ProjektLokal {
 			this->Controls->Add(this->lbl_Aenderungsanfrage);
 			this->Controls->Add(this->btn_AenderungAblehnen);
 			this->Controls->Add(this->btn_AenderungBestaetigen);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"UrlaubsanfragenbearbeitungsFenster";
 			this->Text = L"Neue Anfrage";
 			this->Load += gcnew System::EventHandler(this, &UrlaubsanfragenbearbeitungsFenster::AenderungsbearbeitungsFenster_Load);

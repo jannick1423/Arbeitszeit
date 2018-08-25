@@ -65,6 +65,7 @@ namespace ProjektLokal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(AenderungsbearbeitungsFenster::typeid));
 			this->btn_AenderungBestaetigen = (gcnew System::Windows::Forms::Button());
 			this->btn_AenderungAblehnen = (gcnew System::Windows::Forms::Button());
 			this->lbl_Aenderungsanfrage = (gcnew System::Windows::Forms::Label());
@@ -219,6 +220,7 @@ namespace ProjektLokal {
 			this->Controls->Add(this->lbl_Aenderungsanfrage);
 			this->Controls->Add(this->btn_AenderungAblehnen);
 			this->Controls->Add(this->btn_AenderungBestaetigen);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"AenderungsbearbeitungsFenster";
 			this->Text = L"Neue Anfrage";

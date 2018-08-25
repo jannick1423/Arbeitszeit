@@ -790,14 +790,6 @@ namespace ProjektLokal {
 				e->Cancel = true;
 			}
 			else {
-				//Speichern des Unternehmens
-				if (File::Exists("Imperium.txt")) {
-					File::Delete("Imperium.txt");
-				}
-				FileStream^ os = File::Create("Imperium.txt");
-				BinaryFormatter^ bf = gcnew BinaryFormatter();
-				bf->Serialize(os, unternehmen);
-				os->Close();
 				//Falls der Angestellte gerade die Pause aktiviert hat, wird diese zunächst beendet
 				if (timerPause->Enabled) {
 					timerPause->Stop();

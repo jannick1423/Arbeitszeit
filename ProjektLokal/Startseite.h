@@ -811,11 +811,10 @@ namespace ProjektLokal {
 		os->Close();
 	}
 
-	//NEU: ÜBERGABE DES MITARBEITERS
 	public: void setMitarbeiter(Angestellter^ mitarbeiterUebergabe) {
 		this->mitarbeiter = (Mitarbeiter^) mitarbeiterUebergabe;
 	}
-			//ÄNDERUNG
+
 	public: void setUnternehmen(Unternehmen^ unternehmen) {
 		this->unternehmen = unternehmen;
 	}

@@ -39,7 +39,7 @@ namespace ProjektLokal {
 		{
 			InitializeComponent();
 			sound = gcnew SoundPlayer();
-			unternehmen = gcnew Unternehmen();
+			//unternehmen = gcnew Unternehmen();
 			startseite = gcnew Startseite();
 			vorgesetztenseite = gcnew VorgesetztenSeite();
 			passwortaendernseite = gcnew PasswortAendernFenster();
@@ -223,7 +223,7 @@ namespace ProjektLokal {
 		String^ passwort = getKennwort();
 
 		bool gefunden = false;
-		for (int i = 0; i < unternehmen->getAngestellte()->Count && !gefunden; i++) {
+		for (int i = 0; i < unternehmen->getAngestellte()->Count && !gefunden; i++) { //HIER EXCEPTION HANDLING
 			Angestellter^ angestellter = unternehmen->getAngestellte()[i];
 
 			if (angestellter->getPersonalnummer()->Equals(personalnummer)) {
@@ -280,12 +280,13 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 	sound->Play();
 	
 	
-	String^ file = "Imperium.dat";
+	String^ file = "Imperium.txt";
 	if (!File::Exists(file)) {
-		FileStream^ os = File::Create(file);
-		BinaryFormatter^ bf = gcnew BinaryFormatter();
-		bf->Serialize(os, unternehmen);
-		os->Close();
+		unternehmen = gcnew Unternehmen();
+		//FileStream^ os = File::Create(file);
+		//BinaryFormatter^ bf = gcnew BinaryFormatter();
+		//bf->Serialize(os, unternehmen);
+		//os->Close();
 	}
 	else {
 		FileStream^ os = File::OpenRead(file);
@@ -293,6 +294,7 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 		unternehmen = (Unternehmen^)bf->Deserialize(os);
 		os->Close();
 	}
+	
 }
 
 };

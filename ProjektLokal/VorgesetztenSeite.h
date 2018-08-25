@@ -19,6 +19,9 @@ namespace ProjektLokal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	//zum lesen und schreiben
+	using namespace System::Runtime::Serialization::Formatters::Binary;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Zusammenfassung für VorgesetztenSeite
@@ -803,6 +806,14 @@ namespace ProjektLokal {
 				vorgesetzter->arbeitsTagBeenden(arbeitsStunden, arbeitsMinuten, wochenZeitErreicht);
 			}
 		}
+		//Speichern des Unternehmens
+		if (File::Exists("Imperium.txt")) {
+			File::Delete("Imperium.txt");
+		}
+		FileStream^ os = File::Create("Imperium.txt");
+		BinaryFormatter^ bf = gcnew BinaryFormatter();
+		bf->Serialize(os, unternehmen);
+		os->Close();
 	}
 
 	//NEU: ÜBERGABE DES VORGESETZTEN
@@ -812,7 +823,21 @@ namespace ProjektLokal {
 
 	//NEU: BEI KLICK AUF BUTTON WIRD REGISTRIERUNGSFENSTER GEÖFFNET
 	private: System::Void addBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+		registrierungsfenster->setUnternehmen(unternehmen);
 		System::Windows::Forms::DialogResult result = registrierungsfenster->ShowDialog(this);
+
+		//if (result == System::Windows::Forms::DialogResult::OK) {
+			//if (registrierungsfenster->getRolle()->Equals("Mitarbeiter")) {
+				//Adresse^ adresse = gcnew Adresse(registrierungsfenster->getStrasse(), registrierungsfenster->getHausnummer(), registrierungsfenster->getPlz(), registrierungsfenster->getOrt());
+				//Mitarbeiter^ mitarbeiter = gcnew Mitarbeiter(registrierungsfenster->getVorname(), registrierungsfenster->getName(), registrierungsfenster->getAbteilung(), registrierungsfenster->getPersonalnummer(), registrierungsfenster->getPasswort(), registrierungsfenster->getTelefon(), registrierungsfenster->getEmail(), adresse, registrierungsfenster->getIstWeiblich(), registrierungsfenster->getArbeitsstunden(), Int32::Parse("0"), registrierungsfenster->getUrlaubstage(), Int32::Parse("0"), vorgesetzter);
+			//}
+			//else {
+				//Adresse^ adresse = gcnew Adresse(registrierungsfenster->getStrasse, registrierungsfenster->getHausnummer, registrierungsfenster->getPlz, registrierungsfenster->getOrt);
+				//Vorgesetzter^ mitarbeiter = gcnew Vorgesetzter(registrierungsfenster->getVorname(), registrierungsfenster->getName(), registrierungsfenster->getAbteilung(), registrierungsfenster->getPersonalnummer(), registrierungsfenster->getPasswort(), registrierungsfenster->getTelefon(), registrierungsfenster->getEmail(), adresse, registrierungsfenster->getIstWeiblich(), registrierungsfenster->getArbeitsstunden(), 0, registrierungsfenster->getUrlaubstage(), 0);
+			//}
+			
+
+		//}
 
 	}
 	//NEU: BEI KLCIK AUF BUTTON WIRD REGISTREIRUNGSFENSTER WELCHES SPÄTER BEFÜLLT SEIN SOLL GEÖFFNET 

@@ -1,6 +1,7 @@
 #pragma once
 #ifndef _REGISTRIERUNGSFENSTER_H_
 #define _REGISTRIERUNGSFENSTER_H_
+#include "Startseite.h"
 
 namespace ProjektLokal {
 
@@ -17,6 +18,8 @@ namespace ProjektLokal {
 	public ref class RegistrierungsFenster : public System::Windows::Forms::Form
 	{
 	public:
+		Unternehmen^ unternehmen;
+
 		RegistrierungsFenster(void)
 		{
 			InitializeComponent();
@@ -82,6 +85,9 @@ namespace ProjektLokal {
 	private: System::Windows::Forms::TextBox^  txt_plz;
 	private: System::Windows::Forms::Label^  label13;
 	private: System::Windows::Forms::TextBox^  txt_ort;
+	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::ComboBox^  txt_Rolle;
+
 
 
 
@@ -129,6 +135,8 @@ namespace ProjektLokal {
 			this->txt_plz = (gcnew System::Windows::Forms::TextBox());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->txt_ort = (gcnew System::Windows::Forms::TextBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->txt_Rolle = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// txt_personalnummer
@@ -176,7 +184,7 @@ namespace ProjektLokal {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(7, 20);
+			this->label1->Location = System::Drawing::Point(2, 20);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(79, 17);
 			this->label1->TabIndex = 7;
@@ -185,7 +193,7 @@ namespace ProjektLokal {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(9, 48);
+			this->label2->Location = System::Drawing::Point(2, 48);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(45, 17);
 			this->label2->TabIndex = 8;
@@ -194,7 +202,7 @@ namespace ProjektLokal {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(4, 76);
+			this->label3->Location = System::Drawing::Point(2, 76);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(65, 17);
 			this->label3->TabIndex = 9;
@@ -203,7 +211,7 @@ namespace ProjektLokal {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(3, 105);
+			this->label4->Location = System::Drawing::Point(2, 103);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(51, 17);
 			this->label4->TabIndex = 10;
@@ -247,7 +255,7 @@ namespace ProjektLokal {
 			// 
 			// btn_mitarbeiter_hinzufuegen
 			// 
-			this->btn_mitarbeiter_hinzufuegen->Location = System::Drawing::Point(149, 391);
+			this->btn_mitarbeiter_hinzufuegen->Location = System::Drawing::Point(149, 419);
 			this->btn_mitarbeiter_hinzufuegen->Name = L"btn_mitarbeiter_hinzufuegen";
 			this->btn_mitarbeiter_hinzufuegen->Size = System::Drawing::Size(171, 35);
 			this->btn_mitarbeiter_hinzufuegen->TabIndex = 16;
@@ -283,7 +291,7 @@ namespace ProjektLokal {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(4, 342);
+			this->label11->Location = System::Drawing::Point(4, 341);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(85, 17);
 			this->label11->TabIndex = 21;
@@ -369,12 +377,32 @@ namespace ProjektLokal {
 			this->txt_ort->Size = System::Drawing::Size(209, 22);
 			this->txt_ort->TabIndex = 31;
 			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(4, 372);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(40, 17);
+			this->label14->TabIndex = 32;
+			this->label14->Text = L"Rolle";
+			// 
+			// txt_Rolle
+			// 
+			this->txt_Rolle->FormattingEnabled = true;
+			this->txt_Rolle->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Mitarbeiter", L"Vorgesetzter" });
+			this->txt_Rolle->Location = System::Drawing::Point(149, 372);
+			this->txt_Rolle->Name = L"txt_Rolle";
+			this->txt_Rolle->Size = System::Drawing::Size(349, 24);
+			this->txt_Rolle->TabIndex = 33;
+			// 
 			// RegistrierungsFenster
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::Highlight;
-			this->ClientSize = System::Drawing::Size(524, 436);
+			this->BackColor = System::Drawing::SystemColors::Window;
+			this->ClientSize = System::Drawing::Size(524, 499);
+			this->Controls->Add(this->txt_Rolle);
+			this->Controls->Add(this->label14);
 			this->Controls->Add(this->txt_ort);
 			this->Controls->Add(this->label13);
 			this->Controls->Add(this->txt_plz);
@@ -458,12 +486,24 @@ public:
 		return this->txt_passwort->Text;
 	}
 
-	float^ getArbeitsstunden() {
-		return float::Parse(this->txt_arbeitsstunden->Text);
+	Int32^ getArbeitsstunden() {
+		return Int32::Parse(this->txt_arbeitsstunden->Text);
 	}
 
 	Int32^ getUrlaubstage() {
 		return Int32::Parse(this->txt_urlaubstage->Text);
+	}
+
+	bool getIstWeiblich() {
+		bool istweiblich = false;
+		if (this->txt_geschlecht->SelectedItem->ToString()->Equals("weiblich")) {
+			istweiblich = true;
+		}
+		return istweiblich;
+	}
+
+	String^ getRolle() {
+		return this->txt_Rolle->Text;
 	}
 
 	//Methode zum Zurücksetzen der Textfelder
@@ -481,6 +521,10 @@ public:
 		this->txt_arbeitsstunden->Text = "";
 		this->txt_urlaubstage->Text = "";
 	}
+
+public: void setUnternehmen(Unternehmen^ unternehmen) {
+	this->unternehmen = unternehmen;
+}
 
 private: System::Void btn_mitarbeiter_hinzufuegen_Click(System::Object^  sender, System::EventArgs^  e) {
 	bool fehler = false;
@@ -557,6 +601,14 @@ private: System::Void btn_mitarbeiter_hinzufuegen_Click(System::Object^  sender,
 		this->DialogResult = System::Windows::Forms::DialogResult::None;
 		fehler = true;
 	}
+	else if (this->txt_Rolle->Text->Length == 0) {
+		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		fehler = true;
+	}
+	else if (this->txt_geschlecht->Text->Length == 0) {
+		this->DialogResult = System::Windows::Forms::DialogResult::None;
+		fehler = true;
+	}
 	else {
 
 		this->DialogResult = System::Windows::Forms::DialogResult::OK;
@@ -568,9 +620,28 @@ private: System::Void btn_mitarbeiter_hinzufuegen_Click(System::Object^  sender,
 			MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 	else {
-		
+		bool weiblich = false;
+		if (this->txt_Rolle->SelectedItem->ToString()->Equals("Mitarbeiter")) {
+			if (this->txt_geschlecht->SelectedItem->ToString()->Equals("weiblich")) {
+				weiblich = true;
+			}
+
+			Adresse^ adresse = gcnew Adresse(txt_strasse->Text, txt_hausnummer->Text, txt_plz->Text, txt_ort->Text);
+			Mitarbeiter^ mitarbeiter = gcnew Mitarbeiter(txt_vorname->Text, txt_name->Text, txt_abteilung->Text, txt_personalnummer->Text, txt_passwort->Text, txt_telefonnummer->Text, txt_email->Text, adresse, weiblich, Int32::Parse(txt_arbeitsstunden->Text), 0, Int32::Parse(txt_urlaubstage->Text), 0, nullptr);
+			unternehmen->fuegeAngstelltenhinzu(mitarbeiter);
+			this->Close();
+		}
+		else {
+			bool weiblich = false;
+			if (this->txt_geschlecht->SelectedItem->ToString()->Equals("weiblich")) {
+				weiblich = true;
+			}
+			Adresse^ adresse = gcnew Adresse(txt_strasse->Text, txt_hausnummer->Text, txt_plz->Text, txt_ort->Text);
+			Vorgesetzter^ vorgesetzter = gcnew Vorgesetzter(txt_vorname->Text, txt_name->Text, txt_abteilung->Text, txt_personalnummer->Text, txt_passwort->Text, txt_telefonnummer->Text, txt_email->Text, adresse, weiblich, Int32::Parse(txt_arbeitsstunden->Text), 0, Int32::Parse(txt_urlaubstage->Text), 0);
+			unternehmen->fuegeVorgesetztenhinzu(vorgesetzter);
+			this->Close();
+		}
 	}
-	//this->Close();
 }
 };
 }

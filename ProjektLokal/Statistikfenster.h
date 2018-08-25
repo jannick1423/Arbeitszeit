@@ -112,8 +112,6 @@ namespace ProjektLokal {
 				Aenderungsantrag ^aenderung = gcnew Aenderungsantrag(aenderungsantragsFenster->p_AntragstellerName, aenderungsantragsFenster->getAntragsteller(), aenderungsantragsFenster->p_Tag, 
 					aenderungsantragsFenster->p_Ankunft, aenderungsantragsFenster->p_Gehen, aenderungsantragsFenster->p_Grund, aenderungsantragsFenster->p_Kommentar);
 
-				//HIER MÜSSTE AENDERUNG AN VORGESETZTEN ÜBERGEBEN WERDEN
-
 				MessageBox::Show("Änderungsantrag erfolgreich eingereicht!", "Antrag erfolgreich!",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}

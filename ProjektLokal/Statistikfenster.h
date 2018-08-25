@@ -4,6 +4,7 @@
 
 #include "AenderungsantragsFenster.h"
 #include "Aenderungsantrag.h"
+#include "Angestellter.h"
 
 namespace ProjektLokal {
 
@@ -21,9 +22,9 @@ namespace ProjektLokal {
 	{
 
 	private:
-
 		Angestellter^ angestellter;
 		AenderungsantragsFenster^ aenderungsantragsFenster;
+		Vorgesetzter^ vorgesetzter;
 
 	public:
 		Statistikfenster(void)
@@ -107,9 +108,21 @@ namespace ProjektLokal {
 			//Sicherheitsabfrage, ob der Antrag wirklich eingereicht werden soll
 			if (MessageBox::Show("Sie wollen folgende Änderung beantragen:\n\n" + antragAlsText +  "\n\nWollen Sie diesen Antrag einreichen?", "Antrag einreichen?", MessageBoxButtons::YesNo,
 				MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+
 				//Neuen Änderungsantrag aus Werten aus dem Änderungsfenster erstellen
 				Aenderungsantrag ^aenderung = gcnew Aenderungsantrag(aenderungsantragsFenster->p_AntragstellerName, aenderungsantragsFenster->getAntragsteller(), aenderungsantragsFenster->p_Tag, 
 					aenderungsantragsFenster->p_Ankunft, aenderungsantragsFenster->p_Gehen, aenderungsantragsFenster->p_Grund, aenderungsantragsFenster->p_Kommentar);
+
+				//Änderungsantrag wird dem Vprgesetzten übertragen
+				if (!angestellter->istVorgesetzter()) {
+					Mitarbeiter^ mitarbeiter = (Mitarbeiter^)angestellter;
+					vorgesetzter = mitarbeiter->getVorgesetzte();
+				}
+				else {
+					vorgesetzter = (Vorgesetzter^)angestellter;
+				}
+
+				vorgesetzter->addAenderungsantrag(aenderung);
 
 				MessageBox::Show("Änderungsantrag erfolgreich eingereicht!", "Antrag erfolgreich!",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);

@@ -44,3 +44,8 @@ void Aenderungsantrag::setGrund(String^ grund)
 {
 	this->m_Grund = grund;
 }
+
+void Aenderungsantrag::setAntragsteller(Angestellter^ antragsteller)
+{
+	this->m_Antragsteller = antragsteller;
+}

@@ -84,7 +84,6 @@ public:
 	void fuegeZeitHinzu();
 	void aendereTag(DateTime tag, List<DateTime>^ neueZeiten);
 	void arbeitsTagBeenden(int arbeitStundenNochNeu, int arbeitMinutenNochNeu, bool wochenZeitErreicht);
-	virtual String^ asString() = 0;
 	virtual bool istVorgesetzter() = 0;
 
 };

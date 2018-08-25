@@ -31,11 +31,14 @@ public:
 	inline DateTime^ getTag() { return m_Tag; }
 	inline String^ getGrund() { return m_Grund; }
 	inline String^ getKommentar() { return m_Kommentar; }
+	inline String^ getAntragstellerName() { return m_AntragstellerName; }
+	inline Angestellter^ getAntragsteller() { return m_Antragsteller; }
 	void setAnfang(DateTime^ anfang);
 	void setEnde(DateTime^ ende);
 	void setTag(DateTime^ tag);   
 	void setKommentar(String^ kommentar);
 	void setGrund(String^ grund);
+	void setAntragsteller(Angestellter^ antragsteller);
 };
 
 #endif

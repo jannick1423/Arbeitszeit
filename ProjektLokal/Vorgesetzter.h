@@ -23,7 +23,6 @@ public:
 	Vorgesetzter(String^ vorname, String^ nachname, String^ abteilungsnummer, String^ personalnummer, String^ passwort);
 	~Vorgesetzter();
 
-	String^ asString() override;
 	List<Mitarbeiter^>^ getMaListe();
 	void addMA(Mitarbeiter^ ma);
 	void deleteMA(Mitarbeiter^ ma);

@@ -93,14 +93,13 @@ namespace ProjektLokal {
 	//Klick auf Bearbeiten-Button öffnet Änderungsantragsfenster
 	private: System::Void editBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		String^ antragAlsText;
 		aenderungsantragsFenster->setAntragssteller(angestellter);
 		System::Windows::Forms::DialogResult result = aenderungsantragsFenster->ShowDialog(this);
 
 		//Wenn vom AenderungsantragsFenster OK gegeben wird, wir zunächst eine Abfrage erzeugt, ob der Antrag so in Ordnung ist. Wenn der Mitarbeiter mit "Ja" bestätigt, wird ein neues Objekt vom Typ
 		//Urlaubsantrag erstellt. Bei "Nein" wird abgebrochen.
 		if (result == System::Windows::Forms::DialogResult::OK) {
-
+			String^ antragAlsText;
 			//Der Änderungsantrag als String zusammengefasst
 			antragAlsText = "Tag der Änderung: " + aenderungsantragsFenster->p_Tag.ToString("dddd, dd. MMMM yyyy") + "\nNeue Ankunft: " + aenderungsantragsFenster->p_Ankunft.ToString(L"t") + "\nNeues Gehen: " 
 				+ aenderungsantragsFenster->p_Gehen.ToString(L"t") + "\nGrund: " + aenderungsantragsFenster->p_Grund + "\nKommentar: " + aenderungsantragsFenster->p_Kommentar;

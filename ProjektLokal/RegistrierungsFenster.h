@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _REGISTRIERUNGSFENSTER_H_
-#define _REGISTRIERUNGSFENSTER_H_
 #include "Startseite.h"
 
 namespace ProjektLokal {
@@ -645,5 +643,3 @@ private: System::Void btn_mitarbeiter_hinzufuegen_Click(System::Object^  sender,
 }
 };
 }
-
-#endif

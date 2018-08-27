@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _URLAUBSANTRAG_H_
-#define _URLAUBSANTRAG_H_
 
 using namespace System;
 
@@ -32,5 +30,3 @@ public:
 	Int32 berechneTage(DateTime anfang, DateTime ende);
 
 };
-
-#endif

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _STATISTIKFENSTER_H_
-#define _STATISTIKFENSTER_H_
 
 #include "AenderungsantragsFenster.h"
 #include "Aenderungsantrag.h"
@@ -134,5 +132,3 @@ namespace ProjektLokal {
 
 	};
 }
-
-#endif

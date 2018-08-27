@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _UNTERNEHMEN_H_
-#define _UNTERNEHMEN_H_
 
 #include "Angestellter.h"
 #include "Mitarbeiter.h"
@@ -31,5 +29,3 @@ public:
 	void fuegeVorgesetztenhinzu(Vorgesetzter^ vorgesetzter);
 
 };
-
-#endif

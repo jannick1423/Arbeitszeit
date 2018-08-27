@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _PASSWORTAENDERNFENSTER_H_
-#define _PASSWORTAENDERNFENSTER_H_
 
 #include "Mitarbeiter.h"
 #include "Vorgesetzter.h"
@@ -327,5 +325,3 @@ private: System::Void btn_abbrechen_Click_1(System::Object^  sender, System::Eve
 }
 };
 }
-
-#endif

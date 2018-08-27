@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _AENDERUNGSANTRAGSFENSTER_H_
-#define _AENDERUNGSANTRAGSFENSTER_H_
 
 #include "Mitarbeiter.h"
 #include "Vorgesetzter.h"
@@ -440,5 +438,3 @@ namespace ProjektLokal {
 	}
 };
 }
-
-#endif

@@ -1,12 +1,8 @@
 #pragma once
-#ifndef _AENDERUNGSANTRAG_H_
-#define _AENDERUNGSANTRAG_H_
-
 #include "Angestellter.h"
 
 using namespace System;
 
-#pragma once
 ref class Aenderungsantrag
 {
 private:
@@ -40,5 +36,3 @@ public:
 	void setGrund(String^ grund);
 	void setAntragsteller(Angestellter^ antragsteller);
 };
-
-#endif

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _ANGESTELLTER_H_
-#define _ANGESTELLTER_H_
 #include "Adresse.h"
 #include <vcclr.h>
 
@@ -87,5 +85,3 @@ public:
 	virtual bool istVorgesetzter() = 0;
 
 };
-
-#endif

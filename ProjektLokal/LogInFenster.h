@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _LOGINFENSTER_H_
-#define _LOGINFENSTER_H_
 #include "Mitarbeiter.h"
 #include "Vorgesetzter.h"
 #include "Unternehmen.h"
@@ -299,5 +297,3 @@ private: System::Void loginFenster_Load(System::Object^  sender, System::EventAr
 
 };
 }
-
-#endif

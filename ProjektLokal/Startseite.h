@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _STARTSEITE_H_
-#define _STARTSEITE_H_
 #include <ctime>
 #include "Urlaubsfenster.h"
 #include "Statistikfenster.h"
@@ -791,9 +789,7 @@ namespace ProjektLokal {
 			}
 			else {
 				//Speichern des Unternehmens
-				if (File::Exists("Imperium.txt")) {
-					File::Delete("Imperium.txt");
-				}
+				
 				FileStream^ os = File::Create("Imperium.txt");
 				BinaryFormatter^ bf = gcnew BinaryFormatter();
 				bf->Serialize(os, unternehmen);
@@ -830,5 +826,3 @@ namespace ProjektLokal {
 
 };
 }
-
-#endif
